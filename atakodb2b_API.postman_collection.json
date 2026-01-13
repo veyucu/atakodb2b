@@ -1,0 +1,590 @@
+{
+	"info": {
+		"_postman_id": "atakodb2b-api-collection",
+		"name": "atakodb2b API",
+		"description": "ERP entegrasyonu için atakodb2b API koleksiyonu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://yourdomain.com/api",
+			"type": "string"
+		},
+		{
+			"key": "api_token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"api_token\", jsonData.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password123\",\n    \"device_name\": \"ERP System\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "logout"]
+						}
+					}
+				},
+				{
+					"name": "Logout All",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout-all",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "logout-all"]
+						}
+					}
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/me",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "me"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users?per_page=15&page=1",
+							"host": ["{{base_url}}"],
+							"path": ["users"],
+							"query": [
+								{
+									"key": "user_type",
+									"value": "musteri",
+									"disabled": true
+								},
+								{
+									"key": "is_active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "15"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"user_type\": \"musteri\",\n    \"musteri_kodu\": \"M001\",\n    \"musteri_adi\": \"John Doe Eczanesi\",\n    \"telefon\": \"0555 123 4567\",\n    \"il\": \"İstanbul\",\n    \"ilce\": \"Kadıköy\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						}
+					}
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe Updated\",\n    \"telefon\": \"0555 999 8888\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Find User by Code",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/find-by-code?musteri_kodu=M001",
+							"host": ["{{base_url}}"],
+							"path": ["users", "find-by-code"],
+							"query": [
+								{
+									"key": "musteri_kodu",
+									"value": "M001"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Sync Users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"users\": [\n        {\n            \"musteri_kodu\": \"M001\",\n            \"name\": \"John Doe\",\n            \"email\": \"john@example.com\",\n            \"password\": \"password123\",\n            \"user_type\": \"musteri\",\n            \"telefon\": \"0555 123 4567\",\n            \"is_active\": true\n        },\n        {\n            \"musteri_kodu\": \"M002\",\n            \"name\": \"Jane Smith\",\n            \"email\": \"jane@example.com\",\n            \"user_type\": \"musteri\",\n            \"is_active\": true\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/sync",
+							"host": ["{{base_url}}"],
+							"path": ["users", "sync"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products?per_page=15&page=1",
+							"host": ["{{base_url}}"],
+							"path": ["products"],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "in_stock",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "marka",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "15"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"urun_kodu\": \"U001\",\n    \"urun_adi\": \"Aspirin 100mg\",\n    \"barkod\": \"8690123456789\",\n    \"satis_fiyati\": 100.00,\n    \"kdv_orani\": 18.00,\n    \"kurum_iskonto\": 10.00,\n    \"bakiye\": 150.00,\n    \"marka\": \"BAYER\",\n    \"grup\": \"ANALJEZIK\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": ["{{base_url}}"],
+							"path": ["products"]
+						}
+					}
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"satis_fiyati\": 110.00,\n    \"bakiye\": 200.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1"]
+						}
+					}
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1"]
+						}
+					}
+				},
+				{
+					"name": "Find Product by Code",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/find-by-code?urun_kodu=U001",
+							"host": ["{{base_url}}"],
+							"path": ["products", "find-by-code"],
+							"query": [
+								{
+									"key": "urun_kodu",
+									"value": "U001"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Find Product by Barcode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/find-by-barcode?barkod=8690123456789",
+							"host": ["{{base_url}}"],
+							"path": ["products", "find-by-barcode"],
+							"query": [
+								{
+									"key": "barkod",
+									"value": "8690123456789"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Product Equivalents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1/equivalents",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1", "equivalents"]
+						}
+					}
+				},
+				{
+					"name": "Update Product Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bakiye\": 250.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/1/stock",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1", "stock"]
+						}
+					}
+				},
+				{
+					"name": "Update Product Price",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"satis_fiyati\": 110.00,\n    \"kdv_orani\": 18.00,\n    \"kurum_iskonto\": 12.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/1/price",
+							"host": ["{{base_url}}"],
+							"path": ["products", "1", "price"]
+						}
+					}
+				},
+				{
+					"name": "Sync Products",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"products\": [\n        {\n            \"urun_kodu\": \"U001\",\n            \"urun_adi\": \"Aspirin 100mg\",\n            \"satis_fiyati\": 100.00,\n            \"barkod\": \"8690123456789\",\n            \"bakiye\": 150.00,\n            \"marka\": \"BAYER\",\n            \"is_active\": true\n        },\n        {\n            \"urun_kodu\": \"U002\",\n            \"urun_adi\": \"Paracetamol 500mg\",\n            \"satis_fiyati\": 50.00,\n            \"bakiye\": 200.00,\n            \"is_active\": true\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/sync",
+							"host": ["{{base_url}}"],
+							"path": ["products", "sync"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
+
+
+
+
+
+
+

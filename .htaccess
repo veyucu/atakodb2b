@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Ana dizine erişim varsa index.php'ye yönlendir
+    RewriteRule ^$ index.php [L]
+    
+    # index.php dışındaki tüm istekleri public klasörüne yönlendir
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !^/index\.php$
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+
+
