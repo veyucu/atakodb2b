@@ -12,15 +12,12 @@ class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'product_id',
-        'product_name',
-        'product_code',
         'quantity',
         'price',
         'vat_rate',
         'total',
-        'net_price',
+        'net_fiyat',
         'mal_fazlasi',
-        'birim_maliyet',
     ];
 
     protected $casts = [
@@ -28,9 +25,7 @@ class OrderItem extends Model
         'price' => 'decimal:2',
         'vat_rate' => 'decimal:2',
         'total' => 'decimal:2',
-        'net_price' => 'decimal:2',
-        'mal_fazlasi' => 'integer',
-        'birim_maliyet' => 'decimal:2',
+        'net_fiyat' => 'decimal:2',
     ];
 
     public function order()
@@ -43,4 +38,3 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class);
     }
 }
-

@@ -332,23 +332,29 @@ class CartController extends Controller
                 'total' => $totalWithVat,
                 'notes' => $request->notes,
                 'gonderim_sekli' => $request->gonderim_sekli,
-                'shipping_address' => $request->shipping_address,
             ]);
 
             // Create order items
             foreach ($cartItems as $cartItem) {
+                // Seçili bonus opsiyonuna göre MF pattern'i al
+                $bonusOptions = $cartItem->product->bonus_options ?? [];
+                $selectedOption = $cartItem->bonus_option;
+                $mfPattern = null;
+
+                $option = collect($bonusOptions)->firstWhere('option', $selectedOption);
+                if ($option && isset($option['mf'])) {
+                    $mfPattern = $option['mf']; // Örn: "10+1"
+                }
+
                 \App\Models\OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $cartItem->product_id,
-                    'product_name' => $cartItem->product->urun_adi,
-                    'product_code' => $cartItem->product->urun_kodu,
                     'quantity' => $cartItem->quantity,
-                    'price' => $cartItem->price,
+                    'price' => $cartItem->net_price, // Net fiyatı price'a da yazıyoruz
                     'vat_rate' => $cartItem->product->kdv_orani,
                     'total' => $cartItem->total, // KDV Dahil
-                    'net_price' => $cartItem->net_price,
-                    'mal_fazlasi' => $cartItem->mal_fazlasi,
-                    'birim_maliyet' => $cartItem->birim_maliyet,
+                    'net_fiyat' => $cartItem->net_price,
+                    'mal_fazlasi' => $mfPattern,
                 ]);
             }
 

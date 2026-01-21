@@ -69,35 +69,19 @@
                                 <tbody>
                                     @foreach($order->items as $item)
                                         <tr>
-                                            <td>{{ $item->product_code }}</td>
+                                            <td>{{ $item->product->urun_kodu ?? '-' }}</td>
                                             <td>
-                                                {{ $item->product_name }}
-                                                @if($item->campaign_name)
-                                                    <br><span class="badge bg-success"><i class="fas fa-gift"></i>
-                                                        {{ $item->campaign_name }}</span>
-                                                @endif
-                                                @if($item->mal_fazlasi > 0)
-                                                    <br><span class="badge bg-info">+{{ $item->mal_fazlasi }} Bedava</span>
+                                                {{ $item->product->urun_adi ?? 'Ürün bulunamadı' }}
+                                                @if($item->mal_fazlasi)
+                                                    <br><span class="badge bg-success">MF: {{ $item->mal_fazlasi }}</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 {{ number_format($item->price, 2, ',', '.') }} ₺
-                                                @if($item->net_price && $item->net_price != $item->price)
-                                                    <br><small class="text-success">Net:
-                                                        {{ number_format($item->net_price, 2, ',', '.') }} ₺</small>
-                                                @endif
-                                                @if($item->birim_maliyet && $item->mal_fazlasi > 0)
-                                                    <br><small class="text-primary"><strong>Birim:
-                                                            {{ number_format($item->birim_maliyet, 2, ',', '.') }}
-                                                            ₺</strong></small>
-                                                @endif
                                             </td>
                                             <td class="text-center">
-                                                @if($item->mal_fazlasi > 0)
-                                                    <span
-                                                        class="badge bg-success">{{ $item->quantity }}+{{ $item->mal_fazlasi }}</span>
-                                                @elseif($item->product && $item->product->mf)
-                                                    <span class="badge bg-info">{{ $item->product->mf }}</span>
+                                                @if($item->mal_fazlasi)
+                                                    <span class="badge bg-info">{{ $item->mal_fazlasi }}</span>
                                                 @else
                                                     <span class="text-muted">-</span>
                                                 @endif
