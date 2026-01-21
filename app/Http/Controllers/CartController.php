@@ -342,9 +342,16 @@ class CartController extends Controller
                 $mfPattern = null;
 
                 $option = collect($bonusOptions)->firstWhere('option', $selectedOption);
-                if ($option && isset($option['mf'])) {
-                    $mfPattern = $option['mf']; // Örn: "10+1"
+                if ($option && isset($option['label']) && !empty($option['label'])) {
+                    $mfPattern = $option['label']; // Örn: "10+1" or "15+5"
                 }
+
+                \Log::info('OrderItem Create', [
+                    'product_id' => $cartItem->product_id,
+                    'bonus_option' => $selectedOption,
+                    'mf_pattern' => $mfPattern,
+                    'net_price' => $cartItem->net_price,
+                ]);
 
                 \App\Models\OrderItem::create([
                     'order_id' => $order->id,

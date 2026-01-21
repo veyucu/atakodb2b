@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtakoErpService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ea0ada1b0be3b5c455d8184bc44dabb3d2f7539")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8addf62eacacf8b5aa0c5856f7f86bc3cf24701")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtakoErpService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtakoErpService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

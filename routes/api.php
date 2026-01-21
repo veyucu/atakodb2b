@@ -30,6 +30,11 @@ Route::prefix('erp')->group(function () {
     Route::put('products/{urunKodu}', [ErpProductController::class, 'update']);
     Route::post('products/{urunKodu}/image', [ErpProductController::class, 'uploadImage']);
     Route::put('products/{urunKodu}/bakiye', [ErpProductController::class, 'updateBakiye']);
+
+    // Order sync (Web -> ERP)
+    Route::get('orders/pending', [\App\Http\Controllers\Api\ErpOrderController::class, 'pending']);
+    Route::get('orders/synced', [\App\Http\Controllers\Api\ErpOrderController::class, 'synced']);
+    Route::put('orders/{id}/synced', [\App\Http\Controllers\Api\ErpOrderController::class, 'markSynced']);
 });
 
 /*

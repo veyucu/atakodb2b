@@ -37,17 +37,27 @@
                                 <thead>
                                     <tr>
                                         <th>Ürün</th>
+                                        <th>MF</th>
+                                        <th>Net Fiyat</th>
                                         <th>Miktar</th>
-                                        <th class="text-end">Fiyat</th>
+                                        <th class="text-end">Toplam</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($order->items as $item)
                                         <tr>
                                             <td>
-                                                <strong>{{ $item->product_name }}</strong><br>
-                                                <small class="text-muted">{{ $item->product_code }}</small>
+                                                <small class="text-muted">{{ $item->product->urun_kodu ?? '-' }}</small><br>
+                                                <strong>{{ $item->product->urun_adi ?? 'Ürün bulunamadı' }}</strong>
                                             </td>
+                                            <td>
+                                                @if($item->mal_fazlasi)
+                                                    <span class="badge bg-success">{{ $item->mal_fazlasi }}</span>
+                                                @else
+                                                    <span class="text-muted">-</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ number_format($item->net_fiyat, 2, ',', '.') }} ₺</td>
                                             <td>{{ $item->quantity }}</td>
                                             <td class="text-end">{{ number_format($item->total, 2, ',', '.') }} ₺</td>
                                         </tr>
@@ -55,17 +65,17 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="2" class="text-end"><strong>Ara Toplam:</strong></td>
-                                        <td class="text-end"><strong>{{ number_format($order->subtotal, 2, ',', '.') }}
+                                        <td colspan="4" class="text-end"><strong>Ara Toplam:</strong></td>
+                                        <td class="text-end"><strong>{{ number_format($order->subtotal, 2, ',', '.')}}
                                                 ₺</strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class="text-end"><strong>KDV:</strong></td>
+                                        <td colspan="4" class="text-end"><strong>KDV:</strong></td>
                                         <td class="text-end"><strong>{{ number_format($order->vat, 2, ',', '.') }}
                                                 ₺</strong></td>
                                     </tr>
                                     <tr class="table-success">
-                                        <td colspan="2" class="text-end"><strong>Genel Toplam:</strong></td>
+                                        <td colspan="4" class="text-end"><strong>Genel Toplam:</strong></td>
                                         <td class="text-end"><strong
                                                 class="fs-5">{{ number_format($order->total, 2, ',', '.') }} ₺</strong></td>
                                     </tr>

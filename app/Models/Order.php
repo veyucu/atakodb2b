@@ -18,12 +18,17 @@ class Order extends Model
         'total',
         'notes',
         'gonderim_sekli',
+        'erp_synced',
+        'erp_synced_at',
+        'erp_order_number',
     ];
 
     protected $casts = [
         'subtotal' => 'decimal:2',
         'vat' => 'decimal:2',
         'total' => 'decimal:2',
+        'erp_synced' => 'boolean',
+        'erp_synced_at' => 'datetime',
     ];
 
     public function user()

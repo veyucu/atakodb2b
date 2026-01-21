@@ -42,6 +42,9 @@ try
     // Bakiye Sync service
     builder.Services.AddScoped<BakiyeSyncService>();
     
+    // Order Sync service (Web -> Netsis)
+    builder.Services.AddScoped<OrderSyncService>();
+    
     // HttpClient for Laravel API
     builder.Services.AddHttpClient("LaravelApi", client =>
     {
