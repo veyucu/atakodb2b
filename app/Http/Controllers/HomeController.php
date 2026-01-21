@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerActivity;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Slider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +47,37 @@ class HomeController extends Controller
         $showCampaignPopup = session('show_campaign_popup', false);
         session()->forget('show_campaign_popup');
 
-        return view('home', compact('sliders', 'products', 'viewType', 'stokta_olanlar', 'kampanyali', 'specialCampaignProducts', 'showCampaignPopup'));
+        // Son 7 günde en çok satan 10 ürün
+        $topSellingProducts = OrderItem::select('product_id')
+            ->selectRaw('SUM(quantity) as total_sold')
+            ->whereHas('order', function ($q) {
+                $q->where('created_at', '>=', Carbon::now()->subDays(7));
+            })
+            ->groupBy('product_id')
+            ->orderByDesc('total_sold')
+            ->limit(10)
+            ->with('product')
+            ->get()
+            ->filter(fn($item) => $item->product && $item->product->is_active && $item->product->bakiye > 0)
+            ->map(fn($item) => $item->product);
+
+        // Eğer 10 ürün yoksa, stokta olan ve resmi olan random ürünlerle tamamla
+        if ($topSellingProducts->count() < 10) {
+            $existingIds = $topSellingProducts->pluck('id')->toArray();
+            $needed = 10 - $topSellingProducts->count();
+
+            $randomProducts = Product::where('is_active', true)
+                ->where('bakiye', '>', 0)
+                ->whereNotNull('urun_resmi')
+                ->whereNotIn('id', $existingIds)
+                ->inRandomOrder()
+                ->limit($needed)
+                ->get();
+
+            $topSellingProducts = $topSellingProducts->concat($randomProducts);
+        }
+
+        return view('home', compact('sliders', 'products', 'viewType', 'stokta_olanlar', 'kampanyali', 'specialCampaignProducts', 'showCampaignPopup', 'topSellingProducts'));
     }
 
     /**
@@ -86,7 +118,37 @@ class HomeController extends Controller
             ->where('ozel_liste', true)
             ->get();
 
-        return view('home', compact('sliders', 'products', 'viewType', 'query', 'stokta_olanlar', 'kampanyali', 'specialCampaignProducts'));
+        // Son 7 günde en çok satan 10 ürün
+        $topSellingProducts = OrderItem::select('product_id')
+            ->selectRaw('SUM(quantity) as total_sold')
+            ->whereHas('order', function ($q) {
+                $q->where('created_at', '>=', Carbon::now()->subDays(7));
+            })
+            ->groupBy('product_id')
+            ->orderByDesc('total_sold')
+            ->limit(10)
+            ->with('product')
+            ->get()
+            ->filter(fn($item) => $item->product && $item->product->is_active && $item->product->bakiye > 0)
+            ->map(fn($item) => $item->product);
+
+        // Eğer 10 ürün yoksa, stokta olan ve resmi olan random ürünlerle tamamla
+        if ($topSellingProducts->count() < 10) {
+            $existingIds = $topSellingProducts->pluck('id')->toArray();
+            $needed = 10 - $topSellingProducts->count();
+
+            $randomProducts = Product::where('is_active', true)
+                ->where('bakiye', '>', 0)
+                ->whereNotNull('urun_resmi')
+                ->whereNotIn('id', $existingIds)
+                ->inRandomOrder()
+                ->limit($needed)
+                ->get();
+
+            $topSellingProducts = $topSellingProducts->concat($randomProducts);
+        }
+
+        return view('home', compact('sliders', 'products', 'viewType', 'query', 'stokta_olanlar', 'kampanyali', 'specialCampaignProducts', 'topSellingProducts'));
     }
 
     /**
@@ -130,7 +192,37 @@ class HomeController extends Controller
             ->where('ozel_liste', true)
             ->get();
 
-        return view('home', compact('sliders', 'products', 'viewType', 'stokta_olanlar', 'kampanyali', 'grup', 'specialCampaignProducts'));
+        // Son 7 günde en çok satan 10 ürün
+        $topSellingProducts = OrderItem::select('product_id')
+            ->selectRaw('SUM(quantity) as total_sold')
+            ->whereHas('order', function ($q) {
+                $q->where('created_at', '>=', Carbon::now()->subDays(7));
+            })
+            ->groupBy('product_id')
+            ->orderByDesc('total_sold')
+            ->limit(10)
+            ->with('product')
+            ->get()
+            ->filter(fn($item) => $item->product && $item->product->is_active && $item->product->bakiye > 0)
+            ->map(fn($item) => $item->product);
+
+        // Eğer 10 ürün yoksa, stokta olan ve resmi olan random ürünlerle tamamla
+        if ($topSellingProducts->count() < 10) {
+            $existingIds = $topSellingProducts->pluck('id')->toArray();
+            $needed = 10 - $topSellingProducts->count();
+
+            $randomProducts = Product::where('is_active', true)
+                ->where('bakiye', '>', 0)
+                ->whereNotNull('urun_resmi')
+                ->whereNotIn('id', $existingIds)
+                ->inRandomOrder()
+                ->limit($needed)
+                ->get();
+
+            $topSellingProducts = $topSellingProducts->concat($randomProducts);
+        }
+
+        return view('home', compact('sliders', 'products', 'viewType', 'stokta_olanlar', 'kampanyali', 'grup', 'specialCampaignProducts', 'topSellingProducts'));
     }
 
     /**
@@ -149,8 +241,8 @@ class HomeController extends Controller
         }
 
         $products = $query->get()->map(function ($product) {
-            // Net fiyat: Manuel girilmişse onu kullan, yoksa hesaplanmış net_price
-            $netFiyat = $product->net_fiyat_manuel ?? $product->net_price;
+            // Net fiyat: Önce net_fiyat1'i dene, yoksa net_price
+            $netFiyat = $product->net_fiyat1 ?? $product->net_price;
 
             return [
                 'id' => $product->id,
@@ -160,9 +252,15 @@ class HomeController extends Controller
                 'satis_fiyati_formatted' => number_format($product->satis_fiyati, 2, ',', '.') . ' ₺',
                 'depocu_fiyati' => $product->depocu_fiyati,
                 'depocu_fiyati_formatted' => $product->depocu_fiyati ? number_format($product->depocu_fiyati, 2, ',', '.') . ' ₺' : null,
-                'mf' => $product->mf,
+                'mf' => $product->mf1, // Backward compatibility
+                'mf1' => $product->mf1,
+                'mf2' => $product->mf2,
                 'net_fiyat' => $netFiyat,
                 'net_fiyat_formatted' => number_format($netFiyat, 2, ',', '.') . ' ₺',
+                'net_fiyat1' => $product->net_fiyat1,
+                'net_fiyat1_formatted' => $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : null,
+                'net_fiyat2' => $product->net_fiyat2,
+                'net_fiyat2_formatted' => $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : null,
                 'bakiye' => $product->bakiye,
                 'stokta' => $product->bakiye > 0,
                 'kampanyali' => $product->ozel_liste ? true : false,

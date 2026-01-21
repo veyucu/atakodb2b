@@ -19,7 +19,7 @@ class CartController extends Controller
         }
         return Auth::id();
     }
-    
+
     /**
      * Display cart items.
      */
@@ -32,7 +32,7 @@ class CartController extends Controller
         // Net fiyatlar zaten KDV dahil
         $totalWithVat = $cartItems->sum(fn($item) => $item->total); // KDV Dahil Toplam
         $totalWithoutVat = $cartItems->sum(fn($item) => $item->total_without_vat); // KDV Hariç Toplam
-        
+
         // KDV'leri oranlarına göre grupla
         $vatByRate = [];
         foreach ($cartItems as $item) {
@@ -42,10 +42,10 @@ class CartController extends Controller
             }
             $vatByRate[$vatRate] += $item->vat_amount;
         }
-        
+
         // Oranları küçükten büyüğe sırala
         ksort($vatByRate);
-        
+
         $totalVat = array_sum($vatByRate);
 
         // If AJAX request, return JSON
@@ -58,11 +58,14 @@ class CartController extends Controller
             ]);
         }
 
-        return view('cart.index', compact('cartItems', 'totalWithoutVat', 'vatByRate', 'totalVat', 'totalWithVat'));
+        $siteSettings = \App\Models\SiteSetting::getSettings();
+
+        return view('cart.index', compact('cartItems', 'totalWithoutVat', 'vatByRate', 'totalVat', 'totalWithVat', 'siteSettings'));
     }
 
     /**
      * Add product to cart.
+     * Sadece miktar kaydedilir, fiyatlar dinamik hesaplanır
      */
     public function add(Request $request)
     {
@@ -70,7 +73,6 @@ class CartController extends Controller
             $request->validate([
                 'product_id' => 'required|exists:products,id',
                 'quantity' => 'required|integer|min:0|max:999999',
-                'mal_fazlasi' => 'nullable|integer|min:0|max:999999',
             ], [
                 'product_id.required' => 'Ürün seçilmedi',
                 'product_id.exists' => 'Geçersiz ürün',
@@ -78,13 +80,10 @@ class CartController extends Controller
                 'quantity.integer' => 'Miktar sayı olmalı',
                 'quantity.min' => 'Miktar en az 0 olmalı',
                 'quantity.max' => 'Miktar en fazla 999.999 olabilir',
-                'mal_fazlasi.integer' => 'Mal fazlası sayı olmalı',
-                'mal_fazlasi.min' => 'Mal fazlası en az 0 olmalı',
-                'mal_fazlasi.max' => 'Mal fazlası en fazla 999.999 olabilir',
             ]);
 
             $product = Product::findOrFail($request->product_id);
-            
+
             // Stok kontrolü - Stokta yok mu?
             if ($product->bakiye <= 0) {
                 return response()->json([
@@ -92,22 +91,22 @@ class CartController extends Controller
                     'message' => 'Bu ürün stokta yok!'
                 ], 400);
             }
-            
-            // Stok kontrolü - Stok miktarından fazla sipariş verilmeye çalışılıyor mu?
-            // Önce sepetteki mevcut miktarı kontrol et
+
+            // Sepetteki mevcut miktarı kontrol et
             $cartItem = Cart::where('user_id', $this->getCurrentUserId())
                 ->where('product_id', $product->id)
                 ->first();
-            
+
             $mevcutSepetMiktari = $cartItem ? $cartItem->quantity : 0;
             $toplamSiparisMiktari = $mevcutSepetMiktari + $request->quantity;
-            
+
+            // Stok kontrolü
             if ($toplamSiparisMiktari > $product->bakiye) {
                 $kalanStok = $product->bakiye - $mevcutSepetMiktari;
                 if ($kalanStok > 0) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Stok miktarı yetersiz! Maksimum ' . number_format($kalanStok, 0) . ' adet sipariş verebilirsiniz. (Stok: ' . number_format($product->bakiye, 0) . ')'
+                        'message' => 'Stok miktarı yetersiz! Maksimum ' . number_format((float) $kalanStok, 0) . ' adet sipariş verebilirsiniz. (Stok: ' . number_format((float) $product->bakiye, 0) . ')'
                     ], 400);
                 } else {
                     return response()->json([
@@ -116,40 +115,17 @@ class CartController extends Controller
                     ], 400);
                 }
             }
-            
-            // Manuel mal fazlası kullan (kullanıcı giriyor)
-            $malFazlasi = $request->mal_fazlasi ?? 0;
-            
-            // Net price hesapla
-            $netPrice = $product->net_price;
-            
-            // Birim maliyet hesapla
-            $toplamAdet = $request->quantity + $malFazlasi;
-            $birimMaliyet = $toplamAdet > 0 ? ($netPrice * $request->quantity) / $toplamAdet : $netPrice;
 
-            // Sepette zaten var mı? (Yukarıda zaten çektik, tekrar çekmeye gerek yok)
             if ($cartItem) {
-                // Update existing item - add to quantity and mal fazlasi
-                $cartItem->quantity += $request->quantity;
-                $cartItem->mal_fazlasi += $malFazlasi;
-                $cartItem->price = $product->satis_fiyati;
-                $cartItem->net_price = $netPrice;
-                
-                // Recalculate birim maliyet
-                $toplamAdet = $cartItem->quantity + $cartItem->mal_fazlasi;
-                $cartItem->birim_maliyet = $toplamAdet > 0 ? ($netPrice * $cartItem->quantity) / $toplamAdet : $netPrice;
-                
+                // Mevcut kaydı güncelle - sadece miktar
+                $cartItem->quantity = $toplamSiparisMiktari;
                 $cartItem->save();
             } else {
-                // Create new cart item
-                $cartItem = Cart::create([
+                // Yeni kayıt - sadece user_id, product_id, quantity
+                Cart::create([
                     'user_id' => $this->getCurrentUserId(),
                     'product_id' => $product->id,
                     'quantity' => $request->quantity,
-                    'price' => $product->satis_fiyati,
-                    'net_price' => $netPrice,
-                    'mal_fazlasi' => $malFazlasi,
-                    'birim_maliyet' => $birimMaliyet,
                 ]);
             }
 
@@ -169,6 +145,7 @@ class CartController extends Controller
 
     /**
      * Update cart item quantity.
+     * Sadece miktar güncellenir, fiyatlar dinamik hesaplanır
      */
     public function update(Request $request, $id)
     {
@@ -195,7 +172,7 @@ class CartController extends Controller
 
             // Stok kontrolü
             $product = $cart->product;
-            
+
             if ($request->quantity > $product->bakiye) {
                 return response()->json([
                     'success' => false,
@@ -236,7 +213,7 @@ class CartController extends Controller
                 'all_user_carts' => Cart::where('user_id', $this->getCurrentUserId())->pluck('id')->toArray(),
                 'all_carts_db' => Cart::pluck('id', 'user_id')->toArray()
             ]);
-            
+
             $cart = Cart::where('id', $id)
                 ->where('user_id', $this->getCurrentUserId())
                 ->first();
@@ -326,7 +303,7 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $userId = $this->getCurrentUserId();
-        
+
         $cartItems = Cart::with('product')
             ->where('user_id', $userId)
             ->get();
@@ -354,6 +331,7 @@ class CartController extends Controller
                 'vat' => $vat,
                 'total' => $totalWithVat,
                 'notes' => $request->notes,
+                'gonderim_sekli' => $request->gonderim_sekli,
                 'shipping_address' => $request->shipping_address,
             ]);
 

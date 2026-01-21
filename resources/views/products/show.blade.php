@@ -415,6 +415,8 @@
 
     // Flying notification
     function showFlyingNotification(buttonElement, message) {
+        const buttonRect = buttonElement.getBoundingClientRect();
+        
         const notification = document.createElement('div');
         notification.className = 'flying-notification';
         notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
@@ -425,34 +427,26 @@
         notification.style.borderRadius = '25px';
         notification.style.boxShadow = '0 4px 12px rgba(40, 167, 69, 0.4)';
         notification.style.zIndex = '9999';
-        notification.style.opacity = '0';
-        notification.style.transition = 'all 1.8s ease-in-out';
+        notification.style.opacity = '1';
         notification.style.fontSize = '1rem';
         notification.style.display = 'flex';
         notification.style.alignItems = 'center';
         notification.style.gap = '8px';
+        notification.style.transition = 'opacity 0.5s ease-out';
+        notification.style.left = (buttonRect.left + buttonRect.width / 2 - 75) + 'px';
+        notification.style.top = (buttonRect.top - 40) + 'px';
         
         document.body.appendChild(notification);
 
-        const buttonRect = buttonElement.getBoundingClientRect();
-        const cartLink = document.querySelector('.navbar a[href*="cart"]');
-        const cartRect = cartLink ? cartLink.getBoundingClientRect() : { left: window.innerWidth - 50, top: 20, width: 0, height: 0 };
-
-        notification.style.left = (buttonRect.left + buttonRect.width / 2 - notification.offsetWidth / 2) + 'px';
-        notification.style.top = (buttonRect.top - notification.offsetHeight - 10) + 'px';
-
-        notification.style.opacity = '1';
-
+        // 1.5 saniye bekle, sonra fade out yap
         setTimeout(() => {
-            notification.style.left = (cartRect.left + cartRect.width / 2 - notification.offsetWidth / 2) + 'px';
-            notification.style.top = (cartRect.top + cartRect.height / 2 - notification.offsetHeight / 2) + 'px';
             notification.style.opacity = '0';
-            notification.style.transform = 'scale(0.2)';
+        }, 1500);
 
-            setTimeout(() => {
-                notification.remove();
-            }, 1800);
-        }, 1200);
+        // Mesajı kaldır (toplam 2 saniye)
+        setTimeout(() => {
+            notification.remove();
+        }, 2000);
     }
 
     // Image preview for muadil products

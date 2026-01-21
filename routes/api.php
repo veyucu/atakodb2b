@@ -5,6 +5,32 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ErpUserController;
+use App\Http\Controllers\Api\ErpProductController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make sure to check it out!
+|
+*/
+
+// ERP Integration Routes (API Key auth - no Sanctum)
+Route::prefix('erp')->group(function () {
+    // User sync
+    Route::post('users', [ErpUserController::class, 'store']);
+    Route::put('users/{cariKodu}', [ErpUserController::class, 'update']);
+
+    // Product sync
+    Route::post('products', [ErpProductController::class, 'store']);
+    Route::put('products/{urunKodu}', [ErpProductController::class, 'update']);
+    Route::post('products/{urunKodu}/image', [ErpProductController::class, 'uploadImage']);
+    Route::put('products/{urunKodu}/bakiye', [ErpProductController::class, 'updateBakiye']);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +50,7 @@ Route::prefix('auth')->group(function () {
 
 // Protected routes - Require authentication
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     // Auth routes
     Route::prefix('auth')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);

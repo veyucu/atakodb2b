@@ -29,6 +29,9 @@ class SiteSettingController extends Controller
             'company_address' => 'nullable|string',
             'company_phone' => 'nullable|string|max:50',
             'company_email' => 'nullable|email|max:255',
+            'gonderim_sekilleri' => 'nullable|array',
+            'gonderim_sekilleri.*.aciklama' => 'nullable|string|max:100',
+            'gonderim_sekilleri.*.erp_aciklama' => 'nullable|string|max:20',
         ]);
 
         $settings = SiteSetting::getSettings();
@@ -43,9 +46,17 @@ class SiteSettingController extends Controller
             $data['site_logo'] = $request->file('site_logo')->store('settings', 'public');
         }
 
+        // Gönderim şekillerini temizle (boş olanları kaldır)
+        if (isset($data['gonderim_sekilleri'])) {
+            $data['gonderim_sekilleri'] = array_values(array_filter($data['gonderim_sekilleri'], function ($item) {
+                return !empty($item['aciklama']) || !empty($item['erp_aciklama']);
+            }));
+        }
+
         $settings->update($data);
 
         return redirect()->route('admin.settings.index')
             ->with('success', 'Site ayarları başarıyla güncellendi.');
     }
 }
+

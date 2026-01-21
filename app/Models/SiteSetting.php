@@ -16,6 +16,11 @@ class SiteSetting extends Model
         'company_address',
         'company_phone',
         'company_email',
+        'gonderim_sekilleri',
+    ];
+
+    protected $casts = [
+        'gonderim_sekilleri' => 'array',
     ];
 
     /**

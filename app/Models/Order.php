@@ -17,7 +17,7 @@ class Order extends Model
         'vat',
         'total',
         'notes',
-        'shipping_address',
+        'gonderim_sekli',
     ];
 
     protected $casts = [
@@ -38,10 +38,24 @@ class Order extends Model
 
     public static function generateOrderNumber()
     {
-        $date = date('Ymd');
-        $lastOrder = self::whereDate('created_at', today())->latest()->first();
-        $number = $lastOrder ? (int)substr($lastOrder->order_number, -4) + 1 : 1;
-        return $date . str_pad($number, 4, '0', STR_PAD_LEFT);
+        $year = date('Y');
+
+        // Bu yıla ait YENİ formatta (YYYY + 6 hane) olan son siparişi bul
+        $lastOrder = self::where('order_number', 'LIKE', $year . '%')
+            ->where('order_number', 'REGEXP', '^' . $year . '[0-9]{6}$')
+            ->orderBy('order_number', 'desc')
+            ->first();
+
+        if ($lastOrder && strlen($lastOrder->order_number) == 10) {
+            // Son sipariş numarasından sayacı çıkar (2026000001 -> 1)
+            $number = (int) substr($lastOrder->order_number, 4) + 1;
+        } else {
+            // Yeni format yok, 1'den başla
+            $number = 1;
+        }
+
+        // Format: 2026000001 (toplam 10 hane: 4 yıl + 6 sayaç)
+        return $year . str_pad($number, 6, '0', STR_PAD_LEFT);
     }
 
     public function getStatusBadgeAttribute()

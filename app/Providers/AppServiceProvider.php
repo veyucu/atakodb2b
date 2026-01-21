@@ -31,24 +31,24 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $siteSettings = null;
 
-            if (Schema::hasTable('settings')) {
-                $siteSettings = Cache::rememberForever('site_settings', function () {
-                    return Setting::first();
+            if (Schema::hasTable('site_settings')) {
+                $siteSettings = Cache::remember('site_settings', 3600, function () {
+                    return \App\Models\SiteSetting::first();
                 });
             }
 
             $view->with('siteSettings', $siteSettings);
-            
+
             // Sepet bilgilerini view'a ekle (giriş yapmış kullanıcılar için)
             $cartCount = 0;
             $cartTotal = '0,00';
-            
+
             if (Auth::check() && Schema::hasTable('carts')) {
                 // Plasiyer veya Admin için seçili müşterinin sepetini, normal kullanıcı için kendi sepetini al
-                $userId = (Auth::user()->isPlasiyer() || Auth::user()->isAdmin()) && session()->has('selected_customer_id') 
-                    ? session('selected_customer_id') 
+                $userId = (Auth::user()->isPlasiyer() || Auth::user()->isAdmin()) && session()->has('selected_customer_id')
+                    ? session('selected_customer_id')
                     : Auth::id();
-                    
+
                 $cartItems = Cart::with('product')->where('user_id', $userId)->get();
                 $cartCount = $cartItems->sum('quantity');
                 $total = 0;
@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
 
                 $cartTotal = number_format($total, 2, ',', '.');
             }
-            
+
             $view->with('initialCartCount', $cartCount);
             $view->with('initialCartTotal', $cartTotal);
         });

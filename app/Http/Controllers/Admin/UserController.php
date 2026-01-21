@@ -40,12 +40,6 @@ class UserController extends Controller
             'adres' => 'nullable|string',
             'ilce' => 'nullable|string|max:255',
             'il' => 'nullable|string|max:255',
-            'gln_numarasi' => 'nullable|string|max:255',
-            'telefon' => 'nullable|string|max:255',
-            'mail_adresi' => 'nullable|email|max:255',
-            'vergi_dairesi' => 'nullable|string|max:255',
-            'vergi_kimlik_numarasi' => 'nullable|string|max:255',
-            'grup_kodu' => 'nullable|string|max:255',
             'plasiyer_kodu' => 'nullable|string|max:255',
             'is_active' => 'boolean',
         ]);
@@ -82,19 +76,13 @@ class UserController extends Controller
             'adres' => 'nullable|string',
             'ilce' => 'nullable|string|max:255',
             'il' => 'nullable|string|max:255',
-            'gln_numarasi' => 'nullable|string|max:255',
-            'telefon' => 'nullable|string|max:255',
-            'mail_adresi' => 'nullable|email|max:255',
-            'vergi_dairesi' => 'nullable|string|max:255',
-            'vergi_kimlik_numarasi' => 'nullable|string|max:255',
-            'grup_kodu' => 'nullable|string|max:255',
             'plasiyer_kodu' => 'nullable|string|max:255',
             'is_active' => 'boolean',
         ]);
 
         $data = $request->except(['password']);
         $data['is_active'] = $request->has('is_active');
-        
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }

@@ -20,7 +20,7 @@ class ProductController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $searchType = $request->get('search_type', 'all');
-            
+
             if ($searchType === 'all') {
                 // Muadil ürünlerle birlikte ara
                 $query->searchWithEquivalents($search);
@@ -52,17 +52,17 @@ class ProductController extends Controller
 
         // Sıralama (field_direction formatında)
         $sort = $request->get('sort', 'created_at_desc');
-        
+
         // Sort parametresini parse et
         $sortParts = explode('_', $sort);
         if (count($sortParts) >= 2) {
             $sortDirection = array_pop($sortParts); // Son eleman direction (asc/desc)
             $sortField = implode('_', $sortParts); // Geri kalanlar field adı
-            
+
             // Geçerli alanlar ve yönler
             $validFields = ['urun_kodu', 'urun_adi', 'created_at', 'updated_at'];
             $validDirections = ['asc', 'desc'];
-            
+
             if (in_array($sortField, $validFields) && in_array($sortDirection, $validDirections)) {
                 $query->orderBy($sortField, $sortDirection);
             } else {
@@ -73,7 +73,7 @@ class ProductController extends Controller
         }
 
         $products = $query->paginate(20)->appends($request->all());
-        
+
         // Marka ve grup listelerini getir
         $markalar = Product::whereNotNull('marka')->distinct()->pluck('marka');
         $gruplar = Product::whereNotNull('grup')->distinct()->pluck('grup');
@@ -104,9 +104,11 @@ class ProductController extends Controller
             'kurum_iskonto' => 'nullable|numeric|min:0|max:100',
             'eczaci_kari' => 'nullable|numeric|min:0|max:100',
             'ticari_iskonto' => 'nullable|numeric|min:0|max:100',
-            'mf' => 'nullable|string|max:255',
+            'mf1' => 'nullable|string|max:255',
+            'mf2' => 'nullable|string|max:255',
             'depocu_fiyati' => 'nullable|numeric|min:0',
-            'net_fiyat_manuel' => 'nullable|numeric|min:0',
+            'net_fiyat1' => 'nullable|numeric|min:0',
+            'net_fiyat2' => 'nullable|numeric|min:0',
             'bakiye' => 'nullable|numeric|min:0',
             'marka' => 'nullable|string|max:255',
             'grup' => 'nullable|string|max:255',
@@ -157,9 +159,11 @@ class ProductController extends Controller
             'kurum_iskonto' => 'nullable|numeric|min:0|max:100',
             'eczaci_kari' => 'nullable|numeric|min:0|max:100',
             'ticari_iskonto' => 'nullable|numeric|min:0|max:100',
-            'mf' => 'nullable|string|max:255',
+            'mf1' => 'nullable|string|max:255',
+            'mf2' => 'nullable|string|max:255',
             'depocu_fiyati' => 'nullable|numeric|min:0',
-            'net_fiyat_manuel' => 'nullable|numeric|min:0',
+            'net_fiyat1' => 'nullable|numeric|min:0',
+            'net_fiyat2' => 'nullable|numeric|min:0',
             'bakiye' => 'nullable|numeric|min:0',
             'marka' => 'nullable|string|max:255',
             'grup' => 'nullable|string|max:255',
@@ -220,9 +224,11 @@ class ProductController extends Controller
                 'kurum_iskonto' => 'nullable|numeric|min:0|max:100',
                 'eczaci_kari' => 'nullable|numeric|min:0|max:100',
                 'ticari_iskonto' => 'nullable|numeric|min:0|max:100',
-                'mf' => 'nullable|string|max:255',
+                'mf1' => 'nullable|string|max:255',
+                'mf2' => 'nullable|string|max:255',
                 'depocu_fiyati' => 'nullable|numeric|min:0',
-                'net_fiyat_manuel' => 'nullable|numeric|min:0',
+                'net_fiyat1' => 'nullable|numeric|min:0',
+                'net_fiyat2' => 'nullable|numeric|min:0',
                 'bakiye' => 'nullable|numeric|min:0',
                 'marka' => 'nullable|string|max:255',
                 'grup' => 'nullable|string|max:255',
@@ -235,7 +241,7 @@ class ProductController extends Controller
             $validated['ozel_liste'] = $request->has('ozel_liste') && $request->input('ozel_liste') == 1;
 
             // Boş değerleri null yap
-            foreach (['kurum_iskonto', 'eczaci_kari', 'ticari_iskonto', 'depocu_fiyati', 'net_fiyat_manuel', 'bakiye'] as $field) {
+            foreach (['kurum_iskonto', 'eczaci_kari', 'ticari_iskonto', 'depocu_fiyati', 'net_fiyat1', 'net_fiyat2', 'bakiye'] as $field) {
                 if (isset($validated[$field]) && $validated[$field] === '') {
                     $validated[$field] = null;
                 }
@@ -251,7 +257,7 @@ class ProductController extends Controller
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Doğrulama hatası: ' . implode(', ', array_map(function($errors) {
+                'message' => 'Doğrulama hatası: ' . implode(', ', array_map(function ($errors) {
                     return implode(', ', $errors);
                 }, $e->errors())),
                 'errors' => $e->errors()
@@ -274,9 +280,9 @@ class ProductController extends Controller
             if (!filter_var($product->urun_resmi, FILTER_VALIDATE_URL)) {
                 Storage::disk('public')->delete($product->urun_resmi);
             }
-            
+
             $product->update(['urun_resmi' => null]);
-            
+
             return redirect()->route('admin.products.edit', $product)
                 ->with('success', 'Ürün resmi başarıyla silindi.');
         }

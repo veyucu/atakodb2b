@@ -11,30 +11,19 @@ class Cart extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Fiyatlar artık dinamik hesaplanıyor
      */
     protected $fillable = [
         'user_id',
         'product_id',
         'quantity',
-        'price',
-        'net_price',
-        'mal_fazlasi',
-        'birim_maliyet',
     ];
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array<string, string>
      */
     protected $casts = [
         'quantity' => 'integer',
-        'price' => 'decimal:2',
-        'net_price' => 'decimal:2',
-        'mal_fazlasi' => 'integer',
-        'birim_maliyet' => 'decimal:2',
     ];
 
     /**
@@ -54,24 +43,87 @@ class Cart extends Model
     }
 
     /**
+     * Miktara göre en uygun bonus opsiyonunu belirle
+     */
+    public function getBonusOptionAttribute(): int
+    {
+        $bonusOptions = $this->product->bonus_options ?? [];
+        $quantity = $this->quantity;
+
+        $option2 = collect($bonusOptions)->firstWhere('option', 2);
+        $option1 = collect($bonusOptions)->firstWhere('option', 1);
+
+        // Opsiyon 2'nin minimum miktarına ulaştı mı?
+        if ($option2 && $option2['buy'] > 0 && $quantity >= $option2['buy']) {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    /**
+     * Miktara göre mal fazlasını hesapla
+     */
+    public function getMalFazlasiAttribute(): int
+    {
+        $bonusOptions = $this->product->bonus_options ?? [];
+        $quantity = $this->quantity;
+        $bonusOption = $this->bonus_option;
+
+        $option = collect($bonusOptions)->firstWhere('option', $bonusOption);
+
+        if ($option && $option['buy'] > 0 && $quantity >= $option['buy']) {
+            return floor($quantity / $option['buy']) * $option['get'];
+        }
+
+        return 0;
+    }
+
+    /**
+     * Güncel net fiyatı product'tan al
+     */
+    public function getNetPriceAttribute(): float
+    {
+        $bonusOption = $this->bonus_option;
+
+        if ($bonusOption == 2 && $this->product->net_fiyat2) {
+            return $this->product->net_fiyat2;
+        } elseif ($this->product->net_fiyat1) {
+            return $this->product->net_fiyat1;
+        }
+
+        return $this->product->net_price ?? $this->product->satis_fiyati ?? 0;
+    }
+
+    /**
+     * Liste fiyatını product'tan al
+     */
+    public function getPriceAttribute(): float
+    {
+        return $this->product->satis_fiyati ?? 0;
+    }
+
+    /**
+     * Birim maliyet hesapla (mal fazlası dahil)
+     */
+    public function getBirimMaliyetAttribute(): float
+    {
+        $toplamAdet = $this->quantity + $this->mal_fazlasi;
+        $netPrice = $this->net_price;
+
+        if ($toplamAdet > 0) {
+            return ($netPrice * $this->quantity) / $toplamAdet;
+        }
+
+        return $netPrice;
+    }
+
+    /**
      * Get the total price for this cart item (KDV Dahil).
      */
     public function getTotalAttribute(): float
     {
-        // Önce ürün kartındaki net fiyatı kontrol et (zaten KDV dahil)
-        $netFiyat = $this->product->net_fiyat_manuel ?? $this->product->net_price ?? null;
-        
-        if ($netFiyat) {
-            return $this->quantity * $netFiyat;
-        }
-        
-        // Eğer cart'taki net fiyat varsa onu kullan
-        if ($this->net_price) {
-            return $this->quantity * $this->net_price;
-        }
-        
-        // Yoksa normal fiyat
-        return $this->quantity * $this->price;
+        return $this->quantity * $this->net_price;
     }
 
     /**
@@ -91,6 +143,3 @@ class Cart extends Model
         return $this->total - $this->total_without_vat;
     }
 }
-
-
-
