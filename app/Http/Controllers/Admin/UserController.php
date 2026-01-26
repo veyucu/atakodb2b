@@ -12,9 +12,20 @@ class UserController extends Controller
     /**
      * Display a listing of users.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::whereIn('user_type', ['musteri', 'plasiyer', 'admin'])->orderBy('created_at', 'desc')->paginate(20);
+        $query = User::whereIn('user_type', ['musteri', 'plasiyer', 'admin']);
+
+        // Arama filtresi
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('username', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%");
+            });
+        }
+
+        $users = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         return view('admin.users.index', compact('users'));
     }
 

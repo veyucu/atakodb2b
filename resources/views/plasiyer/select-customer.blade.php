@@ -102,7 +102,6 @@
                                     <th style="width: 100px;">Kod</th>
                                     <th style="width: 180px;">Müşteri Adı</th>
                                     <th style="width: 110px;">İlçe / İl</th>
-                                    <th style="width: 100px;">Telefon</th>
                                     <th class="text-center" style="width: 110px;">Son Giriş</th>
                                     <th class="text-center" style="width: 130px;">Sepet</th>
                                     <th class="text-center" style="width: 60px;">SEÇ</th>
@@ -114,7 +113,6 @@
                                         <td><span class="badge bg-secondary">{{ $customer->username }}</span></td>
                                         <td><strong>{{ \Str::limit($customer->name, 30) }}</strong></td>
                                         <td class="text-muted small">{{ $customer->ilce ?? '-' }} / {{ $customer->il ?? '-' }}</td>
-                                        <td class="text-muted small">{{ $customer->telefon ?? '-' }}</td>
                                         <td class="text-center">
                                             @if($customer->last_login_at)
                                                 <small class="text-muted" title="{{ $customer->last_login_at->format('d.m.Y H:i:s') }}">
