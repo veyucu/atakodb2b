@@ -47,7 +47,7 @@ namespace AtakoErpService.Models
     /// </summary>
     public class ItemSlips
     {
-        public int FaturaTip { get; set; } = 0; // Belge tipi
+        public int FaturaTip { get; set; } = 7; // Belge tipi: 7 = Satış Siparişi (ftSSip)
         public string? Seri { get; set; } // Numara seri ön eki (örn: "W")
         public bool SeriliHesapla { get; set; } = false;
         public bool KayitliNumaraOtomatikGuncellensin { get; set; } = true;
@@ -88,6 +88,7 @@ namespace AtakoErpService.Models
         public double STra_NF { get; set; } // Net Fiyat
         public double STra_BF { get; set; } // Birim Fiyat
         public int Olcubr { get; set; } = 1;
+        public string? Ekalan1 { get; set; } // Mal Fazlası
     }
 
     /// <summary>

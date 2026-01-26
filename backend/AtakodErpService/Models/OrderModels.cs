@@ -47,6 +47,7 @@ namespace AtakoErpService.Models
     public class OrderItemDto
     {
         [JsonPropertyName("product_id")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public int ProductId { get; set; }
         
         [JsonPropertyName("urun_kodu")]
@@ -56,6 +57,7 @@ namespace AtakoErpService.Models
         public string? UrunAdi { get; set; }
         
         [JsonPropertyName("quantity")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public int Quantity { get; set; }
         
         [JsonPropertyName("price")]

@@ -15,23 +15,25 @@ namespace AtakoErpService.Services
         private readonly IConfiguration _configuration;
         private readonly HttpClient _laravelClient;
         private readonly HttpClient _netsisClient;
+        private readonly SyncStatusService _statusService;
         
         private string? _netsisToken;
         private DateTime _tokenExpiry = DateTime.MinValue; // Token cache expiry
         private readonly JsonSerializerOptions _jsonOptions;
+        private readonly JsonSerializerOptions _netsisJsonOptions;
 
         public OrderSyncService(
             ILogger<OrderSyncService> logger,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory,
+            SyncStatusService statusService)
         {
             _logger = logger;
             _configuration = configuration;
+            _statusService = statusService;
             
-            // Laravel API client
-            _laravelClient = new HttpClient();
-            var laravelBaseUrl = configuration["LaravelApi:BaseUrl"] ?? "http://localhost:8000";
-            _laravelClient.BaseAddress = new Uri(laravelBaseUrl);
-            _laravelClient.Timeout = TimeSpan.FromSeconds(30);
+            // Laravel API client - IHttpClientFactory kullan (SSL/TLS düzgün çalışır)
+            _laravelClient = httpClientFactory.CreateClient("LaravelApi");
             
             // Netsis REST API client
             _netsisClient = new HttpClient();
@@ -39,10 +41,18 @@ namespace AtakoErpService.Services
             _netsisClient.BaseAddress = new Uri(netsisRestUrl);
             _netsisClient.Timeout = TimeSpan.FromSeconds(180); // Netsis işlemleri uzun sürebilir
             
+            // Laravel API için camelCase
             _jsonOptions = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            
+            // Netsis API için PascalCase (NetOpenX bunu bekliyor)
+            _netsisJsonOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+                // PropertyNamingPolicy yok = PascalCase
             };
         }
 
@@ -115,32 +125,48 @@ namespace AtakoErpService.Services
         {
             try
             {
-                var url = "/api/erp/orders/pending";
-                _logger.LogInformation("Laravel API çağrılıyor: {BaseUrl}{Url}", _laravelClient.BaseAddress, url);
+                var laravelBaseUrl = _configuration["LaravelApi:BaseUrl"] ?? "http://localhost:8000";
+                var apiKey = _configuration["LaravelApi:ApiKey"] ?? "";
+                var endpoint = $"{laravelBaseUrl}/api/erp/orders/pending";
                 
-                var response = await _laravelClient.GetAsync(url);
+                _logger.LogInformation("Laravel API çağrılıyor: {Endpoint}, ApiKey uzunluğu: {KeyLength}", endpoint, apiKey?.Length ?? 0);
+                
+                var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+                request.Headers.Add("X-API-Key", apiKey);
+                
+                var response = await _laravelClient.SendAsync(request);
                 _logger.LogInformation("Laravel API yanıt kodu: {Status}", response.StatusCode);
                 
                 if (!response.IsSuccessStatusCode)
                 {
-                    _logger.LogError("Laravel API hatası: {Status}", response.StatusCode);
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    var errorMsg = $"Laravel API hatası: HTTP {(int)response.StatusCode} - {errorContent}";
+                    _logger.LogError(errorMsg);
+                    _statusService.AddError("OrderSync", errorMsg);
                     return new List<OrderDto>();
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
-                _logger.LogInformation("Laravel API yanıtı: {Length} karakter", json.Length);
+                _logger.LogInformation("Laravel API yanıtı: {Length} karakter, İlk 500 karakter: {Preview}", 
+                    json.Length, 
+                    json.Length > 500 ? json.Substring(0, 500) : json);
                 
                 var result = JsonSerializer.Deserialize<PendingOrdersResponse>(json, new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString
                 });
 
-                _logger.LogInformation("Parse edilen sipariş sayısı: {Count}", result?.Orders?.Count ?? 0);
+                var count = result?.Orders?.Count ?? 0;
+                _logger.LogInformation("Parse edilen sipariş sayısı: {Count}", count);
+                
                 return result?.Orders ?? new List<OrderDto>();
             }
             catch (Exception ex)
             {
+                var errorMsg = $"Pending siparişler alınırken hata: {ex.Message}";
                 _logger.LogError(ex, "Pending siparişler alınırken hata oluştu");
+                _statusService.AddError("OrderSync", errorMsg);
                 return new List<OrderDto>();
             }
         }
@@ -275,12 +301,6 @@ namespace AtakoErpService.Services
                 // Sipariş objesi oluştur
                 var itemSlips = new ItemSlips
                 {                    
-                    SeriliHesapla = false,
-                    Seri = "W",
-                    KayitliNumaraOtomatikGuncellensin =true, // Numara kendimiz alıyoruz
-                    //KayitliNumaraOtomatikGuncellensin = false, // Numara kendimiz alıyoruz
-                    OtomatikIslemTipiGetir = false,
-                    
                     FatUst = new ItemSlipsHeader
                     {
                         Tip = 7, // ftSSip (Satış Siparişi)
@@ -296,6 +316,13 @@ namespace AtakoErpService.Services
                         Aciklama = order.GonderimSekli ?? "",
                         EKACK14 = order.OrderNumber,
                     },
+
+                    SeriliHesapla = false,
+                    Seri = "W",
+                    KayitliNumaraOtomatikGuncellensin = true, // Numara kendimiz alıyoruz
+                    //KayitliNumaraOtomatikGuncellensin = false, // Numara kendimiz alıyoruz
+                    OtomatikIslemTipiGetir = false,                    
+
                     Kalems = new List<ItemSlipLines>()
                 };
 
@@ -331,7 +358,8 @@ namespace AtakoErpService.Services
                         STra_GCMIK = (double)item.Quantity,
                         Olcubr = 1,
                         STra_NF = (double)item.NetFiyat,
-                        STra_BF = (double)item.NetFiyat,                        
+                        STra_BF = (double)item.NetFiyat,
+                        Ekalan1 = item.MalFazlasi  // Mal fazlası bilgisi
                     });
                 }
 
@@ -375,15 +403,24 @@ namespace AtakoErpService.Services
         {
             try
             {
-                var content = new StringContent(
-                    JsonSerializer.Serialize(new { erp_order_number = erpOrderNo }),
-                    Encoding.UTF8,
-                    "application/json");
+                var laravelBaseUrl = _configuration["LaravelApi:BaseUrl"] ?? "http://localhost:8000";
+                var apiKey = _configuration["LaravelApi:ApiKey"] ?? "";
+                var endpoint = $"{laravelBaseUrl}/api/erp/orders/{orderId}/synced";
+                
+                var request = new HttpRequestMessage(HttpMethod.Put, endpoint)
+                {
+                    Content = new StringContent(
+                        JsonSerializer.Serialize(new { erp_order_number = erpOrderNo }),
+                        Encoding.UTF8,
+                        "application/json")
+                };
+                request.Headers.Add("X-API-Key", apiKey);
 
-                var response = await _laravelClient.PutAsync($"/api/erp/orders/{orderId}/synced", content);
+                var response = await _laravelClient.SendAsync(request);
                 if (!response.IsSuccessStatusCode)
                 {
-                    _logger.LogWarning("Sipariş synced olarak işaretlenemedi: {OrderId}", orderId);
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    _logger.LogWarning("Sipariş synced olarak işaretlenemedi: {OrderId} - {Error}", orderId, errorContent);
                 }
             }
             catch (Exception ex)

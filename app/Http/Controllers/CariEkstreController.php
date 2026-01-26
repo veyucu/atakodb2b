@@ -13,10 +13,12 @@ class CariEkstreController extends Controller
      * .NET Backend API URL
      */
     protected $erpApiUrl;
+    protected $erpApiKey;
 
     public function __construct()
     {
         $this->erpApiUrl = config('services.erp.url', 'http://localhost:5000');
+        $this->erpApiKey = config('services.erp.api_key', env('ERP_API_KEY', ''));
     }
 
     /**
@@ -85,10 +87,12 @@ class CariEkstreController extends Controller
         }
 
         try {
-            $response = Http::timeout(30)->get("{$this->erpApiUrl}/api/FaturaDetay", [
-                'belgeNo' => $belgeNo,
-                'musteriKodu' => $musteriKodu
-            ]);
+            $response = Http::timeout(30)
+                ->withHeaders(['X-API-Key' => $this->erpApiKey])
+                ->get("{$this->erpApiUrl}/api/FaturaDetay", [
+                    'belgeNo' => $belgeNo,
+                    'musteriKodu' => $musteriKodu
+                ]);
 
             if ($response->successful()) {
                 return response()->json($response->json());
@@ -112,11 +116,13 @@ class CariEkstreController extends Controller
     protected function getEkstreFromApi($musteriKodu, $baslangicTarihi, $bitisTarihi)
     {
         try {
-            $response = Http::timeout(30)->get("{$this->erpApiUrl}/api/CariEkstre", [
-                'musteriKodu' => $musteriKodu,
-                'baslangicTarihi' => $baslangicTarihi,
-                'bitisTarihi' => $bitisTarihi
-            ]);
+            $response = Http::timeout(30)
+                ->withHeaders(['X-API-Key' => $this->erpApiKey])
+                ->get("{$this->erpApiUrl}/api/CariEkstre", [
+                    'musteriKodu' => $musteriKodu,
+                    'baslangicTarihi' => $baslangicTarihi,
+                    'bitisTarihi' => $bitisTarihi
+                ]);
 
             if ($response->successful()) {
                 $data = $response->json();

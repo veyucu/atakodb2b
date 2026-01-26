@@ -1,13 +1,7 @@
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\AtakodErpService.exe
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\web.config
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-x86\web.config
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\appsettings.Development.json
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\appsettings.json
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\appsettings.Development.json
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\appsettings.json
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\AtakodErpService.deps.json
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\AtakodErpService.runtimeconfig.json
-C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-customer\AtakodErpService.staticwebassets.endpoints.json
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-x86\appsettings.Development.json
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-x86\appsettings.json
 C:\xampp\htdocs\atakodb2b\backend\AtakodErpService\publish-customer\publish-x86\AtakoErpService.deps.json

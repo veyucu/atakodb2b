@@ -128,29 +128,31 @@
             }
         }
 
-        /* Kullanıcı Dropdown - Uzun isim desteği */
+        /* Kullanıcı Dropdown - Uzun isim desteği (max 2 satır) */
         .user-link {
-            max-width: 200px;
+            max-width: 220px;
             font-size: 0.85rem;
         }
 
         .user-link span {
-            display: inline-block;
-            max-width: 160px;
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            max-width: 180px;
+            line-height: 1.3;
             vertical-align: middle;
         }
 
-        /* Çok uzun isimler için iki satırlı gösterim */
+        /* Büyük ekranlarda biraz daha geniş */
         @media (min-width: 1200px) {
+            .user-link {
+                max-width: 280px;
+            }
+            
             .user-link span {
-                max-width: 180px;
-                white-space: normal;
-                line-height: 1.2;
-                max-height: 2.4em;
-                overflow: hidden;
+                max-width: 220px;
             }
         }
 
