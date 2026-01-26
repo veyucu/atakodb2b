@@ -10,17 +10,20 @@ public class BakiyeSyncService
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _config;
     private readonly ILogger<BakiyeSyncService> _logger;
+    private readonly SyncStatusService _statusService;
 
     public BakiyeSyncService(
         IDatabaseService db,
         HttpClient httpClient,
         IConfiguration config,
-        ILogger<BakiyeSyncService> logger)
+        ILogger<BakiyeSyncService> logger,
+        SyncStatusService statusService)
     {
         _db = db;
         _httpClient = httpClient;
         _config = config;
         _logger = logger;
+        _statusService = statusService;
     }
 
     /// <summary>
@@ -92,15 +95,19 @@ public class BakiyeSyncService
                     else
                     {
                         result.ErrorCount++;
-                        result.Errors.Add($"{bakiye.STOK_KODU}: {errorMessage}");
+                        var errorMsg = $"{bakiye.STOK_KODU}: {errorMessage}";
+                        result.Errors.Add(errorMsg);
                         _logger.LogWarning("Gönderilemedi: {StokKodu} - {Hata}", bakiye.STOK_KODU, errorMessage);
+                        _statusService.AddError("BakiyeSync", errorMsg);
                     }
                 }
                 catch (Exception ex)
                 {
                     result.ErrorCount++;
-                    result.Errors.Add($"{bakiye.STOK_KODU}: {ex.Message}");
+                    var errorMsg = $"{bakiye.STOK_KODU}: {ex.Message}";
+                    result.Errors.Add(errorMsg);
                     _logger.LogError(ex, "Bakiye işlemi hatası: {StokKodu}", bakiye.STOK_KODU);
+                    _statusService.AddError("BakiyeSync", errorMsg);
                 }
             }
             

@@ -239,21 +239,10 @@
 @section('content')
     <div class="container">
         <!-- Sayfa Başlığı -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h4 class="mb-1">
-                    <i class="fas fa-file-invoice-dollar me-2 text-primary"></i>Cari Ekstre
-                </h4>
-                <p class="text-muted mb-0">
-                    <strong>{{ $musteriAdi }}</strong>
-                    @if($musteriKodu)
-                        <span class="badge bg-secondary ms-2">{{ $musteriKodu }}</span>
-                    @endif
-                </p>
-            </div>
-            <a href="{{ route('home') }}" class="btn btn-outline-secondary btn-sm">
-                <i class="fas fa-arrow-left me-1"></i> Ana Sayfa
-            </a>
+        <div class="mb-3">
+            <h4 class="mb-0">
+                <i class="fas fa-file-invoice-dollar me-2 text-primary"></i>Cari Ekstre
+            </h4>
         </div>
 
         <!-- Tarih Filtresi -->
@@ -281,43 +270,6 @@
             </form>
         </div>
 
-        <!-- Özet Kartları -->
-        <div class="row mb-4">
-            <div class="col-md-4 col-12 mb-2 mb-md-0">
-                <div class="summary-card summary-card-borc">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <small class="text-muted">Toplam Borç</small>
-                            <h4 class="mb-0 text-borc">{{ number_format($toplamBorc, 2, ',', '.') }} ₺</h4>
-                        </div>
-                        <i class="fas fa-arrow-up fa-2x text-danger opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mb-2 mb-md-0">
-                <div class="summary-card summary-card-alacak">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <small class="text-muted">Toplam Alacak</small>
-                            <h4 class="mb-0 text-alacak">{{ number_format($toplamAlacak, 2, ',', '.') }} ₺</h4>
-                        </div>
-                        <i class="fas fa-arrow-down fa-2x text-success opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="summary-card summary-card-bakiye">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <small class="text-muted">Genel Bakiye</small>
-                            <h4 class="mb-0" style="color: #1e3c72;">{{ number_format($genelBakiye, 2, ',', '.') }} ₺</h4>
-                        </div>
-                        <i class="fas fa-balance-scale fa-2x opacity-50" style="color: #1e3c72;"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Ekstre Tablosu -->
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-white border-0 py-3">
@@ -338,6 +290,7 @@
                             <thead>
                                 <tr>
                                     <th>Tarih</th>
+                                    <th class="hide-mobile">Vade Tarihi</th>
                                     <th>Belge No</th>
                                     <th>Hareket Türü</th>
                                     <th class="hide-mobile">Açıklama</th>
@@ -353,6 +306,13 @@
                                         <td>
                                             <i class="fas fa-calendar-day me-1 text-muted"></i>
                                             {{ \Carbon\Carbon::parse($hareket['tarih'])->format('d.m.Y') }}
+                                        </td>
+                                        <td class="hide-mobile">
+                                            @if(!empty($hareket['vade_tarihi']))
+                                                {{ \Carbon\Carbon::parse($hareket['vade_tarihi'])->format('d.m.Y') }}
+                                            @else
+                                                -
+                                            @endif
                                         </td>
                                         <td>
                                             <span class="badge bg-light text-dark border">{{ $hareket['belge_no'] }}</span>
@@ -393,13 +353,14 @@
                             </tbody>
                             <tfoot style="background: #f8f9fa;">
                                 <tr>
-                                    <td colspan="4" class="text-end fw-bold hide-mobile">Toplam:</td>
+                                    <td colspan="5" class="text-end fw-bold hide-mobile">Toplam:</td>
                                     <td colspan="3" class="text-end fw-bold d-md-none">Toplam:</td>
                                     <td class="text-end text-borc fw-bold">{{ number_format($toplamBorc, 2, ',', '.') }} ₺</td>
                                     <td class="text-end text-alacak fw-bold">{{ number_format($toplamAlacak, 2, ',', '.') }} ₺
                                     </td>
                                     <td class="text-end fw-bold" style="color: #1e3c72;">
-                                        {{ number_format($genelBakiye, 2, ',', '.') }} ₺</td>
+                                        {{ number_format($genelBakiye, 2, ',', '.') }} ₺
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -422,24 +383,19 @@
                     <h6 class="modal-title mb-0" id="detailModalLabel">
                         <i class="fas fa-file-alt me-2"></i>Hareket Detayı
                     </h6>
-                    <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                    <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="modal"
+                        aria-label="Kapat"></button>
                 </div>
                 <div class="modal-body py-2">
                     <!-- Kompakt Üst Bilgiler -->
-                    <div class="d-flex flex-wrap gap-3 mb-2 p-2 rounded" style="background: #f8f9fa; font-size: 0.85rem;">
+                    <div class="d-flex flex-wrap gap-3 mb-3 p-2 rounded" style="background: #f8f9fa; font-size: 0.85rem;">
                         <div><span class="text-muted">Tarih:</span> <strong id="detail-tarih">-</strong></div>
                         <div><span class="text-muted">Belge No:</span> <strong id="detail-belge-no">-</strong></div>
                         <div><span class="text-muted">Vade:</span> <strong id="detail-vade">-</strong></div>
-                        <div><span class="text-muted">Tür:</span> <span id="detail-hareket-turu" class="badge bg-secondary">-</span></div>
+                        <div><span class="text-muted">Tür:</span> <span id="detail-hareket-turu"
+                                class="badge bg-secondary">-</span></div>
                     </div>
-                    <div class="mb-2" style="font-size: 0.85rem;">
-                        <span class="text-muted">Açıklama:</span> <span id="detail-aciklama">-</span>
-                    </div>
-                    <div class="d-flex gap-4 mb-2" style="font-size: 0.9rem;">
-                        <div><span class="text-muted">Borç:</span> <strong class="text-borc" id="detail-borc">-</strong></div>
-                        <div><span class="text-muted">Alacak:</span> <strong class="text-alacak" id="detail-alacak">-</strong></div>
-                    </div>
-                    
+
                     <!-- Belge Kalemleri (Fatura/İade için) -->
                     <div id="kalemler-container" style="display: none;">
                         <hr class="my-2">
@@ -500,7 +456,7 @@
             });
         }
 
-        // Hareket detayını göster
+        // Hareket detayını göster - sadece B (Fatura) ve C (İade Fatura) için
         function showDetail(index) {
             const rows = document.querySelectorAll('.cari-ekstre-table tbody tr');
             const row = rows[index];
@@ -509,14 +465,19 @@
 
             const hareket = JSON.parse(row.dataset.hareket);
 
+            // Sadece B (Fatura) veya C (İade Fatura) ve ent_ref_key doluysa modal aç
+            const hareketTuruKod = hareket.hareket_turu_kod || '';
+            const entRefKey = hareket.ent_ref_key || '';
+
+            if ((hareketTuruKod !== 'B' && hareketTuruKod !== 'C') || !entRefKey) {
+                return; // B/C değilse veya ent_ref_key boşsa hiçbir şey yapma
+            }
+
             // Modal alanlarını doldur (kompakt)
             document.getElementById('detail-tarih').textContent = formatDate(hareket.tarih);
             document.getElementById('detail-belge-no').textContent = hareket.belge_no;
             document.getElementById('detail-vade').textContent = formatDate(hareket.vade_tarihi);
             document.getElementById('detail-hareket-turu').textContent = hareket.hareket_turu;
-            document.getElementById('detail-aciklama').textContent = hareket.aciklama;
-            document.getElementById('detail-borc').textContent = hareket.borc > 0 ? formatCurrency(hareket.borc) : '-';
-            document.getElementById('detail-alacak').textContent = hareket.alacak > 0 ? formatCurrency(hareket.alacak) : '-';
 
             // Hareket türüne göre badge rengi
             const turuEl = document.getElementById('detail-hareket-turu');
@@ -531,58 +492,77 @@
                 turuEl.className += 'bg-secondary';
             }
 
-            // Belge kalemlerini göster (Fatura veya İade ise)
+            // Belge kalemlerini göster
             const kalemlerContainer = document.getElementById('kalemler-container');
             const kalemlerBody = document.getElementById('kalemler-body');
             const kalemlerFooter = document.getElementById('kalemler-footer');
-            
-            if (hareket.kalemler && hareket.kalemler.length > 0) {
-                // Kalemleri tabloya ekle
-                kalemlerBody.innerHTML = '';
-                let toplamTutar = 0;
-                
-                hareket.kalemler.forEach(function(kalem) {
-                    toplamTutar += kalem.tutar;
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td style="font-size: 0.8rem;"><code>${kalem.urun_kodu}</code></td>
-                        <td style="font-size: 0.8rem;">${kalem.urun_adi}</td>
-                        <td class="text-center" style="font-size: 0.8rem;">${kalem.miktar}</td>
-                        <td class="text-end" style="font-size: 0.8rem;">${formatCurrency(kalem.birim_fiyat)}</td>
-                        <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(kalem.tutar)}</td>
-                    `;
-                    kalemlerBody.appendChild(tr);
-                });
-                
-                // Alt toplamları hesapla (KDV %20 varsayım)
-                const kdvOrani = hareket.kdv_orani || 20;
-                const kdvHaricTutar = toplamTutar / (1 + kdvOrani / 100);
-                const kdvTutari = toplamTutar - kdvHaricTutar;
-                
-                // Footer'ı doldur
-                kalemlerFooter.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="text-end" style="font-size: 0.8rem;">KDV Hariç Tutar:</td>
-                        <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(kdvHaricTutar)}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="text-end" style="font-size: 0.8rem;">KDV (%${kdvOrani}):</td>
-                        <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(kdvTutari)}</td>
-                    </tr>
-                    <tr style="background: #e9ecef;">
-                        <td colspan="4" class="text-end fw-bold" style="font-size: 0.85rem;">Genel Toplam:</td>
-                        <td class="text-end fw-bold" style="font-size: 0.9rem; color: #1e3c72;">${formatCurrency(toplamTutar)}</td>
-                    </tr>
-                `;
-                
-                kalemlerContainer.style.display = 'block';
-            } else {
-                kalemlerContainer.style.display = 'none';
-            }
 
-            // Modal'ı aç
+            // B/C hareket türü için fatura detayı göster
+            // Loading göster
+            kalemlerBody.innerHTML = '<tr><td colspan="5" class="text-center py-3"><i class="fas fa-spinner fa-spin me-2"></i>Fatura detayı yükleniyor...</td></tr>';
+            kalemlerFooter.innerHTML = '';
+            kalemlerContainer.style.display = 'block';
+
+            // Modal'ı hemen aç
             const modal = new bootstrap.Modal(document.getElementById('detailModal'));
             modal.show();
+
+            // API'den fatura detayı al
+            fetch(`/cari-ekstre/fatura-detay?belge_no=${encodeURIComponent(hareket.belge_no)}`)
+                .then(response => response.json())
+                .then(faturaData => {
+                    if (faturaData && faturaData.success && faturaData.kalemler && faturaData.kalemler.length > 0) {
+                        // Kalemleri tabloya ekle
+                        kalemlerBody.innerHTML = '';
+                        let toplamTutar = 0;
+
+                        faturaData.kalemler.forEach(function (kalem) {
+                            toplamTutar += kalem.tutar || 0;
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                                                    <td style="font-size: 0.8rem;"><code>${kalem.stokKodu || ''}</code></td>
+                                                                    <td style="font-size: 0.8rem;">${kalem.stokAdi || ''}</td>
+                                                                    <td class="text-center" style="font-size: 0.8rem;">${kalem.miktar || 0}</td>
+                                                                    <td class="text-end" style="font-size: 0.8rem;">${formatCurrency(kalem.fiyat || 0)}</td>
+                                                                    <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(kalem.tutar || 0)}</td>
+                                                                `;
+                            kalemlerBody.appendChild(tr);
+                        });
+
+                        // Toplamları göster
+                        if (faturaData.toplam) {
+                            kalemlerFooter.innerHTML = `
+                                                                    <tr>
+                                                                        <td colspan="4" class="text-end" style="font-size: 0.8rem;">Ara Toplam:</td>
+                                                                        <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(faturaData.toplam.araToplam || 0)}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="4" class="text-end" style="font-size: 0.8rem;">KDV:</td>
+                                                                        <td class="text-end fw-semibold" style="font-size: 0.8rem;">${formatCurrency(faturaData.toplam.kdv || 0)}</td>
+                                                                    </tr>
+                                                                    <tr style="background: #e9ecef;">
+                                                                        <td colspan="4" class="text-end fw-bold" style="font-size: 0.85rem;">Genel Toplam:</td>
+                                                                        <td class="text-end fw-bold" style="font-size: 0.9rem; color: #1e3c72;">${formatCurrency(faturaData.toplam.genelToplam || 0)}</td>
+                                                                    </tr>
+                                                                `;
+                        } else {
+                            kalemlerFooter.innerHTML = `
+                                                                    <tr style="background: #e9ecef;">
+                                                                        <td colspan="4" class="text-end fw-bold" style="font-size: 0.85rem;">Toplam:</td>
+                                                                        <td class="text-end fw-bold" style="font-size: 0.9rem; color: #1e3c72;">${formatCurrency(toplamTutar)}</td>
+                                                                    </tr>
+                                                                `;
+                        }
+                    } else {
+                        kalemlerBody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">Fatura detayı bulunamadı</td></tr>';
+                        kalemlerFooter.innerHTML = '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Fatura detay hatası:', error);
+                    kalemlerBody.innerHTML = '<tr><td colspan="5" class="text-center text-danger py-3">Fatura detayı alınamadı</td></tr>';
+                    kalemlerFooter.innerHTML = '';
+                });
         }
     </script>
 @endpush

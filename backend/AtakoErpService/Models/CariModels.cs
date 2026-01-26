@@ -72,4 +72,5 @@ public class SyncResult
     public int ErrorCount { get; set; }
     public List<string> Errors { get; set; } = new();
     public DateTime SyncTime { get; set; } = DateTime.Now;
+    public int SuccessCount => InsertedCount + UpdatedCount;
 }

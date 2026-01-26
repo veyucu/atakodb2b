@@ -59,4 +59,5 @@ public class StokSyncResult
     public int UpdatedCount { get; set; }
     public int ErrorCount { get; set; }
     public List<string> Errors { get; set; } = new();
+    public int SuccessCount => InsertedCount + UpdatedCount;
 }

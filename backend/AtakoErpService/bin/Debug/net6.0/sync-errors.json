@@ -1,0 +1,110 @@
+[
+  {
+    "timestamp": "2026-01-24T12:28:00.2005191+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00528: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:58.045044+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00089: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:55.8802568+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00088: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:53.7093331+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00087: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:51.5322457+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00086: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:49.3435506+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00085: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:47.1763023+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00084: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:27:45.0060367+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00083: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022The kullanici kodu has already been taken.\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:31.0477367+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00971: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00971)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:26.8624229+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00970: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00970)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:22.6808374+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00528: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00528)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:18.4891504+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00089: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00089)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:14.2462103+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00088: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00088)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:10.0559272+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00087: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00087)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:05.7974688+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00086: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00086)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:25:01.5633037+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00085: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00085)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:24:57.297151+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00084: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00084)\u0022}",
+    "stackTrace": null
+  },
+  {
+    "timestamp": "2026-01-24T12:24:53.0816425+03:00",
+    "serviceName": "CariSync",
+    "message": "120-01-00083: HTTP 500: {\u0022success\u0022:false,\u0022message\u0022:\u0022SQLSTATE[HY000] [2002] Hedef makine etkin olarak reddetti\\u011finden ba\\u011flant\\u0131 kurulamad\\u0131 (Connection: mysql, SQL: select count(*) as aggregate from \u0060users\u0060 where \u0060username\u0060 = 120-01-00083)\u0022}",
+    "stackTrace": null
+  }
+]

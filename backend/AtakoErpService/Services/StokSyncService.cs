@@ -10,6 +10,7 @@ public class StokSyncService
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _config;
     private readonly ILogger<StokSyncService> _logger;
+    private readonly SyncStatusService _statusService;
 
     // Windows-1252 -> UTF-8 Türkçe karakter dönüşümü
     private static readonly Dictionary<char, char> TurkishCharMap = new()
@@ -31,12 +32,14 @@ public class StokSyncService
         IDatabaseService db,
         HttpClient httpClient,
         IConfiguration config,
-        ILogger<StokSyncService> logger)
+        ILogger<StokSyncService> logger,
+        SyncStatusService statusService)
     {
         _db = db;
         _httpClient = httpClient;
         _config = config;
         _logger = logger;
+        _statusService = statusService;
     }
 
     /// <summary>
@@ -181,15 +184,19 @@ public class StokSyncService
                     else
                     {
                         result.ErrorCount++;
-                        result.Errors.Add($"{stok.STOK_KODU}: {errorMessage}");
+                        var errorMsg = $"{stok.STOK_KODU}: {errorMessage}";
+                        result.Errors.Add(errorMsg);
                         _logger.LogWarning("Gönderilemedi: {StokKodu} - {Hata}", stok.STOK_KODU, errorMessage);
+                        _statusService.AddError("StokSync", errorMsg);
                     }
                 }
                 catch (Exception ex)
                 {
                     result.ErrorCount++;
-                    result.Errors.Add($"{stok.STOK_KODU}: {ex.Message}");
+                    var errorMsg = $"{stok.STOK_KODU}: {ex.Message}";
+                    result.Errors.Add(errorMsg);
                     _logger.LogError(ex, "Stok işlemi hatası: {StokKodu}", stok.STOK_KODU);
+                    _statusService.AddError("StokSync", errorMsg);
                 }
             }
             

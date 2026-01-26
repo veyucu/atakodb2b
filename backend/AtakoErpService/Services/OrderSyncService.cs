@@ -1,4 +1,5 @@
-using System.Runtime.InteropServices;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using AtakoErpService.Models;
 
@@ -6,18 +7,18 @@ namespace AtakoErpService.Services
 {
     /// <summary>
     /// Web siparişlerini Netsis ERP'ye aktaran servis
-    /// Netsis NetOpenX COM kütüphanesini kullanır
+    /// Netsis NetOpenX REST API kullanır
     /// </summary>
     public class OrderSyncService
     {
         private readonly ILogger<OrderSyncService> _logger;
         private readonly IConfiguration _configuration;
-        private readonly HttpClient _httpClient;
-
-
-        // Netsis COM nesneleri
-        private dynamic? _kernel;
-        private dynamic? _sirket;
+        private readonly HttpClient _laravelClient;
+        private readonly HttpClient _netsisClient;
+        
+        private string? _netsisToken;
+        private DateTime _tokenExpiry = DateTime.MinValue; // Token cache expiry
+        private readonly JsonSerializerOptions _jsonOptions;
 
         public OrderSyncService(
             ILogger<OrderSyncService> logger,
@@ -25,12 +26,24 @@ namespace AtakoErpService.Services
         {
             _logger = logger;
             _configuration = configuration;
-            _httpClient = new HttpClient();
-
-
+            
+            // Laravel API client
+            _laravelClient = new HttpClient();
             var laravelBaseUrl = configuration["LaravelApi:BaseUrl"] ?? "http://localhost:8000";
-            _httpClient.BaseAddress = new Uri(laravelBaseUrl);
-            _httpClient.Timeout = TimeSpan.FromSeconds(30);
+            _laravelClient.BaseAddress = new Uri(laravelBaseUrl);
+            _laravelClient.Timeout = TimeSpan.FromSeconds(30);
+            
+            // Netsis REST API client
+            _netsisClient = new HttpClient();
+            var netsisRestUrl = configuration["Netsis:RestApiUrl"] ?? "http://localhost:7070";
+            _netsisClient.BaseAddress = new Uri(netsisRestUrl);
+            _netsisClient.Timeout = TimeSpan.FromSeconds(180); // Netsis işlemleri uzun sürebilir
+            
+            _jsonOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
         }
 
         /// <summary>
@@ -53,10 +66,10 @@ namespace AtakoErpService.Services
 
                 _logger.LogInformation("{Count} adet sipariş senkronize edilecek", orders.Count);
 
-                // 2. Netsis bağlantısını aç
-                if (!InitializeNetsis())
+                // 2. Netsis'e login ol
+                if (!await LoginToNetsisAsync())
                 {
-                    _logger.LogError("Netsis bağlantısı açılamadı");
+                    _logger.LogError("Netsis REST API'ye giriş yapılamadı");
                     return (0, orders.Count);
                 }
 
@@ -65,7 +78,7 @@ namespace AtakoErpService.Services
                 {
                     try
                     {
-                        var erpOrderNo = CreateOrderInNetsis(order);
+                        var erpOrderNo = await CreateOrderInNetsisAsync(order);
                         if (!string.IsNullOrEmpty(erpOrderNo))
                         {
                             // Laravel'de synced olarak işaretle
@@ -91,11 +104,6 @@ namespace AtakoErpService.Services
             {
                 _logger.LogError(ex, "Sipariş senkronizasyonu sırasında hata oluştu");
             }
-            finally
-            {
-                // Netsis bağlantısını kapat
-                CleanupNetsis();
-            }
 
             return (successCount, failedCount);
         }
@@ -107,7 +115,12 @@ namespace AtakoErpService.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("/api/erp/orders/pending");
+                var url = "/api/erp/orders/pending";
+                _logger.LogInformation("Laravel API çağrılıyor: {BaseUrl}{Url}", _laravelClient.BaseAddress, url);
+                
+                var response = await _laravelClient.GetAsync(url);
+                _logger.LogInformation("Laravel API yanıt kodu: {Status}", response.StatusCode);
+                
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger.LogError("Laravel API hatası: {Status}", response.StatusCode);
@@ -115,11 +128,14 @@ namespace AtakoErpService.Services
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
+                _logger.LogInformation("Laravel API yanıtı: {Length} karakter", json.Length);
+                
                 var result = JsonSerializer.Deserialize<PendingOrdersResponse>(json, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
 
+                _logger.LogInformation("Parse edilen sipariş sayısı: {Count}", result?.Orders?.Count ?? 0);
                 return result?.Orders ?? new List<OrderDto>();
             }
             catch (Exception ex)
@@ -130,105 +146,170 @@ namespace AtakoErpService.Services
         }
 
         /// <summary>
-        /// Netsis COM bağlantısını başlat
+        /// Netsis REST API'ye login ol
         /// </summary>
-        private bool InitializeNetsis()
+        private async Task<bool> LoginToNetsisAsync()
         {
+            // Token cache kontrolü - hala geçerliyse yeniden login yapma
+            if (!string.IsNullOrEmpty(_netsisToken) && DateTime.Now < _tokenExpiry)
+            {
+                _logger.LogDebug("Cache'de geçerli token mevcut, yeniden login atlanıyor");
+                return true;
+            }
+
             try
             {
-                var vtAdi = _configuration["Netsis:VtAdi"];
-                var vtKulAdi = _configuration["Netsis:VtKulAdi"];
-                var vtKulSifre = _configuration["Netsis:VtKulSifre"] ?? "";
-                var netKul = _configuration["Netsis:NetKul"];
-                var netSifre = _configuration["Netsis:NetSifre"];
-                var subeKod = int.Parse(_configuration["Netsis:SubeKod"] ?? "0");
+                var branchCode = _configuration["Netsis:BranchCode"] ?? "0";
+                var netsisUser = _configuration["Netsis:NetsisUser"] ?? "";
+                var netsisPassword = _configuration["Netsis:NetsisPassword"] ?? "";
+                var dbType = _configuration["Netsis:DbType"] ?? "vtMSSQL";
+                var dbName = _configuration["Netsis:DbName"] ?? "";
+                var dbPassword = _configuration["Netsis:DbPassword"] ?? "";
+                var dbUser = _configuration["Netsis:DbUser"] ?? "";
 
-                // Kernel oluştur - GUID config'den oku
-                var kernelGuidStr = _configuration["Netsis:KernelGuid"] ?? "65EB3876-89FF-459F-BF24-02E8DD7F2DB2";
-                var kernelGuid = new Guid(kernelGuidStr);
-                var kernelType = Type.GetTypeFromCLSID(kernelGuid);
-                if (kernelType == null)
+                _logger.LogInformation("Netsis REST API'ye giriş yapılıyor: {DbName}", dbName);
+
+                // OAuth2 token endpoint için form-urlencoded format
+                // Delphi örneğindeki parametre isimleri kullanılıyor
+                var formData = new Dictionary<string, string>
                 {
-                    _logger.LogError("Netsis Kernel COM nesnesi bulunamadı. NetOpenX kurulu mu?");
+                    { "grant_type", "password" },
+                    { "branchcode", branchCode },
+                    { "username", netsisUser },
+                    { "password", netsisPassword },
+                    { "dbtype", "0" }, // 0 = MSSQL
+                    { "dbname", dbName },
+                    { "dbuser", dbUser },
+                    { "dbpassword", dbPassword }
+                };
+
+                var content = new FormUrlEncodedContent(formData);
+                var response = await _netsisClient.PostAsync("/api/v2/token", content);
+                var json = await response.Content.ReadAsStringAsync();
+                
+                _logger.LogInformation("Netsis Login Response: {Json}", json);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Netsis login hatası: {Status} - {Response}", response.StatusCode, json);
                     return false;
                 }
 
-                _kernel = Activator.CreateInstance(kernelType);
-                
-                // Şirket bağlantısı
-                // TVTTipi.vtMSSQL = 0
-                _sirket = _kernel.yeniSirket(0, vtAdi, vtKulAdi, vtKulSifre, netKul, netSifre, subeKod);
-                
-                _logger.LogInformation("Netsis bağlantısı başarılı: {VtAdi}", vtAdi);
-                return true;
+                var loginResponse = JsonSerializer.Deserialize<LoginResponse>(json, _jsonOptions);
+                if (!string.IsNullOrEmpty(loginResponse?.AccessToken))
+                {
+                    _netsisToken = loginResponse.AccessToken;
+                    // Token 20 dk geçerli, 18 dk sonra expire et (güvenlik payı)
+                    _tokenExpiry = DateTime.Now.AddMinutes(18);
+                    _netsisClient.DefaultRequestHeaders.Authorization = 
+                        new AuthenticationHeaderValue("Bearer", _netsisToken);
+                    
+                    _logger.LogInformation("Netsis REST API giriş başarılı (token 18 dk geçerli)");
+                    return true;
+                }
+
+                _logger.LogError("Netsis login başarısız: {Error}", loginResponse?.Error ?? loginResponse?.ErrorDescription);
+                return false;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Netsis bağlantısı açılamadı");
+                _logger.LogError(ex, "Netsis login hatası");
                 return false;
             }
         }
 
         /// <summary>
-        /// Siparişi Netsis'te oluştur
+        /// Netsis'ten yeni sipariş numarası al (YeniNumara("W") karşılığı)
+        /// POST /api/v2/ItemSlips/NewNumber
         /// </summary>
-        private string? CreateOrderInNetsis(OrderDto order)
+        private async Task<string?> GetNewNumberAsync(string prefix = "W", int documentType = 7)
         {
-            dynamic? fatura = null;
-            dynamic? ust = null;
-            dynamic? kalem = null;
-
             try
             {
-                if (_kernel == null || _sirket == null)
+                var param = new ItemSlipsCodeParam
                 {
-                    _logger.LogError("Netsis bağlantısı yok");
-                    return null;
-                }
+                    Code = prefix,          // "W" = Web siparişleri
+                    DocumentType = documentType, // 7 = ftSSip (Satış Siparişi)
+                    Use64BitService = true
+                };
 
+                var json = JsonSerializer.Serialize(param, _jsonOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                
+                var response = await _netsisClient.PostAsync("/api/v2/ItemSlips/NewNumber", content);
+                var responseJson = await response.Content.ReadAsStringAsync();
+                
+                _logger.LogDebug("NewNumber Response: {Json}", responseJson);
+                
+                var result = JsonSerializer.Deserialize<NewNumberResponse>(responseJson, _jsonOptions);
+                
+                if (result?.IsSuccessful == true && !string.IsNullOrEmpty(result.Data))
+                {
+                    _logger.LogInformation("Yeni numara alındı: {Number}", result.Data);
+                    return result.Data;
+                }
+                
+                _logger.LogWarning("Yeni numara alınamadı: {Error}", result?.ErrorDesc);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Yeni numara alınırken hata");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Siparişi Netsis'te oluştur (REST API)
+        /// </summary>
+        private async Task<string?> CreateOrderInNetsisAsync(OrderDto order)
+        {
+            try
+            {
                 if (string.IsNullOrEmpty(order.CariKodu))
                 {
                     _logger.LogWarning("Sipariş {OrderNo} için cari kodu bulunamadı", order.OrderNumber);
                     return null;
                 }
 
-                // TFaturaTip.ftSSip = 6 (Satış Siparişi)
-                fatura = _kernel.yeniFatura(_sirket, 6);
-                ust = fatura.Ust();
+                // Sipariş objesi oluştur
+                var itemSlips = new ItemSlips
+                {                    
+                    SeriliHesapla = false,
+                    Seri = "W",
+                    KayitliNumaraOtomatikGuncellensin =true, // Numara kendimiz alıyoruz
+                    //KayitliNumaraOtomatikGuncellensin = false, // Numara kendimiz alıyoruz
+                    OtomatikIslemTipiGetir = false,
+                    
+                    FatUst = new ItemSlipsHeader
+                    {
+                        Tip = 7, // ftSSip (Satış Siparişi)
+                        //FATIRS_NO = newNumber, // Netsis'ten alınan yeni numara
+                        CariKod = order.CariKodu,
+                        Tarih = order.Tarih,
+                        ENTEGRE_TRH = order.Tarih,
+                        SIPARIS_TEST = order.Tarih,
+                        FIYATTARIHI = order.Tarih,
+                        FiiliTarih = order.Tarih,
+                        TIPI = 2, // ft_Acik
+                        KDV_DAHILMI = true,
+                        Aciklama = order.GonderimSekli ?? "",
+                        EKACK14 = order.OrderNumber,
+                    },
+                    Kalems = new List<ItemSlipLines>()
+                };
 
-                // Sipariş numarası - W prefixli
-                ust.FATIRS_NO = fatura.YeniNumara("W");
-                ust.CariKod = order.CariKodu;
-                
-                // Tarihler
-                var tarih = DateTime.Parse(order.Tarih);
-                ust.Tarih = tarih;
-                ust.ENTEGRE_TRH = tarih;
-                ust.SIPARIS_TEST = tarih;
-                ust.FIYATTARIHI = tarih;
-                ust.FiiliTarih = tarih;
-                
-                // TFaturaTipi.ft_Acik = 0
-                ust.TIPI = 0;
-                ust.KDV_DAHILMI = true;
-
-                // Açıklama = Gönderim Şekli
-                ust.Aciklama = order.GonderimSekli ?? "";
-                
-                // EKACK14 = Web sipariş numarası
-                ust.EKACK14 = $"Web No: {order.OrderNumber}";
-                
-                // EKACK15/16 = Sipariş notları (100 karakter sınırı)
+                // EKACK15/16 = Sipariş notları
                 if (!string.IsNullOrEmpty(order.Notes))
                 {
                     if (order.Notes.Length <= 100)
                     {
-                        ust.EKACK15 = order.Notes;
+                        itemSlips.FatUst.EKACK15 = order.Notes;
                     }
                     else
                     {
-                        ust.EKACK15 = order.Notes.Substring(0, 100);
-                        ust.EKACK16 = order.Notes.Length > 200 
+                        itemSlips.FatUst.EKACK15 = order.Notes.Substring(0, 100);
+                        itemSlips.FatUst.EKACK16 = order.Notes.Length > 200 
                             ? order.Notes.Substring(100, 100) 
                             : order.Notes.Substring(100);
                     }
@@ -243,40 +324,47 @@ namespace AtakoErpService.Services
                         continue;
                     }
 
-                    kalem = fatura.kalemYeni(item.UrunKodu);
-                    kalem.DEPO_KODU = 0;
-                    kalem.STra_GCMIK = (double)item.Quantity;
-                    kalem.Olcubr = 1;
-                    kalem.STra_NF = (double)item.NetFiyat; // KDV dahil net fiyat
-                    kalem.STra_BF = (double)item.NetFiyat; // Birim fiyat
-
-                    // COM nesnesini serbest bırak
-                    if (kalem != null)
+                    itemSlips.Kalems.Add(new ItemSlipLines
                     {
-                        Marshal.ReleaseComObject(kalem);
-                        kalem = null;
-                    }
+                        StokKodu = item.UrunKodu,
+                        DEPO_KODU = 0,
+                        STra_GCMIK = (double)item.Quantity,
+                        Olcubr = 1,
+                        STra_NF = (double)item.NetFiyat,
+                        STra_BF = (double)item.NetFiyat,                        
+                    });
                 }
 
-                // Kaydet
-                fatura.kayitYeni();
+                // API'ye gönder
+                var content = new StringContent(
+                    JsonSerializer.Serialize(itemSlips, _jsonOptions),
+                    Encoding.UTF8,
+                    "application/json");
+
+                _logger.LogDebug("Netsis ItemSlips gönderiliyor: {Json}", 
+                    JsonSerializer.Serialize(itemSlips, _jsonOptions));
+
+                var response = await _netsisClient.PostAsync("/api/v2/ItemSlips", content);
+                var json = await response.Content.ReadAsStringAsync();
+
+                _logger.LogDebug("Netsis ItemSlips Response: {Json}", json);
+
+                var result = JsonSerializer.Deserialize<ItemSlipsResponse>(json, _jsonOptions);
                 
-                string? erpOrderNo = ust.FATIRS_NO?.ToString();
-                _logger.LogInformation("Netsis siparişi oluşturuldu: {ErpNo}", erpOrderNo ?? "N/A");
-                
-                return erpOrderNo;
+                if (result?.IsSuccessful == true)
+                {
+                    var erpOrderNo = result.Data?.FatUst?.FATIRS_NO ?? "N/A";
+                    _logger.LogInformation("Netsis siparişi oluşturuldu: {ErpNo}", erpOrderNo);
+                    return erpOrderNo;
+                }
+
+                _logger.LogError("Netsis sipariş oluşturma hatası: {Error}", result?.ErrorDesc);
+                return null;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Netsis siparişi oluşturulurken hata: {OrderNo}", order.OrderNumber);
                 return null;
-            }
-            finally
-            {
-                // COM nesnelerini temizle
-                if (kalem != null) Marshal.ReleaseComObject(kalem);
-                if (ust != null) Marshal.ReleaseComObject(ust);
-                if (fatura != null) Marshal.ReleaseComObject(fatura);
             }
         }
 
@@ -289,10 +377,10 @@ namespace AtakoErpService.Services
             {
                 var content = new StringContent(
                     JsonSerializer.Serialize(new { erp_order_number = erpOrderNo }),
-                    System.Text.Encoding.UTF8,
+                    Encoding.UTF8,
                     "application/json");
 
-                var response = await _httpClient.PutAsync($"/api/erp/orders/{orderId}/synced", content);
+                var response = await _laravelClient.PutAsync($"/api/erp/orders/{orderId}/synced", content);
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger.LogWarning("Sipariş synced olarak işaretlenemedi: {OrderId}", orderId);
@@ -301,30 +389,6 @@ namespace AtakoErpService.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "MarkOrderAsSynced hatası: {OrderId}", orderId);
-            }
-        }
-
-        /// <summary>
-        /// Netsis COM nesnelerini temizle
-        /// </summary>
-        private void CleanupNetsis()
-        {
-            try
-            {
-                if (_sirket != null)
-                {
-                    Marshal.ReleaseComObject(_sirket);
-                    _sirket = null;
-                }
-                if (_kernel != null)
-                {
-                    Marshal.ReleaseComObject(_kernel);
-                    _kernel = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Netsis cleanup hatası");
             }
         }
     }

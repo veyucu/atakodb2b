@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-FA1234567891}|AtakoErpService.csproj|c:\\xampp\\htdocs\\atakodb2b\\backend\\atakoerpservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-FA1234567891}|AtakoErpService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{863B7ABF-0FB5-4240-9398-076B2D55DFF2}|AtakoErpService.csproj|C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{863B7ABF-0FB5-4240-9398-076B2D55DFF2}|AtakoErpService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-FA1234567891}|AtakoErpService.csproj|c:\\xampp\\htdocs\\atakodb2b\\backend\\atakoerpservice\\services\\ordersyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-FA1234567891}|AtakoErpService.csproj|solutionrelative:services\\ordersyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T17:55:25.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderSyncService.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Services\\OrderSyncService.cs",
+              "RelativeDocumentMoniker": "Services\\OrderSyncService.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Services\\OrderSyncService.cs",
+              "RelativeToolTip": "Services\\OrderSyncService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T17:21:36.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\atakodb2b\\backend\\AtakoErpService\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T17:12:46.312Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

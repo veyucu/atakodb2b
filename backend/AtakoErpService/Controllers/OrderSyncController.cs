@@ -19,7 +19,7 @@ namespace AtakoErpService.Controllers
         }
 
         /// <summary>
-        /// Pending siparişleri Netsis'e senkronize et
+        /// Pending siparişleri Netsis'e senkronize et (REST API)
         /// </summary>
         [HttpPost("run")]
         public async Task<IActionResult> RunSync()

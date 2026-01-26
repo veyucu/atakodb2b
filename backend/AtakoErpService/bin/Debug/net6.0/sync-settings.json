@@ -1,0 +1,55 @@
+{
+  "enabled": false,
+  "initialDelaySeconds": 30,
+  "laravelApi": {
+    "baseUrl": "http://localhost:8000",
+    "apiKey": "your-secret-erp-api-key"
+  },
+  "services": [
+    {
+      "name": "OrderSync",
+      "displayName": "Sipari\u015F Senkronizasyonu",
+      "description": "Web sipari\u015Flerini Netsis ERP\u0027ye aktar\u0131r",
+      "enabled": true,
+      "intervalMinutes": 5,
+      "order": 1,
+      "thread": 1
+    },
+    {
+      "name": "StokSync",
+      "displayName": "Stok Senkronizasyonu",
+      "description": "Netsis stoklar\u0131n\u0131 Laravel\u0027e aktar\u0131r",
+      "enabled": true,
+      "intervalMinutes": 5,
+      "order": 1,
+      "thread": 2
+    },
+    {
+      "name": "ResimSync",
+      "displayName": "Resim Senkronizasyonu",
+      "description": "\u00DCr\u00FCn resimlerini Laravel\u0027e aktar\u0131r",
+      "enabled": true,
+      "intervalMinutes": 5,
+      "order": 2,
+      "thread": 2
+    },
+    {
+      "name": "BakiyeSync",
+      "displayName": "Bakiye Senkronizasyonu",
+      "description": "Cari bakiyelerini Laravel\u0027e aktar\u0131r",
+      "enabled": true,
+      "intervalMinutes": 5,
+      "order": 3,
+      "thread": 2
+    },
+    {
+      "name": "CariSync",
+      "displayName": "Cari Senkronizasyonu",
+      "description": "M\u00FC\u015Fteri bilgilerini Laravel\u0027e aktar\u0131r",
+      "enabled": true,
+      "intervalMinutes": 5,
+      "order": 1,
+      "thread": 3
+    }
+  ]
+}

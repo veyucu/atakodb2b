@@ -1,0 +1,1860 @@
+[2026-01-21 13:38:46.251 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:38:46.310 FTL] 
+Uygulama başlatılamadı!
+System.IO.IOException: Failed to bind to address http://0.0.0.0:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+ ---> System.Net.Sockets.SocketException (10048): Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass30_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 83
+[2026-01-21 13:49:56.924 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:49:57.258 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:49:57.271 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:49:57.274 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:49:57.277 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 13:50:35.472 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 159.6293 ms
+[2026-01-21 13:50:35.760 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 97.7901 ms
+[2026-01-21 13:50:40.909 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:50:40.917 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:50:44.361 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:50:44.366 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:50:44.385 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 13:50:44.392 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 13:50:44.399 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 13:50:44.530 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login hatası: "NotFound" - 
+[2026-01-21 13:50:44.534 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 13:50:44.557 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3705.7069 ms
+[2026-01-21 13:58:08.617 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:58:08.754 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:58:08.764 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:58:08.767 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:58:08.770 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 13:58:09.092 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 136.4935 ms
+[2026-01-21 13:58:09.451 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 77.5889 ms
+[2026-01-21 13:58:20.539 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:58:20.550 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:58:23.769 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:58:23.773 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:58:23.791 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 13:58:23.794 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 13:58:23.803 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 13:58:23.824 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login hatası: "NotFound" - {"Message":"No HTTP resource was found that matches the request URI 'http://localhost:7070/api/v2/oAuth2/Login'.","MessageDetail":"No type was found that matches the controller named 'oAuth2'."}
+[2026-01-21 13:58:23.830 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 13:58:23.852 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3354.0683 ms
+[2026-01-21 13:59:39.984 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:59:40.073 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:59:40.081 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:59:40.083 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:59:40.086 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:00:07.764 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 205.0175 ms
+[2026-01-21 14:00:08.085 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 140.8299 ms
+[2026-01-21 14:00:11.887 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:00:11.898 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:00:14.723 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:00:14.726 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 14:00:14.742 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:00:14.747 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:00:14.752 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:00:14.778 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"Message":"No HTTP resource was found that matches the request URI 'http://localhost:7070/api/v2/oAuth2/Login'.","MessageDetail":"No type was found that matches the controller named 'oAuth2'."}
+[2026-01-21 14:00:14.780 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login hatası: "NotFound" - {"Message":"No HTTP resource was found that matches the request URI 'http://localhost:7070/api/v2/oAuth2/Login'.","MessageDetail":"No type was found that matches the controller named 'oAuth2'."}
+[2026-01-21 14:00:14.782 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 14:00:14.805 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 2965.4782 ms
+[2026-01-21 14:06:00.445 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 14:06:00.581 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 14:06:00.592 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 14:06:00.595 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 14:06:00.599 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:31:05.496 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 64.8833 ms
+[2026-01-21 14:31:05.622 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 39.4247 ms
+[2026-01-21 14:31:10.132 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:31:10.136 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:31:13.264 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:31:13.267 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 14:31:13.281 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:31:13.283 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:31:13.287 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:31:13.323 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"error":"unsupported_grant_type"}
+[2026-01-21 14:31:13.325 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login hatası: "BadRequest" - {"error":"unsupported_grant_type"}
+[2026-01-21 14:31:13.326 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 14:31:13.333 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3251.3367 ms
+[2026-01-21 14:32:56.323 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 14:32:56.381 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 14:32:56.385 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 14:32:56.386 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 14:32:56.387 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:33:31.047 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 47.2177 ms
+[2026-01-21 14:33:31.142 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 31.5014 ms
+[2026-01-21 14:33:35.041 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:33:35.051 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:33:37.961 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:33:37.964 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 14:33:37.972 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:33:37.974 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:33:37.977 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:33:38.136 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: 
+[2026-01-21 14:33:38.138 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login hatası: "InternalServerError" - 
+[2026-01-21 14:33:38.140 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 14:33:38.153 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3148.3067 ms
+[2026-01-21 14:36:34.036 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 14:36:34.073 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 14:36:34.077 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 14:36:34.078 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 14:36:34.082 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:36:36.299 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 49.4835 ms
+[2026-01-21 14:36:36.437 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 29.4809 ms
+[2026-01-21 14:37:00.423 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:37:00.427 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:37:02.829 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:37:02.831 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 14:37:02.835 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:37:02.836 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:37:02.838 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:37:25.365 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAADNVF_iXMtoJUCWzh8qE9OeC9pTVMFIL1S-fD7JF5O-FQAAAAAOgAAAAAIAACAAAADhQsGiMdL4L7GY7tgYbyoiMzBwOd9eq9sFGHXlRT6w00ABAAD6R-0ULOnMoQ5taKcDuwTH8f9Pj78RMSquROmfciRLRJFmOxPR1FNMBtMWeGKWhdg-R7Cr6ILL00p7Y7OexinKprjGIbdjlqFGRlYK6YcUEhmccu1DYABUcg1NWvdbtf0-YmODFk5AmL4AYmj2CG_c1C_SqchwTFUO2J-WrA6V6hNGXdLxJDpBjx52vn20y1s0MUrZeVzT-kUWjn64IWuJmWlEwroNT9X6Pb0ClxIsE-P8DORUxDUALi0_TN0tZpPRtvKo9DVhFqDqc3sxCvw-fYcws16m4NBcCw5PpxqcPeGwGhooQ-NjfuqR8BIuUMKUGPc_H5kZ4cWdz5PYXFXZQQ_3GoWbEWfpP6kG_uDPpK3CkCZezulKY9yPHQs7dBKNXMimrhjcHI8ENxBtb8iw3W8W90iEjntJ31ptQCs1HUAAAABLqb_hQheTtLZKXtWDeo4t1yra2yvUGuWhmFLXuknx2G65xPBN8U2AwaRcBeG-lf0CX8Cbww7i_XXXV5uSRNe4","token_type":"bearer","expires_in":1199,"refresh_token":"4223271da5734d6598ae744691ec2a84","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 11:37:02 GMT",".expires":"Wed, 21 Jan 2026 11:57:02 GMT"}
+[2026-01-21 14:37:25.367 ERR] AtakoErpService.Services.OrderSyncService
+Netsis login başarısız: null
+[2026-01-21 14:37:25.367 ERR] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılamadı
+[2026-01-21 14:37:25.373 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 24971.0317 ms
+[2026-01-21 14:41:12.541 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 14:41:12.584 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 14:41:12.588 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 14:41:12.589 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 14:41:12.589 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:41:15.845 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 48.9388 ms
+[2026-01-21 14:41:15.955 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 36.8091 ms
+[2026-01-21 14:41:20.158 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:41:20.164 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:41:22.887 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:41:22.890 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 14:41:22.902 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:41:22.904 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:41:22.907 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:41:22.929 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAADVEIxgNFQ1JaXT_rXAlSqfxr6DyNgWTvked7lXlLJURwAAAAAOgAAAAAIAACAAAACBgQK3D28FULjOoESHRtBeltthW9-8wDNqDhThsKz0mUABAABiGiWINsu_kQ4L5Fl0b961DVKJ8HgjV8DWvcVWHxHxwbZ0tCQld3fEQ-3z-dSmfNWrhzq4fEteiUjqJPhboeolSLeUHGH8hrwxX260R9uGmkm4mZ6S3_XXj8ypwUOsMM2G7S4tcZ4bZrNZGwpFZrtwdK-p-xXhU2cAGMWBPHgyzCIAJ4eBxXLMaGZNLTfM5bAtidnz22QnWty67sdp0I8XjUs4kwlGaKf4_CPs_eo5pXqaBi_U5XbezuMfwi8MiIg36kgJdIYzMpGVoWVKgKFEarcev66L_ob6No3j4pLqjoQWNxZzWwxTWOMMddRN7UedTUNgX8Qe91-wFudHR5cUMz-heaRW3_HRuPbhg-f-9CFcx5XzORmvQN75vt7lYdFzaJCPQgbo-17BAxwzapsuJzQ1VvuuZ5wTyNOdpflQw0AAAAB1etNDVL4WC9QVf36fJDLZv2cnJauzdiZVPvd3Sjn5HXOMwes6mxMwn6Rj8WR7rW7ALR3hTfqOiozidW3MOKli","token_type":"bearer","expires_in":1199,"refresh_token":"8878ae0dfc234e6fb541f8b28574f523","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 11:41:22 GMT",".expires":"Wed, 21 Jan 2026 12:01:22 GMT"}
+[2026-01-21 14:41:22.934 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 14:41:22.938 WRN] AtakoErpService.Services.OrderSyncService
+Sipariş  için cari kodu bulunamadı
+[2026-01-21 14:41:22.953 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 2822.6811 ms
+[2026-01-21 14:45:32.049 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 0.4394 ms
+[2026-01-21 14:45:32.110 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 1.0796 ms
+[2026-01-21 14:45:36.156 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:45:36.157 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:45:38.867 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:45:38.868 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 671 karakter
+[2026-01-21 14:45:38.873 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:45:38.875 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:45:38.876 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:45:38.887 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAAAPXcC9bnzPt_YdcmUly1KOViQ04VBuDv7Wb816-b6TvwAAAAAOgAAAAAIAACAAAAD70HDdUfwfFMFKdzDL9cqlJd7rSiBGz52rmo52FcnjwkABAABLKWsLyiAovq_3GQpCQ-mufnMIDe_sd7qBVVpv4CuQ0mj4oKmEormowwmqrhlmhz4bsksJNl1lICxztM6vuUPXmc66Qfg44RkLPZhYVwwamiC5RUJxLnjXF_R4X7lNdXkYrncvyqVHDNNIegr-6yCuN2c8tsb9poeW-ANkKXRZfE-7BEyGFASHL6Js9xBSELfxYRm6LTo7yyR0-QhSaI9kHF__YNkC8Snc7zXCT4taRlFMmJIjRQbTOODihZuEq00zLz7tZ7L1vlefyc2caaErFVEl__5VXtFGrMN386Ug9BdaX5dO0tDMZdFuggPLkpPUmho_ozLmuVlwXNskD15wJY1xmoUZx96fDurcSkBzjEnJtGLY27xFCpRDMuw14dY8lhv1aqC_hYxmffrpUMOGhjrMCfaceqVjEqDOHmWo6kAAAABPaOrHITEcqBbW0b7LDUtdA1Ii06NUkZfUNsBJaZgXDMlSFlII3o08dcmqcBK4JChSPt92LNV0fmMOT1_duhna","token_type":"bearer","expires_in":1199,"refresh_token":"1ecd9b19e7544f48a34b18ac97bbd818","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 11:45:38 GMT",".expires":"Wed, 21 Jan 2026 12:05:38 GMT"}
+[2026-01-21 14:45:38.890 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 14:45:38.892 WRN] AtakoErpService.Services.OrderSyncService
+Sipariş  için cari kodu bulunamadı
+[2026-01-21 14:45:38.894 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 2739.0707 ms
+[2026-01-21 14:47:23.522 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:47:23.523 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:47:25.882 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:47:25.884 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 14:47:25.888 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:47:25.890 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:47:25.892 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:47:25.902 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACurtOl9-QvyZuhdpkD94wWSI9olF9jIJZYJQuhAS8ILAAAAAAOgAAAAAIAACAAAAD5_ha2xRNjRcoLX2jfAXeoZRj3Eq_QxUwKagDVEd6LDkABAACY9afuySGAEaj8apIx46cF06XBs0Li59NhM1WXPFdWxrSj5haR4l5Mns8qELmb8dugt48d4YL2VhMahpWFnlLFjVJyk_0llQG7BWxF6F48LrcbY_VmhHg2nvxqAenmQ1GvLQJlyUR-L7OHDo3I41qaYtcx9VJBuH38vYHFWWwYk9gZLVQyYs_w7TJ_4gPn8pSv41v_pviWDxxl_h18cNZqqq03LyhWFz_6O7MuXHtquTstGuurZUClzQTocBmGK7cOD6QG0LiMpoAZa7TGiC_CWbHAwYr8kXTMkUDO5cGuHV--e0GezTkwvhm4gWuUhsGxPuXtHcI319YtCsQFdEpyp-s1_8k4q3FEd5y9xBlwoiwc8SplfJBkDRB0bcd1uQCZRXOi1KyrivvJBzWSHZuosocWMA2irEO9jWd_Z1tgDEAAAACjWscY4Ksg1LXwy-jP6oNiyQu3WxwMmhzWYB6FFLmxmsDnz_zhPMsSLyu_RH_lyEDjqOy9SJYjf7AAqRb7e25m","token_type":"bearer","expires_in":1199,"refresh_token":"0b82e19418c146f184f5c87622aecd27","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 11:47:25 GMT",".expires":"Wed, 21 Jan 2026 12:07:25 GMT"}
+[2026-01-21 14:47:25.906 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 14:47:25.908 WRN] AtakoErpService.Services.OrderSyncService
+Sipariş  için cari kodu bulunamadı
+[2026-01-21 14:47:25.910 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 2389.3523 ms
+[2026-01-21 14:52:35.809 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 14:52:35.849 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 14:52:35.852 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 14:52:35.853 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 14:52:35.854 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 14:55:12.535 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 49.2876 ms
+[2026-01-21 14:55:12.634 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 28.6156 ms
+[2026-01-21 14:55:17.337 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 14:55:17.340 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 14:55:19.713 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 14:55:19.714 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 14:55:19.720 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 14:55:19.722 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 14:55:19.724 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 14:55:19.733 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACsSjqZrynikwT3EVuKDRnkLr7E4BYL_SsYuHEDNT5c6wAAAAAOgAAAAAIAACAAAAADBUPfwvgdGEAVWxt906rX86D4nYDXdLYT51Vdb-Q8OUABAACLND3PW3tU03KmOVdFOUQs4hdHtEvebah878fLq3egnYX_slk10haWfHNfoBYeVckjveN1vOLc4Xm2xIhWIfFc0RAD7Bx2-mSeXIlbjjHxR_dB8Kt0pd3-uOB-Nfw218eZkJyexuk6Nq2VXppEpK5r9ytMUEeITnTYolNXIslzq30LrZ4MDaRWTetGp-qRZF422tNyfimlRI90QCxTbe4TXbh6tIJli6F5yET5hM8JkazK4pwKpYXI8As-AxIL0BHRawwVsAwXb9qoXoHlQxBSzH5KZVPBEdRm-_FOSZ20MYmXCct2SFBVbXT8fQnweizY0M3mF3QJEzPOT7ycY5_NlbtqFySyHqZ38n2z7GGCIA-XqiT3avHPUM4WilVQsC_M3W8sig_ycyOybOp359IZ5fH2fiNjFupYXwKceBx44EAAAADmYC_3DQoXOFfYA3-pPPDaSkmhmK-Xb4bTGonAIeY7nLFegq3cVX3rued_7PAAMT8qPwmx3rsn-0mGGzuL-iP3","token_type":"bearer","expires_in":1199,"refresh_token":"5ea7f5517d74467683af5f58d271a80e","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 11:55:19 GMT",".expires":"Wed, 21 Jan 2026 12:15:19 GMT"}
+[2026-01-21 14:55:19.735 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 14:55:58.251 ERR] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturulurken hata: 2026000002
+System.Text.Json.JsonException: The JSON value could not be converted to System.DateTime. Path: $.Data.FatUst.Tarih | LineNumber: 0 | BytePositionInLine: 289.
+ ---> System.FormatException: The JSON value is not in a supported DateTime format.
+   at System.Text.Json.Utf8JsonReader.GetDateTime()
+   at System.Text.Json.Serialization.Converters.DateTimeConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.CreateOrderInNetsisAsync(OrderDto order) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 295
+[2026-01-21 14:55:58.312 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 40989.2248 ms
+[2026-01-21 15:01:15.744 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 0.5186 ms
+[2026-01-21 15:01:15.806 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 1.3075 ms
+[2026-01-21 15:01:20.412 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 15:01:20.415 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 15:01:22.930 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 15:01:22.931 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 15:01:22.938 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 15:01:22.939 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 15:01:22.941 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 15:01:22.954 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAAAofDFM4x5QvCva3MJp7y8N0WsUpmbybE6dKtRboNq_2QAAAAAOgAAAAAIAACAAAAC17UzlcdGNjeVuMLAkRwMlWHW5bho5cz3VxjO3XO2HiEABAAC7WlpYgxLLUYECQo3YBn_eRByn08qAQENDweSQE1U64OvDVqJW0Oa4FlopicPYYnGf0aOQqLlWJVKutusXhKuWF4YPBXGSrFBIJAmZeTCm0I6rCKO7hiqnX6z6zO-vQsSTK-VXPVtCETmOVOX6xr6Zogu_5XBNIdqRgWosXMo3oqTXRWSYyRMK6Knc6HYMUnvMyVBbL-W_o2c7Rj8Ij4N_1BG7HmQZxSVqnV5OROXuOii9_-YQkX0DfLEOroXbQx4Aw95GFL8ccXsux5msmZAMPJcuAAJ0RhIrZQj230twAIQj7PB7Rkh-K0GQ-E9oIaCPjAdlbCpJWCR_a_XuGoIkxIAgIE7rh4aQGgb7pOFFDTq-CMRSK4aYDN58rn7OpUw3RMvqFBz0-Efe9-PJh4XWfe4LqzUdRa6kYEBQAU8QUkAAAACbwSXmrv0puwKamKIsKsoNuY_-kDRDcOLy39i3xyGb6NEud1z0nwGo0bWaEbsFZ5zxDPsj8skjf_pDBZrw2Eo9","token_type":"bearer","expires_in":1199,"refresh_token":"98142eb651254481832a654e5e454a3d","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 12:01:22 GMT",".expires":"Wed, 21 Jan 2026 12:21:22 GMT"}
+[2026-01-21 15:01:22.958 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 15:01:29.933 ERR] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturulurken hata: 2026000002
+System.Text.Json.JsonException: The JSON value could not be converted to System.DateTime. Path: $.Data.FatUst.Tarih | LineNumber: 0 | BytePositionInLine: 289.
+ ---> System.FormatException: The JSON value is not in a supported DateTime format.
+   at System.Text.Json.Utf8JsonReader.GetDateTime()
+   at System.Text.Json.Serialization.Converters.DateTimeConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.CreateOrderInNetsisAsync(OrderDto order) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 295
+[2026-01-21 15:01:29.942 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 9531.4780 ms
+[2026-01-21 15:05:32.817 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 15:05:32.861 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 15:05:32.867 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 15:05:32.870 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 15:05:32.871 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 15:05:33.858 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 48.4891 ms
+[2026-01-21 15:05:33.955 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 34.0456 ms
+[2026-01-21 15:05:38.519 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 15:05:38.522 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 15:05:41.070 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 15:05:41.072 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 15:05:41.076 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 15:05:41.077 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 15:05:41.086 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 15:05:41.106 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAADTKPX7_u9YIeDWfQSSp8knq9qILdZxCH_yZCgU1QJNlwAAAAAOgAAAAAIAACAAAADNy_3MESBHtdPGHRVjPB26o0fgCBzzz4tdLWfnG5bg10ABAAAaoGNHwgxI3RG2JdVSjPlxm1yvnV7RUr2JJiOHiAEE-fEHvlIZ68-IECc1FEYyUIuQs0I79so-vBDn81CEfNn-h0MAxPs9mvvllnSdjg7FgnLPXZGENgStLJJskkqYYLQY3tbjwWF-oRRpQKtTeFDPo_9sUT0R0VblHZJhq-Ly5Njkna2dSKq0TONsY6L_F83ay-SCxoBpnIFLEfh7MxwJNUdzl8WuWRWvis3SoizxCOr7GnhlKqWexe0YFluxWXEARyhzO0KAMavjuSrwuOLgRjzdmz3-YHPU4iZtTyJOgAzNd06KaTfpROXmMH78cpgkG3Vlku7rbRBlIMhGxXX_ctos-9prHl94IjMjr5UVyd3zIrBC07wdkJnvI4XgKggjmtZ88bUL5GWAYHzkqcefI_P2Iz--SqV_r5fvypmTG0AAAAAUW9HylMRK9sq1MzephQUZgQe9VW9nycTYD5enYTtNIM0FoJ30101K1X0BoNWnVjgcTh3P40zWn6TpdvsF_uh1","token_type":"bearer","expires_in":1199,"refresh_token":"56372797d2214d21a0dc8f64ac2a4740","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 12:05:41 GMT",".expires":"Wed, 21 Jan 2026 12:25:41 GMT"}
+[2026-01-21 15:05:41.108 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 15:06:11.263 ERR] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturulurken hata: 2026000002
+System.Text.Json.JsonException: The JSON value could not be converted to System.String. Path: $.Data.FatUst.Tip | LineNumber: 0 | BytePositionInLine: 297.
+ ---> System.InvalidOperationException: Cannot get the value of a token type 'Number' as a string.
+   at System.Text.Json.Utf8JsonReader.GetString()
+   at System.Text.Json.Serialization.Converters.StringConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.CreateOrderInNetsisAsync(OrderDto order) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 295
+[2026-01-21 15:06:11.291 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 32788.2227 ms
+[2026-01-21 15:08:09.156 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 15:08:09.200 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 15:08:09.203 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 15:08:09.204 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 15:08:09.204 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 15:08:22.320 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 49.7698 ms
+[2026-01-21 15:08:22.412 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 34.1317 ms
+[2026-01-21 15:08:26.760 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 15:08:26.766 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 15:08:29.405 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 15:08:29.407 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 15:08:29.419 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 15:08:29.421 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 15:08:29.422 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 15:08:29.446 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAABSDraR99sqYwnv50HqG7WML7jtlkkhEetx6CgaEJKD-wAAAAAOgAAAAAIAACAAAADMGd6Ugn0QvcnDI1zzlZWLb0CGlyPd_sSc7y1THRLX5kABAADf_Ey_qjzD_p8nVzKZkmDt6c4iVY12t9kF2_eya9SjmjTD0K5I9zvsPvXFsyA5vOW9oqKm-PyQG8s_4zCrTVFpd0TWkDzakLf7CN0Q_TPkISXjAWKaMpds4wNMFrvv9KyXBdFY3jis2lWZEHdh7C2L1lHXKp-cASD3_5sJ4B-i0PrbtdNappRCJJom2rDVxgwVDy0NKErhlrerOF1K4KecgzH6QUnpnfPSYoUQwibquj2uVAhcQqV_4QsuaHy7r-y2ENwLEoZBgquFoETvrdjGmv086oVymm7loy3BfyXocmtKdXZLZcm7v6WfoC8cK2OSLvOkKhewWsDTidzcIjnPDKKolt2HdkgxawJi1g6sb3jdvxqYyj1Yz_SIqItFeA-1QAW_mRm4ftmeTrpl9jMrrK2dhk1vcshzata6peJPMUAAAACkMqOiAPlRLI-ZOMNX59BZfTK998pZwk-1_sublPbOZq4ANcgTmQBd5QGelV7OHXGFDoIwhi7j9nsjKpYNXxXz","token_type":"bearer","expires_in":1199,"refresh_token":"b5ac1a83edf549418fc102fa4d1a817a","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 12:08:29 GMT",".expires":"Wed, 21 Jan 2026 12:28:29 GMT"}
+[2026-01-21 15:08:29.453 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 15:08:51.411 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: 000000006228ADF
+[2026-01-21 15:08:53.592 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=000000006228ADF
+[2026-01-21 15:08:53.596 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 26864.3342 ms
+[2026-01-21 15:14:55.300 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 15:14:55.337 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 15:14:55.340 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 15:14:55.341 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 15:14:55.342 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 15:16:07.212 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 15:16:07.216 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 15:16:09.605 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 15:16:09.607 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 15:16:09.638 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 15:16:09.639 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 15:16:09.645 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 15:16:09.667 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAABC3ivci3kbXkQP-OuOmnZofXG_8VWVMUjc0hpf3HHgMgAAAAAOgAAAAAIAACAAAADi2jsiCBIFNbnLBN7rBys0nvjzzK9B2RNGQK8vKZ9IXUABAAB4r_zB-nvROzkE81e7Hv0Xcj5N6g0T0WSBMO7ht2UWhY9oa0UnOtcQDD21JX2kGIx_3Rk3myFM-3jzWXLdr_BNDHhBkk8Xu8W7LWlsiqvgM4fPbu_69_Zha4e0akfkkLd5IWEjS0GOJo5Z3oT5HsIZ9239-HDAZqwgNvqa3wiQdXk1JvIi8OvXw4fiC1RgY9k-ilAJpgHmN37SWJQhGNALcHX-XcxLFO_yhktbK3xW_XtMLo6Y4qhrXiw6TlXF8wLYWldpxqJ70GdwE6ISK6L1_S-cUPWCZuH2OIviDi-JqZFrJ_0XI5Tynpp0otN_HFFQUNx7lvV82BCbJl9qtENVxJbgxgxvrbtrcNRmThQWbul7x2QYQwBtuwHl7KoWLUYm3HXNH-SiS6E1qMDKkXWKiA-ZsXExec8wDWEO1rj8kUAAAAAXhYvhLnHnJd6UGXHEALlIscwsGlsD6yqpz-PAEqUZ3lEXcOLdULke3OYv-NG0Cirwxl2XMwQe9BSrZQaMnfj2","token_type":"bearer","expires_in":1199,"refresh_token":"4558e2536a8344e9a75560db2dc86785","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 12:16:09 GMT",".expires":"Wed, 21 Jan 2026 12:36:09 GMT"}
+[2026-01-21 15:16:09.671 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 15:16:31.453 ERR] AtakoErpService.Services.OrderSyncService
+Netsis sipariş oluşturma hatası: Hata Kodu : 700
+Detay : Kayıt Yeni işleminde hata oluştu. Hata detayı: Hata Kodu : 700
+Detay : (Info)Kalem listesinde kayıt var.
+(Info)Yedek kalem listesi kayıt için hazır.
+(Ikaz)000000006228ADF: Resmi belge numarası daha önce kullanılmıştır.
+(Ikaz)Operation aborted
+(Ikaz)Üst bilgiler düzeltilemedi.
+(Ikaz) Hata:Operation aborted
+
+
+<ErrorHeader>
+Error Time : 21.01.2026 15:16:31
+Kernel Version : 9.0.59.0
+Kernel Address : 06563154
+Object Address : 0841FAA0
+Object Name : NXObj_TFatura0841FAA0
+Class Name : TFatura
+</ErrorHeader>
+<Hata>
+Fatura - Hata
+
+<ErrorHeader>
+Error Time : 21.01.2026 15:16:31
+Kernel Version : 9.0.59.0
+Kernel Address : 06563154
+Object Address : 0841FAA0
+Object Name : NXObj_TFatura0841FAA0
+Class Name : TFatura
+</ErrorHeader>
+<Hata>
+KayıtYeniNetOpenX50.Fatura
+[2026-01-21 15:16:31.462 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 24267.3235 ms
+[2026-01-21 17:05:01.162 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:05:01.228 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:05:01.232 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:05:01.234 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:05:01.236 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:10:41.600 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:10:41.653 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:10:41.657 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:10:41.658 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:10:41.658 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:17:09.351 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:17:09.427 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:17:09.433 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:17:09.434 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:17:09.436 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:28:42.602 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:28:42.644 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:28:42.648 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:28:42.649 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:28:42.649 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:29:34.752 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:29:34.794 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:29:34.798 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:29:34.799 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:29:34.800 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:30:16.732 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 70.2655 ms
+[2026-01-21 17:30:16.829 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 34.8731 ms
+[2026-01-21 17:30:23.068 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 17:30:23.071 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 17:30:25.819 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 17:30:25.821 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 17:30:25.828 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 17:30:25.830 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 17:30:25.832 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 17:30:25.876 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACMd4FYKQeMWUFge1gRml_-Z0KBSgo1BENwBUrCPg7cuQAAAAAOgAAAAAIAACAAAABdARmrFVoWHAP2heg0R8c8IarLUQtsFhouA2gLprz8RkABAADKkcU_7HoPWVa0WdohubqDhAwoHrhWWzn7vAyAeUUgl1n3tlhFuXJhzpAzIMfiq_5lcIh0tDsyueLOsbaYSWmR-NXYkfWDRFVn3LWF_pO1TGcLK5-0naeKXK1VWEsdItD81cPo-CJq2FD_qm0wA1-UJ-xWRxnK82gqCndqdNAqUS2C8AyQw1UJMXIP4L3ntJXf6K9dnkmlUx5JNcFonXGnsLlF4kEBqyZdJaiOjc3jCFpotwSQ71k8P4yIi0IFzUls7ULkiSlimXGKJilP9b2DK4N5_Um2LO5eWMhn9Np6yjNFrDOWtooxX01N007Gq0GDZroDfCteqnxyIwXmYeTwSJiJ7QjelsCDSXlvHutytoW9pf1tONeQXgg-o8ZossdQ0bwBN5uXG6dKtmlVsQVxG9SnORjKhONqwnBL3sfLq0AAAAC5wVn_AgOGnLqegbPJJynuoNYHdtwhC97O6iCdpHps88hHdNTI6bDh8o3PP1Q62VzylUPoCQi-n1NgfYj73G9i","token_type":"bearer","expires_in":1199,"refresh_token":"a355f4e43a3d4d8394e31b2f2aa24d48","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 14:30:25 GMT",".expires":"Wed, 21 Jan 2026 14:50:25 GMT"}
+[2026-01-21 17:30:25.879 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 17:30:54.989 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000001
+[2026-01-21 17:31:55.012 ERR] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturulurken hata: 2026000002
+System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 60 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Bir iş parçacığı çıkışı veya bir uygulama isteği nedeniyle G/Ç işlemi iptal edildi..
+ ---> System.Net.Sockets.SocketException (995): Bir iş parçacığı çıkışı veya bir uygulama isteği nedeniyle G/Ç işlemi iptal edildi.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at AtakoErpService.Services.OrderSyncService.CreateOrderInNetsisAsync(OrderDto order) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 340
+[2026-01-21 17:31:55.081 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 92039.1344 ms
+[2026-01-21 17:34:10.835 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:34:10.915 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:34:10.918 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:34:10.919 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:34:10.920 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:53:41.890 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 66.9881 ms
+[2026-01-21 17:53:42.046 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 36.5979 ms
+[2026-01-21 17:53:48.684 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 17:53:48.688 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 17:53:51.205 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 17:53:51.207 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 17:53:51.215 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 17:53:51.216 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 17:53:51.217 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 17:53:51.243 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAADoaZajnRsmyqnppc2hBFf96vGwFb5bI_wPbbntQBt5hQAAAAAOgAAAAAIAACAAAAAXGisibIwuRi8XKti68Pt1s66JtAW9ogYsD6u4PmRhR0ABAABIp4FR2_yZcshdx_WSSpEpelGSPGDntV_eObXpEuPCzioyNKBvfKj2EXxvp_5dcgm4LCGr2fT7TTK9LitM4w3FRuarjrpiTykrB4-9YhSqCdbw0NSqE09H9b11xkuz0S_tIHlD_HXnbMToDwyTWZ15I6tOT-McbZcaUHpK57NrnNkbzfWwiyQ_lZdHHiSxeULcx8yTJSy_ZhjthCyxWR2-I1LDoYJW2w7ttcxfDDYLGC2wJXMxCqH7R2oPKh2JzpbHJNIzkCPWgrg0NQc2tuCxJkB7-zqkcezjMvMAeERowvkjrdSg90vi3Qwer8b_v9ZnBqCInYVoF3R8fPxi3YeMVnjzNDHq1GJMd2V50nLJJedkUrO-qZdjm2wJQYkLKo0nq6dnEZG0i70rZ5Jv3fQzWUgqeLQyUshDUCUFwF-14UAAAADjug2NCfjqAoscq-2G5tiat0OUcuc04A1StwUf36fQtYbQHYPLyfFUSBG_OMTIumRqPv15JgzOcvHeQ_8V3nJG","token_type":"bearer","expires_in":1199,"refresh_token":"65c6b4ffe5924bfb97e5100cddff881a","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 14:53:51 GMT",".expires":"Wed, 21 Jan 2026 15:13:51 GMT"}
+[2026-01-21 17:53:51.245 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 17:53:51.904 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000001
+[2026-01-21 17:53:55.165 ERR] AtakoErpService.Services.OrderSyncService
+Netsis sipariş oluşturma hatası: Hata Kodu : 402
+Detay : 
+
+<ErrorHeader>
+Error Time : 21.01.2026 17:53:55
+Kernel Version : 9.0.59.0
+Kernel Address : 06563154
+Object Address : 0BC25500
+Object Name : NXObj_TFatura0BC25500
+Class Name : TFatura
+</ErrorHeader>
+<Hata>
+W00000000000001 Nolu Evrak Daha önceden kaydedilmişNetOpenX50.Fatura
+[2026-01-21 17:53:55.174 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 6527.5629 ms
+[2026-01-21 17:55:51.058 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:55:51.105 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:55:51.108 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:55:51.109 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:55:51.111 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:56:37.442 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 17:56:37.489 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 17:56:37.494 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 17:56:37.495 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 17:56:37.496 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 17:57:03.724 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 66.4898 ms
+[2026-01-21 17:57:03.909 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 51.4814 ms
+[2026-01-21 17:57:13.220 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 17:57:13.223 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 17:57:15.654 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 17:57:15.655 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 461 karakter
+[2026-01-21 17:57:15.661 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 17:57:15.662 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 17:57:15.664 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 17:57:15.691 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAABH42vDGzdCa_MlkttdbGbtmRdyc1ooHHRxDiDDtHcgVwAAAAAOgAAAAAIAACAAAABU1E2ZQUyZRyHk-RWjkTa-ON9PxeOQ5hwE-KJjSK7mnEABAAClgBNqDjlUOwDj21ahaunIk-Cdd2Xy8HMy1q4qR6RPETPjlZp5ZRRxpYziyDQaXwH4ea7iBHhDjOs4Hvy6rsAfVOW84b80aX8yPY2E0o1UKpppxUMfUEpnihTUZcr3pwVHjRU49y4q5mNx31EXACGMJv4IGY_UlAyqXFC6TGzXgbdB16U93IM4o-LxXu3JFqSnIg4-55J4ffZ8zWkc26se3_OrR9Z1rwadym9ZvCA7JYYgve_rx-t7rJ3mLLNWW4xhzYr1mLUO3vZYZ08Ar_9HNmKp-jkMziYGjBfkjD4vgdzQtrAKiLqVUYljeZv9d8nwb0LhzfG3-gT3bWFLV9V054hx-i_0ABO-BePo8y-VqD6gYZQ3GUyM1NJA7U-UyYDljf3-jyvEMOVDNTjDS3SktEh6y1b0z-Y-hX7qE9NElUAAAAD0OaN1pTWovRLqPIeUgIGGJ5oDXGXa2YBhPMEXfZ7lEQyNdBzWE8Hvy8_VS02Ylp0_IZ9lkIqRO3vtkIaIgeRQ","token_type":"bearer","expires_in":1199,"refresh_token":"453c7a7a31784c51845d574da9cf1a08","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 14:57:15 GMT",".expires":"Wed, 21 Jan 2026 15:17:15 GMT"}
+[2026-01-21 17:57:15.694 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 17:57:16.101 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000001
+[2026-01-21 17:57:27.286 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000001
+[2026-01-21 17:57:29.501 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=W00000000000001
+[2026-01-21 17:57:29.508 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 16315.5989 ms
+[2026-01-21 17:59:59.364 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 17:59:59.365 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 18:00:01.553 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 18:00:01.554 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 1165 karakter
+[2026-01-21 18:00:01.557 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 18:00:01.557 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 18:00:01.558 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 18:00:01.568 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACK9JmQuzy6-aFk6Vk7cmwIa_hLlUcF-EUgLRsZr7ywAQAAAAAOgAAAAAIAACAAAAC9TWPWEFcSbJOGIPeFa9X-SUuSqho8UbW5DgX8DvdEk0ABAAAhr-5kcB44Qggb9ndxLiAhymiJhctH-d-Rt1V9q9XVp1MN19fGekZ49AuIG3tIeC5F2RiSw1bvD80kYxuByiIp-mOzGhvDzj3XU7P2LqptxaOTw5c8CQHYj39SkEuiKdLxwONQ0xSlUfirENkfBr_5ynVRjlc1WR0E0ao6kn323dvk8uiKAFT_uKckGQ49X5Qj5QmY_CUKSoSfrUOLM8qigP8IqihvEdLKgLE8QousT6AwUWSQs6ZoMlFBaAu1wOgSFdUOpIFyNWKOUX7fAcCDiMcOT1AwVdNBck1Mcsfg1p1gXQxTX6qFSkVFljryEtetez6vxfdfCLWjS2NvSYtrC78EXCw6HuYp540EF_PTGg2tBLDjhCNfnjDQXxCYuttYZmvG4iOmf5xyXiixm0Pl7PjmlmvLan4rgINCvUIbekAAAABD0vxIwCsdN1IAo8dnWktuNyEl4mQ9CuZtrrB6sEDx-_LvlyWT5lkQPmD1vswOL9q1fRwjLsfdgEfk37ekpMrV","token_type":"bearer","expires_in":1199,"refresh_token":"c2069c75c1bf498c9c95c2657b4e19de","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 15:00:01 GMT",".expires":"Wed, 21 Jan 2026 15:20:01 GMT"}
+[2026-01-21 18:00:01.570 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı
+[2026-01-21 18:00:02.181 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000002
+[2026-01-21 18:00:28.746 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000002
+[2026-01-21 18:00:30.930 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000001, ERP=W00000000000002
+[2026-01-21 18:00:30.931 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 31567.1843 ms
+[2026-01-21 18:15:05.015 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 18:15:05.072 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 18:15:05.078 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 18:15:05.079 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 18:15:05.080 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 18:15:15.075 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 124.8747 ms
+[2026-01-21 18:15:15.600 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 48.3522 ms
+[2026-01-21 18:15:20.454 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 18:15:20.459 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 18:15:23.546 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 18:15:23.548 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 1165 karakter
+[2026-01-21 18:15:23.556 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 18:15:23.558 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 18:15:23.559 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 18:15:23.598 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAADDrXmYOyWMleZasDHbry-mZHnxaC2_43I7iIU51jJKMgAAAAAOgAAAAAIAACAAAAD_Z73OvR9NDNFWnzjk43AH0if-InWvWdIBx7NyUPD-F0ABAAChVeLSq_f3y8dHIfOC3K87S5yOgUAUxQalvQya92nUNOB-MV8JGi_9P9Z7ZLTyVVB2ZNbtbsf_3EDqAfYPIVRGF9E2ASyoAXa31LqIZgC5EnQjcAQnrAvnzkHNvJY6WLGqFY-vahNtfsXkVEELq6tGE-Kph2TNiUVm362tvYs54zBbhTJIBRKuWWmAZ1Qvq2ZdICDwmrz_YFaw1M0rErr_uzavB-lI0_8kMgM1uAN4xvHd3YD_1W0k3yQ13rEn7c2EFAwz_-vUe9ALLVbdm19ZL1VD5eDtYAgNbbpRwsp4gS3BUTw1aNqh3xRmjC2CVmOTzU8BpOBl7LY5_rt9XRQ0hbxirplK2EzNgfD8dC0VnroeaB20rY2WBnosSMO8cA0fK9drKhwFFPM43NHd90ztZu_kvn0MtGgrxMJt-kd0JUAAAADxD464lo2omSGpb9BRhBHys8TC5eOx8RX74xFCBy_95wVFboDi4dr1VeaDo1Rk0eHNFizR5fTFmPt7HEqXNTWY","token_type":"bearer","expires_in":1199,"refresh_token":"c399ca12b2e24f3b9674cb9fda1b1588","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 15:15:23 GMT",".expires":"Wed, 21 Jan 2026 15:35:23 GMT"}
+[2026-01-21 18:15:23.600 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı (token 18 dk geçerli)
+[2026-01-21 18:15:26.668 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000003
+[2026-01-21 18:15:34.706 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000003
+[2026-01-21 18:15:36.906 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000001, ERP=W00000000000003
+[2026-01-21 18:15:36.914 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 16494.6006 ms
+[2026-01-21 18:18:48.380 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 18:18:48.383 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 18:18:50.588 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 18:18:50.591 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 2304 karakter
+[2026-01-21 18:18:50.594 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 5
+[2026-01-21 18:18:50.595 INF] AtakoErpService.Services.OrderSyncService
+5 adet sipariş senkronize edilecek
+[2026-01-21 18:18:50.596 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 18:18:50.649 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACtSjO9KSGwasCDGjREUV2L4owuKfPHFnB9ES4mfIWCPwAAAAAOgAAAAAIAACAAAADJAG3UV76IxHItfLa39D9UuNyzDw3cyKdSZTU7rInGEUABAAC6V2lzO1uGBcWQxG4Kyh2cx_h349-nGRN7i6YIISiTRWtbOVCthnCSMvJif4PipyyNkfR4cEr-oxN8wiahbGMtOIzS8h5TdHQ4RcIhixiBSyFgPr--NXURFaGmFjQ-aHq408t6yvvdYJeYKqNkdaRMpcNMbuAk0U4uFDAsrUJfW1XZV4RZO0iBD_k7Is9TR-louTVEOJ2NLioSQ1UmA-Wqe931-T6xSzztkjt80JtKoBntOzFRTSmiHDQgZFhLaR9xje2-SXx0QTq9HMIDK_cGrDN1bwIlQAFseetTe2xeVbn6NE6LTjpiI8niQjqWbIXNbU5SiQniWPH3OkXIVjbFkSbGixIB_cC91DHAdw6kSZJrj7d8-t64TgE_Ikn61-hQlXb3q_1G05SeK6B8fNQ5H8p_lWI5gtJfbpS0hu6enEAAAAAY7ijcDRKbKAx9cW9qSHyVPzZtcxuhI6G7uHeIl-IbtYqfNEk8b8Ix_y7ZYn0wSUt0Ifw1XbYEnw2SbiizVdur","token_type":"bearer","expires_in":1199,"refresh_token":"3ea6d349ffb544798d005a1c5257bdb7","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 15:18:50 GMT",".expires":"Wed, 21 Jan 2026 15:38:50 GMT"}
+[2026-01-21 18:18:50.651 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı (token 18 dk geçerli)
+[2026-01-21 18:18:59.008 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000004
+[2026-01-21 18:19:56.257 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000004
+[2026-01-21 18:19:58.490 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=W00000000000004
+[2026-01-21 18:20:03.172 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000005
+[2026-01-21 18:20:34.458 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000005
+[2026-01-21 18:20:36.646 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000003, ERP=W00000000000005
+[2026-01-21 18:20:38.572 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000006
+[2026-01-21 18:21:08.165 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000006
+[2026-01-21 18:21:10.375 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000004, ERP=W00000000000006
+[2026-01-21 18:21:13.101 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000007
+[2026-01-21 18:21:23.659 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000007
+[2026-01-21 18:21:25.856 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000005, ERP=W00000000000007
+[2026-01-21 18:21:26.113 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000008
+[2026-01-21 18:21:29.444 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000008
+[2026-01-21 18:21:31.648 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000006, ERP=W00000000000008
+[2026-01-21 18:21:31.651 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 163274.8660 ms
+[2026-01-21 18:34:48.311 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 18:34:48.393 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 18:34:48.398 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 18:34:48.400 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 18:34:48.401 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 18:36:49.855 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 18:36:49.902 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 18:36:49.906 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 18:36:49.906 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 18:36:49.907 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 18:37:00.874 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 65.8023 ms
+[2026-01-21 18:37:01.121 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 44.8242 ms
+[2026-01-21 18:37:04.574 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 18:37:04.577 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 18:37:07.411 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 18:37:07.413 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 3432 karakter
+[2026-01-21 18:37:07.422 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 6
+[2026-01-21 18:37:07.423 INF] AtakoErpService.Services.OrderSyncService
+6 adet sipariş senkronize edilecek
+[2026-01-21 18:37:07.424 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 18:37:07.477 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACJVg_Du1aXtlNg3WofX4pnb_Iv2rVKBsDy-pB21x5pXQAAAAAOgAAAAAIAACAAAACDifB9YBiMcRtAsO21o9V8qtmk-_x2hsotSgB-kKk-6EABAABOa9DVZj5kXR2A5G3I6T1S0ke1hDTJMLPwOG-O0Cb-ed-_CSJwMxM36pvtJgyintIDG92sg9VChhpQ-DmoC25utCSH6UU5LapNm5Pi901HvFMK_ZC-_p9ssnPu_UvmzWUEUTSPyCLg2ybTn2MirdpdQsx3QK8SmovrsA7fEo7ZZu-3x-mIVkaHwrsPjrPjed7isR6xPhP0ASWCj_bpCcJslmgiPpKNDgphm6hX_0nWtE5imHYfpFFSPSxj_t5GEGT4Yydf7vKxWZ11AhbSnn7FJJTEp8NYjbaL07fST9h_ASAbSQ0WM5jPjE1s_Eui-tyUYMhWyV59oRjX985xgoEbRrbvwKSwyvN3ihHVt_2KcyZh_r0VnMEh7OR5y2EjNRwbEhA3Te4nw_r0UdZ8d6uTk9QIRssVJR7XzmJe2jrqQkAAAABO4-1FGgTcOtFV_kLH9o17oaQvenPft_eZGOrbdKmrDPZWzBESX3KfyhTJm-fOyVxkyCcVhPGKyGrX8tLtuJbL","token_type":"bearer","expires_in":1199,"refresh_token":"a55bfd8407ae4c29acf405c75f817083","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 15:37:07 GMT",".expires":"Wed, 21 Jan 2026 15:57:07 GMT"}
+[2026-01-21 18:37:07.480 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı (token 18 dk geçerli)
+[2026-01-21 18:37:13.926 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000009
+[2026-01-21 18:38:04.907 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000009
+[2026-01-21 18:38:07.248 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000001, ERP=W00000000000009
+[2026-01-21 18:38:07.752 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000010
+[2026-01-21 18:38:12.047 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000010
+[2026-01-21 18:38:14.245 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=W00000000000010
+[2026-01-21 18:38:14.671 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000011
+[2026-01-21 18:38:18.821 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000011
+[2026-01-21 18:38:21.021 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000003, ERP=W00000000000011
+[2026-01-21 18:38:21.199 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000012
+[2026-01-21 18:38:24.952 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000012
+[2026-01-21 18:38:27.142 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000004, ERP=W00000000000012
+[2026-01-21 18:38:27.436 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000013
+[2026-01-21 18:38:31.507 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000013
+[2026-01-21 18:38:33.683 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000005, ERP=W00000000000013
+[2026-01-21 18:38:33.960 INF] AtakoErpService.Services.OrderSyncService
+Yeni numara alındı: W00000000000014
+[2026-01-21 18:38:38.605 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000014
+[2026-01-21 18:38:40.781 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000006, ERP=W00000000000014
+[2026-01-21 18:38:40.791 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 96244.6221 ms
+[2026-01-21 18:40:13.065 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 18:40:13.139 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 18:40:13.145 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 18:40:13.146 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 18:40:13.147 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:04:50.585 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 69.9392 ms
+[2026-01-21 19:04:50.710 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 33.7560 ms
+[2026-01-21 19:05:00.020 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 19:05:00.026 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 19:05:02.683 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 19:05:02.685 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 3432 karakter
+[2026-01-21 19:05:02.694 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 6
+[2026-01-21 19:05:02.695 INF] AtakoErpService.Services.OrderSyncService
+6 adet sipariş senkronize edilecek
+[2026-01-21 19:05:02.697 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 19:05:02.756 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAACdaWmY3uVkS7cnBoMvcOnB8rjUg-r0kzduS3YKzgg5VAAAAAAOgAAAAAIAACAAAAD_5OpteHHRCCMmzH0aDhOgiiuWCE1pixD98XkbYx2PcEABAABlTm6cWHDGj0Vx4DiZ4fJoRP8_t1s4D6I3X2S9tUT2DbcAOQLy7m-41jaGdnJ3eraHQjl4lpOR6WmsqkanHhHXjtbv_m05N0h-F8XvQrxDrLvJvMchnbFsQEGf6O1ND4O0-lBvyQIOGHzcBJNPzN0bKxpSzCAzQ9SM_VbOx-b6nMEwNCCpNRX-twmOES74nxjMs451u99Slh5Nd1rgNlLqEtllceUvmFPavrjo51oEXhBBtNZpGjYCMdKOdqfE6TOvvRGAz7VkNvnoz-uVD50p2glLMdjnItB7hT58N3HuKHMj9-YAgcTz3ro6xZ6k37Ka9bM4PATOQuk_n5JFALR5wLrT1YhF2LsIgVbXaG_OjQC3l_S3cOSF5TeXc3kB5iNlUrRwChc_RYW-OAlCQJvce9JKKpbxXnTWgSXaXl1QxUAAAAD73ZSpcXv3Z3TpYeSXOFSS7rBGKhdu831Zq5L1Hu-fKje_R_c0aWcXfmwzhznJgJrvY9GSnrG6RJNAIzufEGJZ","token_type":"bearer","expires_in":1199,"refresh_token":"74f778a9aeaa473f84642a95f1067694","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 16:05:02 GMT",".expires":"Wed, 21 Jan 2026 16:25:02 GMT"}
+[2026-01-21 19:05:02.759 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı (token 18 dk geçerli)
+[2026-01-21 19:06:23.353 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000015
+[2026-01-21 19:06:25.579 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000001, ERP=W00000000000015
+[2026-01-21 19:06:53.738 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000016
+[2026-01-21 19:06:55.901 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=W00000000000016
+[2026-01-21 19:07:25.892 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000017
+[2026-01-21 19:07:28.128 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000003, ERP=W00000000000017
+[2026-01-21 19:07:59.924 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000018
+[2026-01-21 19:08:02.107 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000004, ERP=W00000000000018
+[2026-01-21 19:08:19.816 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000019
+[2026-01-21 19:08:21.970 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000005, ERP=W00000000000019
+[2026-01-21 19:08:25.601 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000020
+[2026-01-21 19:08:27.784 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000006, ERP=W00000000000020
+[2026-01-21 19:08:27.792 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 207808.6443 ms
+[2026-01-21 19:23:54.088 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 19:23:54.176 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 19:23:54.179 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 19:23:54.180 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 19:23:54.181 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:30:58.799 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 86.2434 ms
+[2026-01-21 19:30:58.888 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 35.4782 ms
+[2026-01-21 19:31:03.814 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 19:31:06.570 INF] AtakoErpService.Services.OrderSyncComService
+Bekleyen sipariş bulunamadı
+[2026-01-21 19:31:06.578 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 2795.7710 ms
+[2026-01-21 19:31:51.252 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 19:31:53.449 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 19:31:53.467 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 19:31:58.549 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 58
+[2026-01-21 19:31:58.597 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 19:31:58.599 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 7347.4501 ms
+[2026-01-21 19:33:54.970 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 19:33:55.042 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 19:33:55.045 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 19:33:55.046 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 19:33:55.046 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:37:00.675 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 19:37:01.073 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 19:37:01.077 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 19:37:01.078 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 19:37:01.079 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:37:16.941 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 19:37:19.748 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 19:37:19.764 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 19:37:19.765 INF] AtakoErpService.Services.OrderSyncComService
+[COM] Kernel nesnesi oluşturuluyor...
+[2026-01-21 19:37:27.422 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 59
+[2026-01-21 19:37:27.470 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 19:37:27.493 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 10596.9713 ms
+[2026-01-21 19:41:06.407 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 19:41:06.535 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 19:41:06.540 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 19:41:06.542 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 19:41:06.543 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:56:20.503 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 76.6164 ms
+[2026-01-21 19:56:20.644 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 45.6270 ms
+[2026-01-21 19:56:26.645 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 19:56:29.294 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 19:56:29.305 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 19:56:29.306 INF] AtakoErpService.Services.OrderSyncComService
+[COM] Kernel nesnesi oluşturuluyor...
+[2026-01-21 19:56:34.168 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 59
+[2026-01-21 19:56:34.221 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 19:56:34.233 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 7613.4537 ms
+[2026-01-21 19:59:26.128 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 19:59:26.303 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 19:59:26.313 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 19:59:26.316 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 19:59:26.318 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 19:59:46.236 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 19:59:49.474 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 19:59:49.489 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 19:59:49.490 INF] AtakoErpService.Services.OrderSyncComService
+[COM] Kernel nesnesi oluşturuluyor (CLSID ile)...
+[2026-01-21 19:59:54.458 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 68
+[2026-01-21 19:59:54.529 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 19:59:54.550 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 8379.9308 ms
+[2026-01-21 20:03:31.116 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 20:03:31.217 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 20:03:31.223 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 20:03:31.225 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Production
+[2026-01-21 20:03:31.226 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 20:03:44.231 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 107.2774 ms
+[2026-01-21 20:03:44.481 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 72.4683 ms
+[2026-01-21 20:04:05.044 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 20:04:07.628 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 20:04:07.637 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 20:04:07.637 INF] AtakoErpService.Services.OrderSyncComService
+[COM] Kernel nesnesi oluşturuluyor (CLSID ile)...
+[2026-01-21 20:04:11.369 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 68
+[2026-01-21 20:04:11.433 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 20:04:11.446 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 6423.8817 ms
+[2026-01-21 20:04:36.710 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı (COM)
+[2026-01-21 20:04:38.895 INF] AtakoErpService.Services.OrderSyncComService
+6 adet bekleyen sipariş bulundu
+[2026-01-21 20:04:38.896 INF] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kuruluyor: MUHASEBE2026
+[2026-01-21 20:04:38.897 INF] AtakoErpService.Services.OrderSyncComService
+[COM] Kernel nesnesi oluşturuluyor (CLSID ile)...
+[2026-01-21 20:04:42.535 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı başarısız
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncComService.Connect() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncComService.cs:line 68
+[2026-01-21 20:04:42.538 ERR] AtakoErpService.Services.OrderSyncComService
+Netsis COM bağlantısı kurulamadı
+[2026-01-21 20:04:42.539 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run-com responded 200 in 5829.2214 ms
+[2026-01-21 21:10:25.354 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:10:25.482 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:11:25.269 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:11:25.324 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:11:42.268 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:11:42.324 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:12:46.778 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:12:46.829 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:14:22.572 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:14:22.619 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:14:40.524 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:14:40.572 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:15:22.664 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:15:22.711 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:15:49.697 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:15:49.754 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:17:23.111 INF] 
+AtakodErpService hazır. Port: 5273
+[2026-01-21 21:17:23.175 FTL] 
+Uygulama başlatılırken hata oluştu
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Microsoft.AspNetCore.Builder.WebApplication.Run(String url)
+   at Program.<Main>$(String[] args) in c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Program.cs:line 79
+[2026-01-21 21:18:14.990 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 21:18:15.040 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-21 21:18:15.043 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 21:18:15.044 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 21:18:15.045 INF] Microsoft.Hosting.Lifetime
+Content root path: c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 21:18:45.504 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 21:18:45.507 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 21:18:49.653 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Net.Http.HttpRequestException: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı. (localhost:8000)
+ ---> System.Net.Sockets.SocketException (10061): Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 121
+[2026-01-21 21:18:49.691 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 21:18:49.699 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 4215.3499 ms
+[2026-01-21 21:19:21.337 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 21:19:38.572 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 21:19:42.638 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Net.Http.HttpRequestException: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı. (localhost:8000)
+ ---> System.Net.Sockets.SocketException (10061): Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 121
+[2026-01-21 21:19:42.655 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 21:19:42.656 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 21319.3583 ms
+[2026-01-21 21:20:04.501 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 21:20:04.504 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 21:20:08.575 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Net.Http.HttpRequestException: Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı. (localhost:8000)
+ ---> System.Net.Sockets.SocketException (10061): Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 121
+[2026-01-21 21:20:08.587 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 21:20:08.587 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 4087.4255 ms
+[2026-01-21 21:20:18.493 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 21:20:18.494 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 21:20:25.016 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 21:20:25.018 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 3432 karakter
+[2026-01-21 21:20:25.024 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 6
+[2026-01-21 21:20:25.028 INF] AtakoErpService.Services.OrderSyncService
+6 adet sipariş senkronize edilecek
+[2026-01-21 21:20:25.033 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API'ye giriş yapılıyor: MUHASEBE2026
+[2026-01-21 21:20:25.077 INF] AtakoErpService.Services.OrderSyncService
+Netsis Login Response: {"access_token":"AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAtFhjQmQ8xUiURCrttcYa5AAAAAACAAAAAAAQZgAAAAEAACAAAABAAwqUiTroeUVIRV3XxUup_hJzkveffyZqRSR2Zjs7DwAAAAAOgAAAAAIAACAAAABxdiVfyorpsKImOCF6j6PMta4crjbaW4cg0rRCM60JIEABAACll7IBcNq5omvtTx1j8ijQDX0kRgb2PIgLnFY9QbCEuR_dVX43SXetWxPvI9fAZrYPdgDMez-HheIWgPuaPmrIiZ881-tTezwvYu3Oh6sFNGqEpVQde_kHqI3Wanro_YIKVGc4PqHErLiFkzaxFE0UqFWvNkBv-A6gAewEZoB3cy-YbIA1HfFmQbZR9qO2BmwNulIEvo0xpTYfZgJ96gDNFkWUdFZUadNkXEF10nbbujtOZSFvp_v8C18eNwMP2dxa_b1wvh9KaofvmOQ0-YU8UGA6zUZIj_bz1EetZzqGgH6HdSntIy0eWDZEILCi35oHpv5nUMPF-vlE5FLwOJuMTAPUw_vAsGQtLODLRFc-w7iuk_DdFuqLQ_KdPgwLLUcoPf6w34pGkAL6gWN0mOXr1Md4GEEZEoRphSth2TMrckAAAABgl9xPwPFhgoxbYr54vLe0oTJprMGQqK9eHTOTG4dtfy_l2LgOwXEMfhWxKYVbZLYSDKEMzbDT8mJiGagJZXUh","token_type":"bearer","expires_in":1199,"refresh_token":"edc6d5efab7a451ea66e6e35ff108b6c","as:client_id":"","username":"NETSIS","branchcode":"0","dbname":"MUHASEBE2026","jlogin":"{\"DbType\":0,\"DbName\":\"MUHASEBE2026\",\"DbUser\":\"TEMELSET\",\"DbPassword\":\"\",\"NetsisUser\":\"NETSIS\",\"NetsisPassword\":\"NET5\",\"BranchCode\":0,\"HashCode\":\"\",\"IDMToken\":\"\",\"IsTrusted\":false,\"Key\":\"MUHASEBE2026_0_netsıs_0_\"}",".issued":"Wed, 21 Jan 2026 18:20:25 GMT",".expires":"Wed, 21 Jan 2026 18:40:25 GMT"}
+[2026-01-21 21:20:25.082 INF] AtakoErpService.Services.OrderSyncService
+Netsis REST API giriş başarılı (token 18 dk geçerli)
+[2026-01-21 21:20:41.337 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000021
+[2026-01-21 21:20:43.578 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000001, ERP=W00000000000021
+[2026-01-21 21:20:46.476 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000022
+[2026-01-21 21:20:48.687 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000002, ERP=W00000000000022
+[2026-01-21 21:20:51.879 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000023
+[2026-01-21 21:20:54.069 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000003, ERP=W00000000000023
+[2026-01-21 21:20:57.104 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000024
+[2026-01-21 21:20:59.272 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000004, ERP=W00000000000024
+[2026-01-21 21:21:02.326 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000025
+[2026-01-21 21:21:04.523 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000005, ERP=W00000000000025
+[2026-01-21 21:21:07.609 INF] AtakoErpService.Services.OrderSyncService
+Netsis siparişi oluşturuldu: W00000000000026
+[2026-01-21 21:21:09.768 INF] AtakoErpService.Services.OrderSyncService
+Sipariş senkronize edildi: Web=2026000006, ERP=W00000000000026
+[2026-01-21 21:21:09.769 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 51276.0955 ms
+[2026-01-21 21:47:16.778 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-21 21:48:11.116 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 21:48:11.182 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-21 21:48:11.187 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 21:48:11.188 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 21:48:11.189 INF] Microsoft.Hosting.Lifetime
+Content root path: c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 21:48:41.596 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2026-01-01 - 2026-01-21
+[2026-01-21 21:48:41.599 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2026-01-01 - 2026-01-21
+[2026-01-21 21:48:44.062 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 21:48:44.076 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 2509.0914 ms
+[2026-01-21 21:49:35.305 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-21 21:50:55.013 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 21:50:55.113 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-21 21:50:55.122 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 21:50:55.125 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 21:50:55.126 INF] Microsoft.Hosting.Lifetime
+Content root path: c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 21:51:10.098 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 21:51:10.102 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 21:51:18.838 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 21:51:18.849 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 8775.8974 ms
+[2026-01-21 21:57:15.662 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 9.5674 ms
+[2026-01-21 21:57:25.851 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.5280 ms
+[2026-01-21 21:57:29.218 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.9503 ms
+[2026-01-21 21:57:30.453 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.4437 ms
+[2026-01-21 21:58:40.233 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.5526 ms
+[2026-01-21 22:08:05.692 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.5052 ms
+[2026-01-21 22:08:07.515 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.4325 ms
+[2026-01-21 22:08:12.518 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.3778 ms
+[2026-01-21 22:08:56.366 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.3665 ms
+[2026-01-21 22:09:00.690 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.3635 ms
+[2026-01-21 22:09:07.232 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.3913 ms
+[2026-01-21 22:09:08.598 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.3578 ms
+[2026-01-21 22:09:33.450 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-21 22:09:37.251 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 22:09:37.302 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-21 22:09:37.305 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 22:09:37.305 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 22:09:37.306 INF] Microsoft.Hosting.Lifetime
+Content root path: c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 22:09:41.043 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 61.6955 ms
+[2026-01-21 22:09:48.599 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-001, 2026-01-01 - 2026-01-21
+[2026-01-21 22:09:48.601 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-001, 2026-01-01 - 2026-01-21
+[2026-01-21 22:09:48.871 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-001, Devir: 0.00, 1 hareket, Son Bakiye: 0.00
+[2026-01-21 22:09:48.878 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 281.0995 ms
+[2026-01-21 22:10:03.841 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 400 in 0.8754 ms
+[2026-01-21 22:14:57.035 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:14:57.036 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:14:57.098 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:14:57.100 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 65.1736 ms
+[2026-01-21 22:15:14.494 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-01-01 - 2026-01-21
+[2026-01-21 22:15:14.495 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-01-01 - 2026-01-21
+[2026-01-21 22:15:14.502 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:15:14.504 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 9.9404 ms
+[2026-01-21 22:16:38.237 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:16:38.239 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:16:38.282 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:16:38.283 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 46.9222 ms
+[2026-01-21 22:16:45.160 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:16:45.161 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:16:45.168 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:16:45.169 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 10.0863 ms
+[2026-01-21 22:19:45.754 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:19:45.756 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:19:45.808 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:19:45.810 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 55.9206 ms
+[2026-01-21 22:19:47.751 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:19:47.755 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:19:48.039 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:19:48.047 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 310.4322 ms
+[2026-01-21 22:22:49.567 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:22:49.569 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:22:49.657 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:22:49.658 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 91.2271 ms
+[2026-01-21 22:22:50.851 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:22:50.852 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:22:55.889 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:22:55.890 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 5038.8665 ms
+[2026-01-21 22:23:30.077 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:23:30.078 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:23:37.410 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:23:37.411 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 7335.1893 ms
+[2026-01-21 22:23:41.456 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:23:41.457 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:23:45.751 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:23:45.752 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 4296.8063 ms
+[2026-01-21 22:23:56.871 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:23:56.872 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:23:58.135 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:23:58.137 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 1266.2316 ms
+[2026-01-21 22:25:10.659 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:25:10.660 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:25:10.680 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:25:10.682 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 24.1003 ms
+[2026-01-21 22:25:22.748 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:25:22.750 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:25:22.814 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 5 hareket, Son Bakiye: 0.00
+[2026-01-21 22:25:22.816 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 68.8717 ms
+[2026-01-21 22:25:59.761 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-21 22:26:52.662 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 22:26:52.725 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-21 22:26:52.730 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 22:26:52.731 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 22:26:52.732 INF] Microsoft.Hosting.Lifetime
+Content root path: c:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 22:26:54.696 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:26:54.701 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:26:55.101 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:26:55.138 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 491.7495 ms
+[2026-01-21 22:28:09.008 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:09.010 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:10.477 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:28:10.480 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 1472.2373 ms
+[2026-01-21 22:28:30.406 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:30.408 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:31.408 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:28:31.410 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 1004.4482 ms
+[2026-01-21 22:28:34.027 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:34.028 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:28:34.047 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:28:34.049 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 21.8530 ms
+[2026-01-21 22:29:07.610 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:29:07.614 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:29:07.641 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:29:07.645 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 35.6955 ms
+[2026-01-21 22:30:10.819 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:30:10.820 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:30:10.856 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:30:10.858 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 40.1146 ms
+[2026-01-21 22:31:35.055 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:31:35.057 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:31:35.094 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:31:35.096 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 41.5547 ms
+[2026-01-21 22:32:07.483 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:32:07.484 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:32:07.508 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:32:07.511 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 27.5506 ms
+[2026-01-21 22:32:12.063 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:32:12.064 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:32:17.691 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:32:17.695 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 5637.6102 ms
+[2026-01-21 22:34:01.834 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:34:01.836 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-24354, 2025-12-22 - 2026-01-21
+[2026-01-21 22:34:01.898 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-24354, Devir: 0.00, 4 hareket, Son Bakiye: 0.00
+[2026-01-21 22:34:01.900 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 65.6483 ms
+[2026-01-21 22:34:03.193 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000001, 120-01-24354
+[2026-01-21 22:34:03.193 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000001, 120-01-24354
+[2026-01-21 22:34:06.756 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000001, 3 kalem
+[2026-01-21 22:34:06.760 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 3567.1849 ms
+[2026-01-21 22:34:13.692 INF] AtakoErpService.Controllers.FaturaDetayController
+Fatura detay isteği: ETM202600000760, 120-01-24354
+[2026-01-21 22:34:13.693 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay getiriliyor: ETM202600000760, 120-01-24354
+[2026-01-21 22:34:13.735 INF] AtakoErpService.Services.FaturaDetayService
+Fatura detay tamamlandı: ETM202600000760, 2 kalem
+[2026-01-21 22:34:13.737 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/FaturaDetay responded 200 in 45.4222 ms
+[2026-01-21 22:37:55.753 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-00003, 2025-12-22 - 2026-01-21
+[2026-01-21 22:37:55.754 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-00003, 2025-12-22 - 2026-01-21
+[2026-01-21 22:37:56.610 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-00003, Devir: 0.00, 0 hareket, Son Bakiye: 0.00
+[2026-01-21 22:37:56.612 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 859.5425 ms
+[2026-01-21 22:41:26.361 INF] AtakoErpService.Controllers.CariEkstreController
+Cari ekstre isteği: 120-01-00003, 2025-12-22 - 2026-01-21
+[2026-01-21 22:41:26.362 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre getiriliyor: 120-01-00003, 2025-12-22 - 2026-01-21
+[2026-01-21 22:41:28.168 INF] AtakoErpService.Services.CariEkstreService
+Cari ekstre tamamlandı: 120-01-00003, Devir: 0.00, 0 hareket, Son Bakiye: 0.00
+[2026-01-21 22:41:28.170 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/CariEkstre responded 200 in 1809.3475 ms

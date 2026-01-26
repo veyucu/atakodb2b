@@ -41,6 +41,7 @@ Route::middleware(['auth'])->prefix('orders')->name('orders.')->group(function (
 // Cari Ekstre (Account Statement) Route
 Route::middleware(['auth'])->group(function () {
     Route::get('/cari-ekstre', [CariEkstreController::class, 'index'])->name('cari.ekstre');
+    Route::get('/cari-ekstre/fatura-detay', [CariEkstreController::class, 'getFaturaDetay'])->name('cari.fatura.detay');
 });
 
 // Public/Customer Routes (requires authentication and customer selection for plasiyer)

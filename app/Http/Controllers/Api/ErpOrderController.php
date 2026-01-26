@@ -22,7 +22,7 @@ class ErpOrderController extends Controller
                 return [
                     'id' => $order->id,
                     'order_number' => $order->order_number,
-                    'cari_kodu' => $order->user->cari_kodu ?? null,
+                    'cari_kodu' => $order->user->username ?? null,
                     'tarih' => $order->created_at->format('Y-m-d'),
                     'gonderim_sekli' => $order->gonderim_sekli,
                     'notes' => $order->notes,

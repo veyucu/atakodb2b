@@ -5600,3 +5600,242 @@ Laravel API hatası: "NotFound" - {"error":"\u00dcr\u00fcn bulunamad\u0131"}
 Bakiye senkronizasyonu tamamlandı. Güncellenen: 81, Atlanan: 19, Hata: 0
 [2026-01-21 09:35:38.331 INF] Serilog.AspNetCore.RequestLoggingMiddleware
 HTTP POST /api/BakiyeSync/sync responded 200 in 225414.6835 ms
+[2026-01-21 13:09:13.950 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:09:14.013 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:09:14.018 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:09:14.019 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:09:14.021 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 13:10:22.234 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 112.5170 ms
+[2026-01-21 13:10:22.419 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 58.5424 ms
+[2026-01-21 13:10:43.367 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/OrderSync/status responded 200 in 77.1336 ms
+[2026-01-21 13:11:00.916 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 0.5769 ms
+[2026-01-21 13:11:01.088 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 2.0428 ms
+[2026-01-21 13:11:01.178 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /favicon-32x32.png responded 200 in 21.5325 ms
+[2026-01-21 13:11:12.640 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:11:16.076 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Text.Json.JsonException: The JSON value could not be converted to System.Decimal. Path: $.orders[0].subtotal | LineNumber: 0 | BytePositionInLine: 187.
+ ---> System.InvalidOperationException: Cannot get the value of a token type 'String' as a number.
+   at System.Text.Json.Utf8JsonReader.TryGetDecimal(Decimal& value)
+   at System.Text.Json.Utf8JsonReader.GetDecimal()
+   at System.Text.Json.Serialization.Converters.DecimalConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 118
+[2026-01-21 13:11:16.205 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 13:11:16.354 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3739.6401 ms
+[2026-01-21 13:13:19.414 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 0.4430 ms
+[2026-01-21 13:13:19.484 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 1.2006 ms
+[2026-01-21 13:13:22.647 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 1.2182 ms
+[2026-01-21 13:13:22.714 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 1.0667 ms
+[2026-01-21 13:15:09.253 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:15:11.783 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Text.Json.JsonException: The JSON value could not be converted to System.Decimal. Path: $.orders[0].subtotal | LineNumber: 0 | BytePositionInLine: 187.
+ ---> System.InvalidOperationException: Cannot get the value of a token type 'String' as a number.
+   at System.Text.Json.Utf8JsonReader.TryGetDecimal(Decimal& value)
+   at System.Text.Json.Utf8JsonReader.GetDecimal()
+   at System.Text.Json.Serialization.Converters.DecimalConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 118
+[2026-01-21 13:15:11.797 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 13:15:11.799 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 2547.9256 ms
+[2026-01-21 13:17:12.979 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:17:13.038 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:17:13.043 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:17:13.044 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:17:13.045 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 13:17:33.677 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 73.5197 ms
+[2026-01-21 13:17:33.974 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 45.3381 ms
+[2026-01-21 13:17:39.621 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:17:39.631 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:17:42.516 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:17:42.519 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:17:42.532 ERR] AtakoErpService.Services.OrderSyncService
+Pending siparişler alınırken hata oluştu
+System.Text.Json.JsonException: The JSON value could not be converted to System.Decimal. Path: $.orders[0].subtotal | LineNumber: 0 | BytePositionInLine: 187.
+ ---> System.InvalidOperationException: Cannot get the value of a token type 'String' as a number.
+   at System.Text.Json.Utf8JsonReader.TryGetDecimal(Decimal& value)
+   at System.Text.Json.Utf8JsonReader.GetDecimal()
+   at System.Text.Json.Serialization.Converters.DecimalConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at AtakoErpService.Services.OrderSyncService.GetPendingOrdersAsync() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 126
+[2026-01-21 13:17:42.589 INF] AtakoErpService.Services.OrderSyncService
+Senkronize edilecek sipariş bulunamadı
+[2026-01-21 13:17:42.707 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 3134.3911 ms
+[2026-01-21 13:18:07.621 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-21 13:21:04.069 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-21 13:21:04.129 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://0.0.0.0:5000
+[2026-01-21 13:21:04.135 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-21 13:21:04.137 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-21 13:21:04.138 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-21 13:22:05.146 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 157.3174 ms
+[2026-01-21 13:22:05.323 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 96.0482 ms
+[2026-01-21 13:22:10.169 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:22:10.177 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:22:13.128 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:22:13.132 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:22:13.151 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 13:22:13.154 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 13:22:24.878 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncService.InitializeNetsis() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 165
+[2026-01-21 13:22:24.901 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+[2026-01-21 13:22:24.950 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 14819.8500 ms
+[2026-01-21 13:34:21.547 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 1.3655 ms
+[2026-01-21 13:34:21.643 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 2.6392 ms
+[2026-01-21 13:34:26.588 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:34:26.595 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:34:29.559 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:34:29.562 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:34:29.571 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 13:34:29.574 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 13:34:36.431 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncService.InitializeNetsis() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 165
+[2026-01-21 13:34:36.442 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+[2026-01-21 13:34:36.444 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 9857.7410 ms
+[2026-01-21 13:38:55.080 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger responded 404 in 4.3763 ms
+[2026-01-21 13:38:55.095 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger responded 404 in 0.1299 ms
+[2026-01-21 13:38:57.000 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger responded 404 in 0.0850 ms
+[2026-01-21 13:39:01.955 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /index.html responded 200 in 1.4164 ms
+[2026-01-21 13:39:02.030 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /swagger/v1/swagger.json responded 200 in 2.1029 ms
+[2026-01-21 13:39:06.595 INF] AtakoErpService.Controllers.OrderSyncController
+Sipariş senkronizasyonu başlatıldı
+[2026-01-21 13:39:06.598 INF] AtakoErpService.Services.OrderSyncService
+Laravel API çağrılıyor: "http://localhost:8000/"/api/erp/orders/pending
+[2026-01-21 13:39:09.081 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıt kodu: "OK"
+[2026-01-21 13:39:09.083 INF] AtakoErpService.Services.OrderSyncService
+Laravel API yanıtı: 666 karakter
+[2026-01-21 13:39:09.087 INF] AtakoErpService.Services.OrderSyncService
+Parse edilen sipariş sayısı: 1
+[2026-01-21 13:39:09.088 INF] AtakoErpService.Services.OrderSyncService
+1 adet sipariş senkronize edilecek
+[2026-01-21 13:39:15.214 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+System.Runtime.InteropServices.COMException (0x8000FFFF): Creating an instance of the COM component with CLSID {65EB3876-89FF-459F-BF24-02E8DD7F2DB2} from the IClassFactory failed due to the following error: 8000ffff Çok zararlı hata (0x8000FFFF (E_UNEXPECTED)).
+   at System.RuntimeTypeHandle.AllocateComObject(Void* pClassFactory)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic, Boolean wrapExceptions)
+   at System.Activator.CreateInstance(Type type)
+   at AtakoErpService.Services.OrderSyncService.InitializeNetsis() in C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\Services\OrderSyncService.cs:line 165
+[2026-01-21 13:39:15.222 ERR] AtakoErpService.Services.OrderSyncService
+Netsis bağlantısı açılamadı
+[2026-01-21 13:39:15.223 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /api/OrderSync/run responded 200 in 8629.7835 ms

@@ -1,0 +1,812 @@
+[2026-01-24 00:45:40.713 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1304 ms
+[2026-01-24 09:38:26.837 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2981 ms
+[2026-01-24 09:39:10.775 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2116 ms
+[2026-01-24 09:40:10.767 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.8313 ms
+[2026-01-24 09:41:10.780 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2460 ms
+[2026-01-24 09:42:10.784 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5284 ms
+[2026-01-24 09:43:10.765 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1380 ms
+[2026-01-24 09:44:10.777 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1917 ms
+[2026-01-24 09:45:10.776 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1991 ms
+[2026-01-24 09:46:10.779 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1804 ms
+[2026-01-24 09:47:10.766 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1998 ms
+[2026-01-24 09:48:10.773 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1248 ms
+[2026-01-24 09:49:10.779 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5168 ms
+[2026-01-24 09:50:10.764 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 1.4574 ms
+[2026-01-24 09:51:10.771 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1430 ms
+[2026-01-24 09:52:10.765 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1922 ms
+[2026-01-24 09:53:10.767 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1764 ms
+[2026-01-24 09:54:10.774 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1578 ms
+[2026-01-24 09:55:10.775 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1253 ms
+[2026-01-24 09:56:10.777 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.6453 ms
+[2026-01-24 09:57:10.770 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1198 ms
+[2026-01-24 09:58:10.767 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2390 ms
+[2026-01-24 09:59:10.780 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.6875 ms
+[2026-01-24 10:00:10.778 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.9862 ms
+[2026-01-24 10:01:10.779 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 1.4681 ms
+[2026-01-24 10:02:10.773 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1363 ms
+[2026-01-24 10:03:10.778 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1631 ms
+[2026-01-24 10:04:10.781 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.7843 ms
+[2026-01-24 10:05:10.766 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4927 ms
+[2026-01-24 10:06:10.767 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4038 ms
+[2026-01-24 10:07:10.767 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5533 ms
+[2026-01-24 10:08:10.772 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4149 ms
+[2026-01-24 10:09:10.774 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1682 ms
+[2026-01-24 10:10:10.777 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.6085 ms
+[2026-01-24 10:11:10.784 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5871 ms
+[2026-01-24 10:12:10.779 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5191 ms
+[2026-01-24 10:13:10.769 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4546 ms
+[2026-01-24 10:13:53.916 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-24 10:14:11.082 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-24 10:14:11.091 INF] 
+Dashboard: http://localhost:5000/api/SyncStatus/dashboard
+[2026-01-24 10:14:11.131 INF] AtakoErpService.Services.SyncSettingsService
+Settings loaded from C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\bin\Debug\net6.0\sync-settings.json
+[2026-01-24 10:14:11.135 INF] AtakoErpService.BackgroundServices.OrderSyncBackgroundService
+OrderSyncBackgroundService starting...
+[2026-01-24 10:14:11.139 INF] AtakoErpService.BackgroundServices.DataSyncBackgroundService
+DataSyncBackgroundService starting...
+[2026-01-24 10:14:11.140 INF] AtakoErpService.BackgroundServices.CariSyncBackgroundService
+CariSyncBackgroundService starting...
+[2026-01-24 10:14:11.180 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-24 10:14:11.182 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-24 10:14:11.183 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-24 10:14:11.184 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-24 10:14:11.405 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 38.5563 ms
+[2026-01-24 10:14:17.738 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 5.5339 ms
+[2026-01-24 10:14:17.812 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.6383 ms
+[2026-01-24 10:14:17.841 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.8727 ms
+[2026-01-24 10:14:17.845 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3086 ms
+[2026-01-24 10:14:17.850 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 5.3970 ms
+[2026-01-24 10:14:17.852 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.3010 ms
+[2026-01-24 10:14:20.792 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.3760 ms
+[2026-01-24 10:14:21.762 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.2113 ms
+[2026-01-24 10:14:27.832 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2709 ms
+[2026-01-24 10:14:29.943 INF] AtakoErpService.Controllers.SyncStatusController
+Manual trigger: CariSync
+[2026-01-24 10:14:29.945 INF] AtakoErpService.Services.SyncStatusService
+CariSync started
+[2026-01-24 10:14:29.956 INF] AtakoErpService.Services.CariSyncService
+Bekleyen cariler getiriliyor...
+[2026-01-24 10:14:33.610 INF] AtakoErpService.Services.CariSyncService
+Bekleyen cari sayısı: 100
+[2026-01-24 10:14:33.612 INF] AtakoErpService.Services.CariSyncService
+Toplam 100 cari senkronize edilecek
+[2026-01-24 10:14:37.838 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2840 ms
+[2026-01-24 10:14:40.096 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:40.100 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00083 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:41.160 INF] AtakoErpService.BackgroundServices.DataSyncBackgroundService
+DataSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:14:41.160 INF] AtakoErpService.BackgroundServices.OrderSyncBackgroundService
+OrderSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:14:41.160 INF] AtakoErpService.BackgroundServices.CariSyncBackgroundService
+CariSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:14:42.335 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:42.336 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00084 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:44.511 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:44.513 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00085 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:46.700 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:46.703 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00086 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:47.831 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2134 ms
+[2026-01-24 10:14:48.915 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:48.917 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00087 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:51.107 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:51.108 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00088 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:53.304 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:53.305 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00089 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:54.553 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1972 ms
+[2026-01-24 10:14:54.579 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4476 ms
+[2026-01-24 10:14:54.580 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.2056 ms
+[2026-01-24 10:14:55.498 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:55.500 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00528 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:14:59.609 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:14:59.654 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:14:59.656 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00638 - .ATABAY ECZANESİ KONYA
+[2026-01-24 10:15:00.206 INF] Microsoft.Hosting.Lifetime
+Application is shutting down...
+[2026-01-24 10:15:02.068 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:15:02.072 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:15:02.072 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00639 - ECZANE GÜZİDE (KARATAY/KONYA)
+[2026-01-24 10:15:04.472 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:15:04.495 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:15:04.497 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00640 - .CADDE BOSNA ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:17:06.458 INF] 
+AtakodErpService hazır. Port: 5000
+[2026-01-24 10:17:06.463 INF] 
+Dashboard: http://localhost:5000/api/SyncStatus/dashboard
+[2026-01-24 10:17:06.480 INF] AtakoErpService.Services.SyncSettingsService
+Settings loaded from C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\bin\Debug\net6.0\sync-settings.json
+[2026-01-24 10:17:06.483 INF] AtakoErpService.BackgroundServices.OrderSyncBackgroundService
+OrderSyncBackgroundService starting...
+[2026-01-24 10:17:06.485 INF] AtakoErpService.BackgroundServices.DataSyncBackgroundService
+DataSyncBackgroundService starting...
+[2026-01-24 10:17:06.486 INF] AtakoErpService.BackgroundServices.CariSyncBackgroundService
+CariSyncBackgroundService starting...
+[2026-01-24 10:17:06.519 INF] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5000
+[2026-01-24 10:17:06.520 INF] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+[2026-01-24 10:17:06.521 INF] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+[2026-01-24 10:17:06.522 INF] Microsoft.Hosting.Lifetime
+Content root path: C:\xampp\htdocs\atakodb2b\backend\AtakoErpService\
+[2026-01-24 10:17:11.687 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 26.0023 ms
+[2026-01-24 10:17:18.536 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 4.4248 ms
+[2026-01-24 10:17:18.567 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 1.2587 ms
+[2026-01-24 10:17:18.569 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 4.0437 ms
+[2026-01-24 10:17:21.612 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5101 ms
+[2026-01-24 10:17:28.556 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2481 ms
+[2026-01-24 10:17:31.604 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2368 ms
+[2026-01-24 10:17:36.485 INF] AtakoErpService.BackgroundServices.OrderSyncBackgroundService
+OrderSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:17:36.485 INF] AtakoErpService.BackgroundServices.DataSyncBackgroundService
+DataSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:17:36.500 INF] AtakoErpService.BackgroundServices.CariSyncBackgroundService
+CariSyncBackgroundService started. Interval: 5 minutes
+[2026-01-24 10:17:38.559 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2785 ms
+[2026-01-24 10:17:41.615 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3442 ms
+[2026-01-24 10:17:48.567 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3442 ms
+[2026-01-24 10:17:51.614 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2109 ms
+[2026-01-24 10:17:58.559 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2065 ms
+[2026-01-24 10:18:01.613 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2671 ms
+[2026-01-24 10:18:04.657 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.3205 ms
+[2026-01-24 10:18:04.686 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3057 ms
+[2026-01-24 10:18:04.687 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.1620 ms
+[2026-01-24 10:18:11.600 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4122 ms
+[2026-01-24 10:18:14.674 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2278 ms
+[2026-01-24 10:18:21.610 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3152 ms
+[2026-01-24 10:18:24.678 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.5642 ms
+[2026-01-24 10:18:30.623 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.4989 ms
+[2026-01-24 10:18:31.610 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3077 ms
+[2026-01-24 10:18:34.678 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1799 ms
+[2026-01-24 10:18:41.614 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1700 ms
+[2026-01-24 10:18:44.687 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1864 ms
+[2026-01-24 10:18:51.610 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1791 ms
+[2026-01-24 10:18:54.682 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1805 ms
+[2026-01-24 10:19:01.612 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2128 ms
+[2026-01-24 10:19:04.688 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2387 ms
+[2026-01-24 10:19:11.601 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2485 ms
+[2026-01-24 10:19:14.685 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2121 ms
+[2026-01-24 10:19:16.538 INF] AtakoErpService.Controllers.SyncStatusController
+Manual trigger: CariSync
+[2026-01-24 10:19:16.540 INF] AtakoErpService.Services.SyncStatusService
+CariSync started
+[2026-01-24 10:19:16.548 INF] AtakoErpService.Services.CariSyncService
+Bekleyen cariler getiriliyor...
+[2026-01-24 10:19:18.600 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.3101 ms
+[2026-01-24 10:19:18.640 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2640 ms
+[2026-01-24 10:19:18.642 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.2458 ms
+[2026-01-24 10:19:20.596 INF] AtakoErpService.Services.CariSyncService
+Bekleyen cari sayısı: 100
+[2026-01-24 10:19:20.597 INF] AtakoErpService.Services.CariSyncService
+Toplam 100 cari senkronize edilecek
+[2026-01-24 10:19:21.159 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1573 ms
+[2026-01-24 10:19:21.175 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.3667 ms
+[2026-01-24 10:19:21.176 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.1802 ms
+[2026-01-24 10:19:21.604 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1300 ms
+[2026-01-24 10:19:23.069 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:23.071 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00083 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:25.305 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:25.306 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00084 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:27.505 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:27.506 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00085 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:29.688 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:29.689 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00086 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:31.173 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1556 ms
+[2026-01-24 10:19:31.609 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1488 ms
+[2026-01-24 10:19:31.868 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:31.869 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00087 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:34.067 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:34.068 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00088 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:36.245 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:36.247 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00089 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:38.427 WRN] AtakoErpService.Services.CariSyncService
+Laravel API hatası: "InternalServerError" - {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:38.428 WRN] AtakoErpService.Services.CariSyncService
+Gönderilemedi: 120-01-00528 - HTTP 500: {"success":false,"message":"The kullanici kodu has already been taken."}
+[2026-01-24 10:19:40.874 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:40.913 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:40.914 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00641 - .GÜNGÖR ECZANESİ  KARAPINAR
+[2026-01-24 10:19:41.180 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1367 ms
+[2026-01-24 10:19:41.614 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1412 ms
+[2026-01-24 10:19:43.319 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:43.379 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:43.381 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00642 - .ALTAY ECZANESİ (KARATAY/KONYA)
+[2026-01-24 10:19:45.137 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1626 ms
+[2026-01-24 10:19:45.154 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1418 ms
+[2026-01-24 10:19:45.157 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.0915 ms
+[2026-01-24 10:19:45.691 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1525 ms
+[2026-01-24 10:19:45.708 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1189 ms
+[2026-01-24 10:19:45.710 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.1545 ms
+[2026-01-24 10:19:45.791 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:45.795 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:45.796 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00643 - .NEFES ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:19:46.032 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1176 ms
+[2026-01-24 10:19:46.048 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1141 ms
+[2026-01-24 10:19:46.049 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.0516 ms
+[2026-01-24 10:19:46.425 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1265 ms
+[2026-01-24 10:19:46.442 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1378 ms
+[2026-01-24 10:19:46.444 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.1164 ms
+[2026-01-24 10:19:46.771 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.3222 ms
+[2026-01-24 10:19:46.794 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1300 ms
+[2026-01-24 10:19:46.797 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.1290 ms
+[2026-01-24 10:19:46.957 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1289 ms
+[2026-01-24 10:19:46.974 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1122 ms
+[2026-01-24 10:19:46.975 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.0833 ms
+[2026-01-24 10:19:48.187 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:48.191 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:48.191 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00644 - .SEDA TELLİOĞLU ECZANESİ KONYA
+[2026-01-24 10:19:48.370 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.1143 ms
+[2026-01-24 10:19:48.389 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1148 ms
+[2026-01-24 10:19:48.392 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.0962 ms
+[2026-01-24 10:19:48.806 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/dashboard responded 200 in 0.2727 ms
+[2026-01-24 10:19:48.825 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus/settings responded 200 in 0.0648 ms
+[2026-01-24 10:19:48.825 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1120 ms
+[2026-01-24 10:19:48.890 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1111 ms
+[2026-01-24 10:19:50.608 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:50.613 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:50.613 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00645 - .TÜRKMEN ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:19:51.612 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1064 ms
+[2026-01-24 10:19:53.078 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:53.083 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:53.083 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00646 - .GÖZDEM ECZANESİ (AKŞEHİR/KONYA)
+[2026-01-24 10:19:55.504 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:55.513 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:55.514 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00647 - .SENA ECZANESİ (MERAM/KONYA)
+[2026-01-24 10:19:58.000 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:19:58.005 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:19:58.006 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00648 - .TUZLUKÇU ECZANESİ (TUZLUKÇU/KONYA)
+[2026-01-24 10:19:58.829 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1209 ms
+[2026-01-24 10:20:00.459 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:00.466 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:00.467 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00649 - .NURER ECZANESİ (MERAM/KONYA)
+[2026-01-24 10:20:01.602 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1364 ms
+[2026-01-24 10:20:02.854 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:02.858 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:02.859 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00650 - .ÇAĞLAYAN ECZANESİ KONYA
+[2026-01-24 10:20:05.243 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:05.248 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:05.249 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00651 - SAMURLU ECZANESİ (EREĞLİ/KONYA)
+[2026-01-24 10:20:07.642 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:07.646 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:07.647 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00652 - .BAHA ECZANESİ  KONYA
+[2026-01-24 10:20:08.826 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1363 ms
+[2026-01-24 10:20:10.033 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:10.039 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:10.039 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00653 - .TAŞKIN ECZANESİ (AKŞEHİR/KONYA)
+[2026-01-24 10:20:11.615 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1119 ms
+[2026-01-24 10:20:12.416 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:12.448 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:12.449 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00654 - .ÇETİN ECZANESİ AKŞEHİR/KONYA
+[2026-01-24 10:20:14.825 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:14.829 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:14.830 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00655 - .ADAKALE ECZANESİ  KONYA
+[2026-01-24 10:20:17.245 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:17.280 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:17.281 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00656 - YILDIZ ECZANESİ (BEYŞEHİR/KONYA)
+[2026-01-24 10:20:18.829 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1803 ms
+[2026-01-24 10:20:19.653 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:19.658 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:19.659 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00657 - .BATUMAK ECZANESİ (KADINHANI/KONYA)
+[2026-01-24 10:20:21.608 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1461 ms
+[2026-01-24 10:20:22.039 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:22.045 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:22.046 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00658 - .BİLGE ECZANESİ (KARATAY/KONYA)
+[2026-01-24 10:20:24.445 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:24.449 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:24.450 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00659 - .KARABULUT ECZANESİ KONYA
+[2026-01-24 10:20:26.842 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:26.848 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:26.848 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00660 - EKER ECZANESİ (ÇUMRA/KONYA)
+[2026-01-24 10:20:28.829 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1143 ms
+[2026-01-24 10:20:29.239 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:29.247 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:29.248 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00661 - .TURKUAZ ECZANESİ KONYA
+[2026-01-24 10:20:31.599 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1353 ms
+[2026-01-24 10:20:31.642 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:31.646 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:31.647 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00662 - .ERTÜRK ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:20:34.030 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:34.033 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:34.034 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00663 - ZEYNEP BELVİRANLI ECZANESİ (MERAM/KONYA)
+[2026-01-24 10:20:36.447 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:36.452 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:36.453 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00664 - .AYSEL ECZANESİ KONYA
+[2026-01-24 10:20:38.862 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:38.882 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:38.883 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00665 - .BURAK AKBUĞA ECZANESİ KONYA
+[2026-01-24 10:20:39.762 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1230 ms
+[2026-01-24 10:20:41.328 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:41.333 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:41.336 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00666 - .BARDAKÇI ECZANESİ KONYA
+[2026-01-24 10:20:41.606 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1081 ms
+[2026-01-24 10:20:43.821 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:43.832 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:43.833 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00667 - .AKÇA ECZANESİ KONYA
+[2026-01-24 10:20:46.236 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:46.247 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:46.247 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00668 - .ALPER ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:20:48.631 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:48.640 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:48.640 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00669 - .MADEN ECZANESİ (KADINHANI/KONYA)
+[2026-01-24 10:20:49.790 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1112 ms
+[2026-01-24 10:20:51.059 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:51.063 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:51.063 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00670 - .ZEHRA ECZANESİ KONYA
+[2026-01-24 10:20:51.604 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1563 ms
+[2026-01-24 10:20:53.447 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:53.460 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:53.461 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00671 - CANDAN ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:20:55.837 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:55.840 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:55.841 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00672 - DUDU ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:20:58.294 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:20:58.301 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:20:58.303 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00673 - NİŞANTAŞI ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:20:59.772 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1091 ms
+[2026-01-24 10:21:00.719 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:00.726 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:00.727 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00674 - .ŞATO ECZANESİ (MERAM/KONYA)
+[2026-01-24 10:21:01.613 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1980 ms
+[2026-01-24 10:21:03.150 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:03.152 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:03.153 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00675 - İSMİL ECZANESİ (KARATAY/KONYA)
+[2026-01-24 10:21:05.548 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:05.552 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:05.553 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00676 - ONUR KOCAMAN ECZANESİ (EMİRGAZİ/KONYA)
+[2026-01-24 10:21:06.119 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1153 ms
+[2026-01-24 10:21:07.925 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:07.928 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:07.928 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00677 - .BURAKCAN ECZANESİ KONYA
+[2026-01-24 10:21:09.766 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1117 ms
+[2026-01-24 10:21:10.357 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:10.359 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:10.360 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00678 - .DERBENT ECZANESİ (DERBENT/KONYA)
+[2026-01-24 10:21:11.602 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1325 ms
+[2026-01-24 10:21:12.794 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:12.796 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:12.797 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00679 - .YENİ BEYŞEHİR ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:21:15.191 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:15.193 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:15.193 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00680 - .FAZİLET ECZANESİ
+[2026-01-24 10:21:17.592 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:17.597 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:17.598 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00681 - .ARMAĞAN ECZANESİ
+[2026-01-24 10:21:19.766 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1383 ms
+[2026-01-24 10:21:20.005 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:20.007 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:20.008 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00682 - ÖZDEMİR ECZANESİ (EREĞLİ/KONYA)
+[2026-01-24 10:21:21.609 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1816 ms
+[2026-01-24 10:21:22.433 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:22.435 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:22.436 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00683 - HADİM ECZANESİ KONYA
+[2026-01-24 10:21:24.907 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:24.909 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:24.909 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00684 - SULTANİYE ECZANESİ (EREĞLİ/KONYA)
+[2026-01-24 10:21:27.328 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:27.330 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:27.330 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00685 - .HACI ÖMER ECZANESİ (ILGIN/KONYA)
+[2026-01-24 10:21:29.759 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:29.761 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:29.762 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00686 - CAN ECZANESİ (ILGIN/KONYA)
+[2026-01-24 10:21:29.776 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1162 ms
+[2026-01-24 10:21:31.609 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1139 ms
+[2026-01-24 10:21:32.154 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:32.156 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:32.156 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00687 - .ÇINARKAYA ECZANESİ (ILGIN/KONYA)
+[2026-01-24 10:21:34.561 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:34.567 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:34.567 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00688 - .EROL CAN ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:21:36.965 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:36.968 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:36.968 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00689 - .CELEP ECZANESİ (KULU/KONYA)
+[2026-01-24 10:21:39.334 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:39.336 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:39.337 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00690 - .GÜLDEN ECZANESİ
+[2026-01-24 10:21:41.612 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1184 ms
+[2026-01-24 10:21:41.721 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:41.723 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:41.723 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00691 - .ÜNLÜ ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:21:44.146 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:44.148 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:44.149 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00692 - .BAĞCI ECZANESİ (ÇUMRA/KONYA)
+[2026-01-24 10:21:46.562 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:46.568 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:46.568 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00693 - .ODABAŞI ECZANESİ
+[2026-01-24 10:21:48.955 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:48.957 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:48.957 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00694 - .SOYLU HADİM ECZANESİ KONYA
+[2026-01-24 10:21:51.396 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:51.401 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:51.402 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00695 - YENİ ÖZKAN ECZANESİ (ÇUMRA/KONYA)
+[2026-01-24 10:21:51.599 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.1375 ms
+[2026-01-24 10:21:53.889 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:53.893 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:53.894 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00696 - .TOKKAŞ ECZANESİ KONYA
+[2026-01-24 10:21:56.345 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:56.350 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:56.350 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00697 - ÖLMEZ ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:21:58.767 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:21:58.772 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:21:58.773 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00698 - .HAYAT ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:22:01.191 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:22:01.195 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:22:01.196 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00699 - .YÜCEL ECZANESİ  KONYA
+[2026-01-24 10:22:01.607 INF] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP GET /api/SyncStatus responded 200 in 0.2208 ms
+[2026-01-24 10:22:03.626 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:22:03.636 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:22:03.637 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00700 - ZÜHRE OLGUN ECZANESİ (SELÇUKLU/KONYA)
+[2026-01-24 10:22:06.177 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 0
+[2026-01-24 10:22:06.181 INF] AtakoErpService.Services.DatabaseService
+SQL Execute başarılı. Etkilenen satır: 1
+[2026-01-24 10:22:06.182 INF] AtakoErpService.Services.CariSyncService
+Ekleme başarılı: 120-01-00701 - BÜYÜK ECZANESİ (BEYŞEHİR/KONYA)

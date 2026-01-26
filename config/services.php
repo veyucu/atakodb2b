@@ -41,6 +41,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'erp' => [
+        'url' => env('ERP_API_URL', 'http://localhost:5000'),
         'api_key' => env('ERP_API_KEY', 'your-secret-erp-api-key'),
     ],
 

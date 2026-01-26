@@ -17,6 +17,7 @@ public class CariSyncService : ICariSyncService
     private readonly ILogger<CariSyncService> _logger;
     private readonly IConfiguration _config;
     private readonly HttpClient _httpClient;
+    private readonly SyncStatusService _statusService;
 
     // Türkçe karakter dönüşüm tablosu (Windows-1252 -> UTF-8 Turkish)
     private static readonly Dictionary<char, char> TurkishCharMap = new()
@@ -39,12 +40,14 @@ public class CariSyncService : ICariSyncService
         IDatabaseService db, 
         ILogger<CariSyncService> logger, 
         IConfiguration config,
-        IHttpClientFactory httpClientFactory)
+        IHttpClientFactory httpClientFactory,
+        SyncStatusService statusService)
     {
         _db = db;
         _logger = logger;
         _config = config;
         _httpClient = httpClientFactory.CreateClient("LaravelApi");
+        _statusService = statusService;
     }
 
     /// <summary>
@@ -171,15 +174,23 @@ public class CariSyncService : ICariSyncService
                     else
                     {
                         result.ErrorCount++;
-                        result.Errors.Add($"{cari.CARI_KODU}: {errorMessage}");
+                        var errorMsg = $"{cari.CARI_KODU}: {errorMessage}";
+                        result.Errors.Add(errorMsg);
                         _logger.LogWarning("Gönderilemedi: {CariKodu} - {Hata}", cari.CARI_KODU, errorMessage);
+                        
+                        // Dashboard'a doğrudan hata ekle
+                        _statusService.AddError("CariSync", errorMsg);
                     }
                 }
                 catch (Exception ex)
                 {
                     result.ErrorCount++;
-                    result.Errors.Add($"{cari.CARI_KODU}: {ex.Message}");
+                    var errorMsg = $"{cari.CARI_KODU}: {ex.Message}";
+                    result.Errors.Add(errorMsg);
                     _logger.LogError(ex, "Cari işlemi hatası: {CariKodu}", cari.CARI_KODU);
+                    
+                    // Dashboard'a doğrudan hata ekle
+                    _statusService.AddError("CariSync", errorMsg);
                 }
             }
             

@@ -20,4 +20,5 @@ public class ResimSyncResult
     public int ErrorCount { get; set; }
     public int SkippedCount { get; set; } // Ürün bulunamadığında
     public List<string> Errors { get; set; } = new();
+    public int SuccessCount => UpdatedCount;
 }
