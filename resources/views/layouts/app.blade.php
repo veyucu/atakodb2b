@@ -78,6 +78,18 @@
             padding-left: 1.5rem;
         }
 
+        /* User Link Dikey Ortalama */
+        .nav-link.user-link {
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+        }
+
+        .nav-link.user-link span {
+            display: inline-flex;
+            align-items: center;
+        }
+
         /* Kampanya Butonu */
         .btn-campaign-navbar {
             display: flex;
@@ -113,6 +125,32 @@
 
             50% {
                 transform: scale(1.1);
+            }
+        }
+
+        /* Kullanıcı Dropdown - Uzun isim desteği */
+        .user-link {
+            max-width: 200px;
+            font-size: 0.85rem;
+        }
+
+        .user-link span {
+            display: inline-block;
+            max-width: 160px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+        }
+
+        /* Çok uzun isimler için iki satırlı gösterim */
+        @media (min-width: 1200px) {
+            .user-link span {
+                max-width: 180px;
+                white-space: normal;
+                line-height: 1.2;
+                max-height: 2.4em;
+                overflow: hidden;
             }
         }
 
