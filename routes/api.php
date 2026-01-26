@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\ErpProductController;
 */
 
 // ERP Integration Routes (API Key auth - no Sanctum)
-Route::prefix('erp')->group(function () {
+Route::prefix('erp')->middleware('erp.api.key')->group(function () {
     // User sync
     Route::post('users', [ErpUserController::class, 'store']);
     Route::put('users/{cariKodu}', [ErpUserController::class, 'update']);

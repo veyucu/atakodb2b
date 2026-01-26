@@ -570,287 +570,301 @@
 
             // Loading göster
             $('#modalContent').html(`
-                                        <div class="text-center py-5">
-                                            <div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Yükleniyor...</span>
-                                            </div>
-                                            <p class="mt-3">Ürün detayları yükleniyor...</p>
-                                        </div>
-                                `);
-
-                // Modal'ı en üste çıkar         (diğer modalların üzerinde)
-                $('#productModal').css('z-index', '1070');
-                $('.modal-backdrop').last().css('z-index', '1065');
-
-                // AJAX ile ürün detaylarını yükle
-                $.ajax({
-                    url: '{{ url("/product") }}/' + productId + '/modal',
-                    method: 'GET',
-                    success: function (response) {
-                        $('#modalContent').html(response);
-
-                        // Tooltip'leri aktif et
-                        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                        tooltipTriggerList.map(function (tooltipTriggerEl) {
-                            return new bootstrap.Tooltip(tooltipTriggerEl);
-                        });
-
-                        // Modal'ı en üste scroll et
-                        $('#productModal .modal-body').scrollTop(0);
-                    },
-                    error: function (xhr) {
-                        $('#modalContent').html(`
-                                                <div class="alert alert-danger">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    Ürün detayları yüklenirken hata oluştu!
+                                            <div class="text-center py-5">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Yükleniyor...</span>
                                                 </div>
-                                            `);
-                    }
-                });
-            }
+                                                <p class="mt-3">Ürün detayları yükleniyor...</p>
+                                            </div>
+                                    `);
 
-            // Modal miktar kontrolü
-            function increaseModalQty() {
-                const input = document.getElementById('modal-quantity');
-                input.value = parseInt(input.value || 0) + 1;
-            }
+            // Modal'ı en üste çıkar         (diğer modalların üzerinde)
+            $('#productModal').css('z-index', '1070');
+            $('.modal-backdrop').last().css('z-index', '1065');
 
-            function decreaseModalQty() {
-                const input = document.getElementById('modal-quantity');
-                const currentValue = parseInt(input.value || 0);
-                if (currentValue > 0) {
-                    input.value = currentValue - 1;
+            // AJAX ile ürün detaylarını yükle
+            $.ajax({
+                url: '{{ url("/product") }}/' + productId + '/modal',
+                method: 'GET',
+                success: function (response) {
+                    $('#modalContent').html(response);
+
+                    // Tooltip'leri aktif et
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                    tooltipTriggerList.map(function (tooltipTriggerEl) {
+                        return new bootstrap.Tooltip(tooltipTriggerEl);
+                    });
+
+                    // Modal'ı en üste scroll et
+                    $('#productModal .modal-body').scrollTop(0);
+                },
+                error: function (xhr) {
+                    $('#modalContent').html(`
+                                                    <div class="alert alert-danger">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        Ürün detayları yüklenirken hata oluştu!
+                                                    </div>
+                                                `);
                 }
+            });
+        }
+
+        // Modal miktar kontrolü
+        function increaseModalQty() {
+            const input = document.getElementById('modal-quantity');
+            input.value = parseInt(input.value || 0) + 1;
+        }
+
+        function decreaseModalQty() {
+            const input = document.getElementById('modal-quantity');
+            const currentValue = parseInt(input.value || 0);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
+
+        // Modal'dan sepete ekle
+        function addToCartFromModal(productId, buttonElement) {
+            const quantity = parseInt(document.getElementById('modal-quantity').value) || 0;
+
+            if (quantity === 0) {
+                if (buttonElement) {
+                    showWarningNotification(buttonElement, 'Lütfen miktar girin!');
+                } else {
+                    showNotification('Lütfen miktar girin!', 'error');
+                }
+                return;
             }
 
-            // Modal'dan sepete ekle
-            function addToCartFromModal(productId, buttonElement) {
-                const quantity = parseInt(document.getElementById('modal-quantity').value) || 0;
+            $.ajax({
+                url: '{{ route("cart.add") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    quantity: quantity,
+                    mf_satis: 0
+                },
+                success: function (response) {
+                    if (response.success) {
+                        updateCartCount();
 
-                if (quantity === 0) {
-                    if (buttonElement) {
-                        showWarningNotification(buttonElement, 'Lütfen miktar girin!');
-                    } else {
-                        showNotification('Lütfen miktar girin!', 'error');
-                    }
-                    return;
-                }
-
-                $.ajax({
-                    url: '{{ route("cart.add") }}',
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        product_id: productId,
-                        quantity: quantity,
-                        mf_satis: 0
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            updateCartCount();
-
-                            // Başarı mesajı - butonun üzerinde
-                            if (buttonElement) {
-                                showFlyingNotification(buttonElement, 'Ürün sepete eklendi');
-                            } else {
-                                showNotification(response.message || 'Ürün sepete eklendi!', 'success');
-                            }
-
-                            // Input'u sıfırla
-                            document.getElementById('modal-quantity').value = 0;
-
-                            // 1.5 saniye sonra sayfayı yenile
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1500);
-                        }
-                    },
-                    error: function (xhr) {
-                        console.error('Add to cart error:', xhr);
-                        let message = 'Sepete eklenirken hata oluştu';
-
-                        if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.message) {
-                            message = xhr.responseJSON.message;
-                        } else if (xhr.status === 419) {
-                            message = 'CSRF Token hatası. Sayfayı yenileyin.';
-                        } else if (xhr.status === 404) {
-                            message = 'Ürün bulunamadı.';
-                        } else if (xhr.status === 401) {
-                            message = 'Giriş yapmanız gerekiyor.';
-                        } else if (xhr.status === 422) {
-                            message = 'Geçersiz miktar değeri.';
-                        } else if (xhr.status === 500) {
-                            message = 'Sunucu hatası.';
-                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
-                            message = xhr.responseJSON.message;
-                        }
-
-                        // Butonun üstünde göster
+                        // Başarı mesajı - butonun üzerinde
                         if (buttonElement) {
-                            showWarningNotification(buttonElement, message);
+                            showFlyingNotification(buttonElement, 'Ürün sepete eklendi');
                         } else {
-                            showNotification(message, 'error');
+                            showNotification(response.message || 'Ürün sepete eklendi!', 'success');
                         }
+
+                        // Input'u sıfırla
+                        document.getElementById('modal-quantity').value = 0;
+
+                        // 1.5 saniye sonra sayfayı yenile
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
                     }
-                });
-            }
+                },
+                error: function (xhr) {
+                    console.error('Add to cart error:', xhr);
+                    let message = 'Sepete eklenirken hata oluştu';
 
-            // Muadil ürün miktar kontrolü
-            function increaseMuadilQty(productId) {
-                const input = document.getElementById('muadil-qty-' + productId);
-                input.value = parseInt(input.value || 0) + 1;
-            }
+                    if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    } else if (xhr.status === 419) {
+                        message = 'CSRF Token hatası. Sayfayı yenileyin.';
+                    } else if (xhr.status === 404) {
+                        message = 'Ürün bulunamadı.';
+                    } else if (xhr.status === 401) {
+                        message = 'Giriş yapmanız gerekiyor.';
+                    } else if (xhr.status === 422) {
+                        message = 'Geçersiz miktar değeri.';
+                    } else if (xhr.status === 500) {
+                        message = 'Sunucu hatası.';
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    }
 
-            function decreaseMuadilQty(productId) {
-                const input = document.getElementById('muadil-qty-' + productId);
-                const currentValue = parseInt(input.value || 0);
-                if (currentValue > 0) {
-                    input.value = currentValue - 1;
-                }
-            }
-
-            // Muadil ürünü sepete ekle
-            function addMuadilToCart(productId, buttonElement) {
-                const quantity = parseInt(document.getElementById('muadil-qty-' + productId).value) || 0;
-
-                if (quantity === 0) {
+                    // Butonun üstünde göster
                     if (buttonElement) {
-                        showWarningNotification(buttonElement, 'Lütfen miktar girin!');
+                        showWarningNotification(buttonElement, message);
                     } else {
-                        showNotification('Lütfen miktar girin!', 'error');
+                        showNotification(message, 'error');
                     }
-                    return;
                 }
+            });
+        }
 
-                $.ajax({
-                    url: '{{ route("cart.add") }}',
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        product_id: productId,
-                        quantity: quantity,
-                        mf_satis: 0
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            updateCartCount();
+        // Muadil ürün miktar kontrolü
+        function increaseMuadilQty(productId) {
+            const input = document.getElementById('muadil-qty-' + productId);
+            input.value = parseInt(input.value || 0) + 1;
+        }
 
-                            // Başarı mesajı - butonun üzerinde
-                            if (buttonElement) {
-                                showFlyingNotification(buttonElement, 'Ürün sepete eklendi');
-                            } else {
-                                showNotification(response.message || 'Ürün sepete eklendi!', 'success');
-                            }
+        function decreaseMuadilQty(productId) {
+            const input = document.getElementById('muadil-qty-' + productId);
+            const currentValue = parseInt(input.value || 0);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
 
-                            // Miktarı sıfırla
-                            document.getElementById('muadil-qty-' + productId).value = 0;
+        // Muadil ürünü sepete ekle
+        function addMuadilToCart(productId, buttonElement) {
+            const quantity = parseInt(document.getElementById('muadil-qty-' + productId).value) || 0;
 
-                            // 1.5 saniye sonra sayfayı yenile
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1500);
-                        }
-                    },
-                    error: function (xhr) {
-                        console.error('Add to cart error:', xhr);
-                        let message = 'Sepete eklenirken hata oluştu';
-
-                        if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.message) {
-                            message = xhr.responseJSON.message;
-                        } else if (xhr.status === 419) {
-                            message = 'CSRF Token hatası. Sayfayı yenileyin.';
-                        } else if (xhr.status === 404) {
-                            message = 'Ürün bulunamadı.';
-                        } else if (xhr.status === 401) {
-                            message = 'Giriş yapmanız gerekiyor.';
-                        } else if (xhr.status === 422) {
-                            message = 'Geçersiz miktar değeri.';
-                        } else if (xhr.status === 500) {
-                            message = 'Sunucu hatası.';
-                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
-                            message = xhr.responseJSON.message;
-                        }
-
-                        // Butonun üstünde göster
-                        if (buttonElement) {
-                            showWarningNotification(buttonElement, message);
-                        } else {
-                            showNotification(message, 'error');
-                        }
-                    }
-                });
+            if (quantity === 0) {
+                if (buttonElement) {
+                    showWarningNotification(buttonElement, 'Lütfen miktar girin!');
+                } else {
+                    showNotification('Lütfen miktar girin!', 'error');
+                }
+                return;
             }
 
-            // Uyarı mesajı - butonun üzerinde (kırmızı)
-            function showWarningNotification(buttonElement, message) {
-                const buttonRect = buttonElement.getBoundingClientRect();
+            $.ajax({
+                url: '{{ route("cart.add") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    quantity: quantity,
+                    mf_satis: 0
+                },
+                success: function (response) {
+                    if (response.success) {
+                        updateCartCount();
 
-                const notification = document.createElement('div');
-                notification.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
-                notification.style.position = 'fixed';
-                notification.style.backgroundColor = '#dc3545';
-                notification.style.color = 'white';
-                notification.style.padding = '10px 15px';
-                notification.style.borderRadius = '8px';
-                notification.style.fontSize = '0.85rem';
-                notification.style.fontWeight = '500';
-                notification.style.boxShadow = '0 4px 12px rgba(220, 53, 69, 0.5)';
-                notification.style.zIndex = '99999';
-                notification.style.maxWidth = '280px';
-                notification.style.textAlign = 'center';
+                        // Başarı mesajı - butonun üzerinde
+                        if (buttonElement) {
+                            showFlyingNotification(buttonElement, 'Ürün sepete eklendi');
+                        } else {
+                            showNotification(response.message || 'Ürün sepete eklendi!', 'success');
+                        }
+
+                        // Miktarı sıfırla
+                        document.getElementById('muadil-qty-' + productId).value = 0;
+
+                        // 1.5 saniye sonra sayfayı yenile
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                },
+                error: function (xhr) {
+                    console.error('Add to cart error:', xhr);
+                    let message = 'Sepete eklenirken hata oluştu';
+
+                    if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    } else if (xhr.status === 419) {
+                        message = 'CSRF Token hatası. Sayfayı yenileyin.';
+                    } else if (xhr.status === 404) {
+                        message = 'Ürün bulunamadı.';
+                    } else if (xhr.status === 401) {
+                        message = 'Giriş yapmanız gerekiyor.';
+                    } else if (xhr.status === 422) {
+                        message = 'Geçersiz miktar değeri.';
+                    } else if (xhr.status === 500) {
+                        message = 'Sunucu hatası.';
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
+                    }
+
+                    // Butonun üstünde göster
+                    if (buttonElement) {
+                        showWarningNotification(buttonElement, message);
+                    } else {
+                        showNotification(message, 'error');
+                    }
+                }
+            });
+        }
+
+        // Uyarı mesajı - butonun üzerinde (kırmızı)
+        function showWarningNotification(buttonElement, message) {
+            const buttonRect = buttonElement.getBoundingClientRect();
+
+            const notification = document.createElement('div');
+            notification.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
+            notification.style.position = 'fixed';
+            notification.style.backgroundColor = '#dc3545';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 15px';
+            notification.style.borderRadius = '8px';
+            notification.style.fontSize = '0.85rem';
+            notification.style.fontWeight = '500';
+            notification.style.boxShadow = '0 4px 12px rgba(220, 53, 69, 0.5)';
+            notification.style.zIndex = '99999';
+            notification.style.maxWidth = '280px';
+            notification.style.textAlign = 'center';
+            notification.style.opacity = '0';
+            notification.style.transition = 'opacity 0.3s ease-out';
+
+            document.body.appendChild(notification);
+
+            const notificationWidth = notification.offsetWidth;
+            const notificationHeight = notification.offsetHeight;
+            notification.style.left = (buttonRect.left + buttonRect.width / 2 - notificationWidth / 2) + 'px';
+            notification.style.top = (buttonRect.top - notificationHeight - 10) + 'px';
+
+            setTimeout(function () { notification.style.opacity = '1'; }, 10);
+            setTimeout(function () { notification.style.opacity = '0'; }, 2000);
+            setTimeout(function () { notification.remove(); }, 2500);
+        }
+
+        // Başarı mesajı - butondan sepete uçan animasyon (yeşil)
+        function showFlyingNotification(buttonElement, message) {
+            const buttonRect = buttonElement.getBoundingClientRect();
+
+            const notification = document.createElement('div');
+            notification.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
+            notification.style.position = 'fixed';
+            notification.style.left = (buttonRect.left + buttonRect.width / 2 - 75) + 'px';
+            notification.style.top = (buttonRect.top - 40) + 'px';
+            notification.style.backgroundColor = '#28a745';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '25px';
+            notification.style.fontSize = '1rem';
+            notification.style.fontWeight = '500';
+            notification.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.5)';
+            notification.style.zIndex = '99999';
+            notification.style.opacity = '1';
+            notification.style.whiteSpace = 'nowrap';
+            notification.style.transition = 'opacity 0.5s ease-out';
+
+            document.body.appendChild(notification);
+
+            // 1.5 saniye bekle, sonra fade out yap
+            setTimeout(function () {
                 notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.3s ease-out';
+            }, 1500);
 
-                document.body.appendChild(notification);
+            // Mesajı kaldır (toplam 2 saniye)
+            setTimeout(function () {
+                notification.remove();
+            }, 2000);
+        }
 
-                const notificationWidth = notification.offsetWidth;
-                const notificationHeight = notification.offsetHeight;
-                notification.style.left = (buttonRect.left + buttonRect.width / 2 - notificationWidth / 2) + 'px';
-                notification.style.top = (buttonRect.top - notificationHeight - 10) + 'px';
+        function increaseCartQuantity(cartId) {
+            const input = $('#cart-qty-' + cartId);
+            const currentQty = parseInt(input.val()) || 1;
+            const newQty = currentQty + 1;
+            // Önce miktarı input'a yaz
+            input.val(newQty);
+            $('#cart-qty-mobile-' + cartId).val(newQty);
+            // Bonus opsiyonunu kontrol et ve güncelle
+            const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
+            // Backend'e gönder
+            updateCartQuantityWithBonus(cartId, newQty, bonusOption);
+        }
 
-                setTimeout(function () { notification.style.opacity = '1'; }, 10);
-                setTimeout(function () { notification.style.opacity = '0'; }, 2000);
-                setTimeout(function () { notification.remove(); }, 2500);
-            }
-
-            // Başarı mesajı - butondan sepete uçan animasyon (yeşil)
-            function showFlyingNotification(buttonElement, message) {
-                const buttonRect = buttonElement.getBoundingClientRect();
-
-                const notification = document.createElement('div');
-                notification.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
-                notification.style.position = 'fixed';
-                notification.style.left = (buttonRect.left + buttonRect.width / 2 - 75) + 'px';
-                notification.style.top = (buttonRect.top - 40) + 'px';
-                notification.style.backgroundColor = '#28a745';
-                notification.style.color = 'white';
-                notification.style.padding = '10px 20px';
-                notification.style.borderRadius = '25px';
-                notification.style.fontSize = '1rem';
-                notification.style.fontWeight = '500';
-                notification.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.5)';
-                notification.style.zIndex = '99999';
-                notification.style.opacity = '1';
-                notification.style.whiteSpace = 'nowrap';
-                notification.style.transition = 'opacity 0.5s ease-out';
-
-                document.body.appendChild(notification);
-
-                // 1.5 saniye bekle, sonra fade out yap
-                setTimeout(function () {
-                    notification.style.opacity = '0';
-                }, 1500);
-
-                // Mesajı kaldır (toplam 2 saniye)
-                setTimeout(function () {
-                    notification.remove();
-                }, 2000);
-            }
-
-            function increaseCartQuantity(cartId) {
-                const input = $('#cart-qty-' + cartId);
-                const currentQty = parseInt(input.val()) || 1;
-                const newQty = currentQty + 1;
+        function decreaseCartQuantity(cartId) {
+            const input = $('#cart-qty-' + cartId);
+            const currentQty = parseInt(input.val()) || 1;
+            if (currentQty > 1) {
+                const newQty = currentQty - 1;
                 // Önce miktarı input'a yaz
                 input.val(newQty);
                 $('#cart-qty-mobile-' + cartId).val(newQty);
@@ -859,347 +873,328 @@
                 // Backend'e gönder
                 updateCartQuantityWithBonus(cartId, newQty, bonusOption);
             }
+        }
 
-            function decreaseCartQuantity(cartId) {
-                const input = $('#cart-qty-' + cartId);
-                const currentQty = parseInt(input.val()) || 1;
-                if (currentQty > 1) {
-                    const newQty = currentQty - 1;
-                    // Önce miktarı input'a yaz
-                    input.val(newQty);
-                    $('#cart-qty-mobile-' + cartId).val(newQty);
-                    // Bonus opsiyonunu kontrol et ve güncelle
-                    const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
-                    // Backend'e gönder
-                    updateCartQuantityWithBonus(cartId, newQty, bonusOption);
+        function updateCartQuantity(cartId, quantity) {
+            if (quantity < 1) return;
+
+            // Input'ları güncelle (hem desktop hem mobile)
+            $('#cart-qty-' + cartId).val(quantity);
+            $('#cart-qty-mobile-' + cartId).val(quantity);
+
+            // Bonus opsiyonunu kontrol et ve radio'yu güncelle
+            const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
+
+            // Miktar ve bonus opsiyonunu birlikte gönder
+            updateCartQuantityWithBonus(cartId, quantity, bonusOption);
+        }
+
+        // Sepet - Bonus opsiyon 1 seçildiğinde miktarı 1 yap
+        function onCartBonusOption1Selected(cartId) {
+            const qtyInput = $('#cart-qty-' + cartId);
+            qtyInput.val(1);
+            // Mobile input'u da güncelle
+            $('#cart-qty-mobile-' + cartId).val(1);
+            // Miktarı backend'e gönder ve bonus opsiyonunu da güncelle
+            updateCartQuantityWithBonus(cartId, 1, 1);
+        }
+
+        // Sepet - Bonus opsiyon 2 seçildiğinde minimum miktarı ayarla
+        function onCartBonusOption2Selected(cartId, minQty) {
+            const qtyInput = $('#cart-qty-' + cartId);
+            // Her zaman minimum miktarı ayarla
+            qtyInput.val(minQty);
+            // Mobile input'u da güncelle
+            $('#cart-qty-mobile-' + cartId).val(minQty);
+            // Miktarı ve bonus opsiyonunu backend'e gönder
+            updateCartQuantityWithBonus(cartId, minQty, 2);
+        }
+
+        // Sepet - Miktar değiştiğinde bonus opsiyonu kontrol et
+        function checkCartBonusOptionOnQtyChange(cartId) {
+            const qtyInput = $('#cart-qty-' + cartId);
+            const currentQty = parseInt(qtyInput.val()) || 0;
+
+            // Opsiyon radio butonlarını bul
+            const option2Radio = document.getElementById('cart_bonus_' + cartId + '_2');
+            const option1Radio = document.getElementById('cart_bonus_' + cartId + '_1');
+
+            let bonusOption = 1;
+
+            // Eğer opsiyon 2 varsa
+            if (option2Radio) {
+                const minQty = parseInt(option2Radio.dataset.minQty) || 0;
+
+                if (currentQty >= minQty && minQty > 0) {
+                    // Miktar minimum miktara eşit veya fazlaysa opsiyon 2'yi seç
+                    option2Radio.checked = true;
+                    bonusOption = 2;
+                } else if (option1Radio) {
+                    // Miktar minimumun altındaysa opsiyon 1'e geç
+                    option1Radio.checked = true;
+                    bonusOption = 1;
                 }
             }
 
-            function updateCartQuantity(cartId, quantity) {
-                if (quantity < 1) return;
+            return bonusOption;
+        }
 
-                // Input'ları güncelle (hem desktop hem mobile)
-                $('#cart-qty-' + cartId).val(quantity);
-                $('#cart-qty-mobile-' + cartId).val(quantity);
+        // Sepet - Miktar ve bonus opsiyonunu birlikte güncelle
+        function updateCartQuantityWithBonus(cartId, quantity, bonusOption) {
+            if (quantity < 1) return;
 
-                // Bonus opsiyonunu kontrol et ve radio'yu güncelle
-                const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
-
-                // Miktar ve bonus opsiyonunu birlikte gönder
-                updateCartQuantityWithBonus(cartId, quantity, bonusOption);
-            }
-
-            // Sepet - Bonus opsiyon 1 seçildiğinde miktarı 1 yap
-            function onCartBonusOption1Selected(cartId) {
-                const qtyInput = $('#cart-qty-' + cartId);
-                qtyInput.val(1);
-                // Mobile input'u da güncelle
-                $('#cart-qty-mobile-' + cartId).val(1);
-                // Miktarı backend'e gönder ve bonus opsiyonunu da güncelle
-                updateCartQuantityWithBonus(cartId, 1, 1);
-            }
-
-            // Sepet - Bonus opsiyon 2 seçildiğinde minimum miktarı ayarla
-            function onCartBonusOption2Selected(cartId, minQty) {
-                const qtyInput = $('#cart-qty-' + cartId);
-                // Her zaman minimum miktarı ayarla
-                qtyInput.val(minQty);
-                // Mobile input'u da güncelle
-                $('#cart-qty-mobile-' + cartId).val(minQty);
-                // Miktarı ve bonus opsiyonunu backend'e gönder
-                updateCartQuantityWithBonus(cartId, minQty, 2);
-            }
-
-            // Sepet - Miktar değiştiğinde bonus opsiyonu kontrol et
-            function checkCartBonusOptionOnQtyChange(cartId) {
-                const qtyInput = $('#cart-qty-' + cartId);
-                const currentQty = parseInt(qtyInput.val()) || 0;
-
-                // Opsiyon radio butonlarını bul
-                const option2Radio = document.getElementById('cart_bonus_' + cartId + '_2');
-                const option1Radio = document.getElementById('cart_bonus_' + cartId + '_1');
-
-                let bonusOption = 1;
-
-                // Eğer opsiyon 2 varsa
-                if (option2Radio) {
-                    const minQty = parseInt(option2Radio.dataset.minQty) || 0;
-
-                    if (currentQty >= minQty && minQty > 0) {
-                        // Miktar minimum miktara eşit veya fazlaysa opsiyon 2'yi seç
-                        option2Radio.checked = true;
-                        bonusOption = 2;
-                    } else if (option1Radio) {
-                        // Miktar minimumun altındaysa opsiyon 1'e geç
-                        option1Radio.checked = true;
-                        bonusOption = 1;
+            $.ajax({
+                url: '{{ url("/cart") }}/' + cartId,
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    _method: 'PATCH',
+                    quantity: quantity,
+                    bonus_option: bonusOption
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Update both desktop and mobile quantity inputs
+                        $('#cart-qty-' + cartId).val(quantity);
+                        $('#cart-qty-mobile-' + cartId).val(quantity);
+                        // Yeni değeri eski değer olarak kaydet
+                        $('#cart-qty-' + cartId).data('old-value', quantity);
+                        $('#cart-qty-mobile-' + cartId).data('old-value', quantity);
+                        // Format with Turkish locale
+                        const formattedTotal = parseFloat(response.total).toLocaleString('tr-TR', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + ' ₺';
+                        $('#cart-total-' + cartId).text(formattedTotal);
+                        updateCartSummary();
+                    } else {
+                        showNotification(response.message || 'Güncelleme hatası', 'error');
                     }
+                },
+                error: function (xhr) {
+                    console.error('Update with bonus error:', xhr);
+                    showNotification('Güncelleme hatası', 'error');
                 }
+            });
+        }
 
-                return bonusOption;
+        function removeFromCart(cartId) {
+            if (!confirm('Bu ürünü sepetten çıkarmak istediğinize emin misiniz?')) {
+                return;
             }
 
-            // Sepet - Miktar ve bonus opsiyonunu birlikte güncelle
-            function updateCartQuantityWithBonus(cartId, quantity, bonusOption) {
-                if (quantity < 1) return;
 
-                $.ajax({
-                    url: '{{ url("/cart") }}/' + cartId,
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        _method: 'PATCH',
-                        quantity: quantity,
-                        bonus_option: bonusOption
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            // Update both desktop and mobile quantity inputs
-                            $('#cart-qty-' + cartId).val(quantity);
-                            $('#cart-qty-mobile-' + cartId).val(quantity);
-                            // Yeni değeri eski değer olarak kaydet
-                            $('#cart-qty-' + cartId).data('old-value', quantity);
-                            $('#cart-qty-mobile-' + cartId).data('old-value', quantity);
-                            // Format with Turkish locale
-                            const formattedTotal = parseFloat(response.total).toLocaleString('tr-TR', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            }) + ' ₺';
-                            $('#cart-total-' + cartId).text(formattedTotal);
+            $.ajax({
+                url: '{{ url("/cart") }}/' + cartId,
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    _method: 'DELETE'
+                },
+                success: function (response) {
+
+                    if (response.success) {
+                        $('#cart-row-' + cartId).fadeOut(function () {
+                            $(this).remove();
                             updateCartSummary();
-                        } else {
-                            showNotification(response.message || 'Güncelleme hatası', 'error');
-                        }
-                    },
-                    error: function (xhr) {
-                        console.error('Update with bonus error:', xhr);
-                        showNotification('Güncelleme hatası', 'error');
+                            updateCartCount();
+
+                            // Check if cart is empty
+                            if ($('tbody tr').length === 0) {
+                                location.reload();
+                            }
+                        });
+                        showNotification(response.message, 'success');
+                    } else {
+                        showNotification(response.message || 'Ürün silinirken hata oluştu', 'error');
                     }
-                });
-            }
+                },
+                error: function (xhr) {
+                    console.error('Delete error:', xhr);
+                    let message = 'Ürün silinirken hata oluştu';
 
-            function removeFromCart(cartId) {
-                if (!confirm('Bu ürünü sepetten çıkarmak istediğinize emin misiniz?')) {
-                    return;
-                }
-
-                console.log('=== DELETE REQUEST ===');
-                console.log('Cart ID to delete:', cartId);
-                console.log('Request URL:', '{{ url("/cart") }}/' + cartId);
-                console.log('CSRF Token:', $('meta[name="csrf-token"]').attr('content'));
-                console.log('All cart rows on page:', $('tbody tr').map(function () { return $(this).attr('id'); }).get());
-
-                $.ajax({
-                    url: '{{ url("/cart") }}/' + cartId,
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        _method: 'DELETE'
-                    },
-                    success: function (response) {
-                        console.log('Delete response:', response);
-                        if (response.success) {
-                            $('#cart-row-' + cartId).fadeOut(function () {
-                                $(this).remove();
-                                updateCartSummary();
-                                updateCartCount();
-
-                                // Check if cart is empty
-                                if ($('tbody tr').length === 0) {
-                                    location.reload();
-                                }
-                            });
-                            showNotification(response.message, 'success');
-                        } else {
-                            showNotification(response.message || 'Ürün silinirken hata oluştu', 'error');
-                        }
-                    },
-                    error: function (xhr) {
-                        console.error('Delete error:', xhr);
-                        let message = 'Ürün silinirken hata oluştu';
-
-                        // Detailed error handling
-                        if (xhr.status === 419) {
-                            message = 'CSRF Token hatası. Lütfen sayfayı yenileyin. (Hata: 419)';
-                            setTimeout(() => location.reload(), 2000);
-                        } else if (xhr.status === 404) {
-                            // Item already deleted or doesn't exist - remove from UI and reload
-                            message = 'Ürün bulunamadı veya zaten silinmiş. Sayfa yenileniyor...';
-                            showNotification(message, 'error');
-                            $('#cart-row-' + cartId).fadeOut(function () {
-                                $(this).remove();
-                            });
-                            setTimeout(() => location.reload(), 1500);
-                            return; // Don't show notification again
-                        } else if (xhr.status === 403) {
-                            message = 'Bu işlem için yetkiniz yok. (Hata: 403)';
-                        } else if (xhr.status === 500) {
-                            message = 'Sunucu hatası. Lütfen tekrar deneyin. (Hata: 500)';
-                        } else if (xhr.status === 405) {
-                            message = 'HTTP Method hatası. (Hata: 405 - Method Not Allowed)';
-                        } else if (xhr.responseJSON) {
-                            if (xhr.responseJSON.message) {
-                                message = xhr.responseJSON.message + ' (Hata: ' + xhr.status + ')';
-                            }
-                            if (xhr.responseJSON.errors) {
-                                const errors = Object.values(xhr.responseJSON.errors).flat();
-                                message += ' - Detaylar: ' + errors.join(', ');
-                            }
-                        } else if (xhr.responseText) {
-                            try {
-                                const text = xhr.responseText.substring(0, 200);
-                                message += ' (Status: ' + xhr.status + ', Detay: ' + text + ')';
-                            } catch (e) {
-                                message += ' (Status: ' + xhr.status + ')';
-                            }
-                        }
-
+                    // Detailed error handling
+                    if (xhr.status === 419) {
+                        message = 'CSRF Token hatası. Lütfen sayfayı yenileyin. (Hata: 419)';
+                        setTimeout(() => location.reload(), 2000);
+                    } else if (xhr.status === 404) {
+                        // Item already deleted or doesn't exist - remove from UI and reload
+                        message = 'Ürün bulunamadı veya zaten silinmiş. Sayfa yenileniyor...';
                         showNotification(message, 'error');
-                    }
-                });
-            }
-
-            function clearCart() {
-                if (!confirm('Sepetinizdeki tüm ürünleri silmek istediğinize emin misiniz?')) {
-                    return;
-                }
-
-                $.ajax({
-                    url: '{{ route("cart.clear") }}',
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        _method: 'DELETE'
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            location.reload();
-                        }
-                    },
-                    error: function (xhr) {
-                        console.error('Clear cart error:', xhr);
-                        let message = 'Sepet temizlenirken hata oluştu';
-
-                        if (xhr.status === 419) {
-                            message = 'CSRF Token hatası. Sayfayı yenileyin. (Hata: 419)';
-                        } else if (xhr.status === 500) {
-                            message = 'Sunucu hatası. (Hata: 500)';
-                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        $('#cart-row-' + cartId).fadeOut(function () {
+                            $(this).remove();
+                        });
+                        setTimeout(() => location.reload(), 1500);
+                        return; // Don't show notification again
+                    } else if (xhr.status === 403) {
+                        message = 'Bu işlem için yetkiniz yok. (Hata: 403)';
+                    } else if (xhr.status === 500) {
+                        message = 'Sunucu hatası. Lütfen tekrar deneyin. (Hata: 500)';
+                    } else if (xhr.status === 405) {
+                        message = 'HTTP Method hatası. (Hata: 405 - Method Not Allowed)';
+                    } else if (xhr.responseJSON) {
+                        if (xhr.responseJSON.message) {
                             message = xhr.responseJSON.message + ' (Hata: ' + xhr.status + ')';
-                        } else {
+                        }
+                        if (xhr.responseJSON.errors) {
+                            const errors = Object.values(xhr.responseJSON.errors).flat();
+                            message += ' - Detaylar: ' + errors.join(', ');
+                        }
+                    } else if (xhr.responseText) {
+                        try {
+                            const text = xhr.responseText.substring(0, 200);
+                            message += ' (Status: ' + xhr.status + ', Detay: ' + text + ')';
+                        } catch (e) {
                             message += ' (Status: ' + xhr.status + ')';
                         }
-
-                        showNotification(message, 'error');
                     }
-                });
+
+                    showNotification(message, 'error');
+                }
+            });
+        }
+
+        function clearCart() {
+            if (!confirm('Sepetinizdeki tüm ürünleri silmek istediğinize emin misiniz?')) {
+                return;
             }
 
-            function updateCartSummary() {
-                // Fetch updated totals from server
-                $.ajax({
-                    url: '{{ route("cart.index") }}',
-                    type: 'GET',
-                    dataType: 'json',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    success: function (response) {
-                        if (response.subtotal !== undefined) {
-                            // Ara Toplam
-                            $('#subtotal').text(parseFloat(response.subtotal).toLocaleString('tr-TR', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            }) + ' ₺');
-
-                            // KDV'leri oranlarına göre güncelle
-                            // Önce mevcut KDV satırlarını kaldır
-                            $('[id^="vat-rate-"]').remove();
-
-                            // Yeni KDV satırlarını ekle
-                            if (response.vat_by_rate) {
-                                let vatHtml = '';
-                                for (let rate in response.vat_by_rate) {
-                                    let amount = parseFloat(response.vat_by_rate[rate]);
-                                    let formattedAmount = amount.toLocaleString('tr-TR', {
-                                        minimumFractionDigits: 2,
-                                        maximumFractionDigits: 2
-                                    });
-                                    vatHtml += '<div class="d-flex justify-content-between mb-2" id="vat-rate-' + rate + '">';
-                                    vatHtml += '<span>KDV %' + Math.round(rate) + ':</span>';
-                                    vatHtml += '<strong>' + formattedAmount + ' ₺</strong>';
-                                    vatHtml += '</div>';
-                                }
-                                // Ara Toplam'dan sonra, hr'den önce ekle
-                                $('#subtotal').parent().after(vatHtml);
-                            }
-
-                            // Genel Toplam
-                            $('#grand-total').text(parseFloat(response.total).toLocaleString('tr-TR', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            }) + ' ₺');
-                        }
-                    },
-                    error: function () {
-                        // If AJAX fails, reload page as fallback
+            $.ajax({
+                url: '{{ route("cart.clear") }}',
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    _method: 'DELETE'
+                },
+                success: function (response) {
+                    if (response.success) {
                         location.reload();
                     }
-                });
-            }
+                },
+                error: function (xhr) {
+                    console.error('Clear cart error:', xhr);
+                    let message = 'Sepet temizlenirken hata oluştu';
 
-            function showCartQuantityWarning(cartId, message) {
-                // Try to find the visible input group (desktop or mobile)
-                let inputGroup = document.getElementById('cart-qty-group-' + cartId);
+                    if (xhr.status === 419) {
+                        message = 'CSRF Token hatası. Sayfayı yenileyin. (Hata: 419)';
+                    } else if (xhr.status === 500) {
+                        message = 'Sunucu hatası. (Hata: 500)';
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message + ' (Hata: ' + xhr.status + ')';
+                    } else {
+                        message += ' (Status: ' + xhr.status + ')';
+                    }
 
-                // If desktop input group is not visible, try mobile
-                if (!inputGroup || window.getComputedStyle(inputGroup).display === 'none') {
-                    inputGroup = document.getElementById('cart-qty-group-mobile-' + cartId);
+                    showNotification(message, 'error');
                 }
+            });
+        }
 
-                if (!inputGroup) return;
+        function updateCartSummary() {
+            // Fetch updated totals from server
+            $.ajax({
+                url: '{{ route("cart.index") }}',
+                type: 'GET',
+                dataType: 'json',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                success: function (response) {
+                    if (response.subtotal !== undefined) {
+                        // Ara Toplam
+                        $('#subtotal').text(parseFloat(response.subtotal).toLocaleString('tr-TR', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + ' ₺');
 
-                const groupRect = inputGroup.getBoundingClientRect();
+                        // KDV'leri oranlarına göre güncelle
+                        // Önce mevcut KDV satırlarını kaldır
+                        $('[id^="vat-rate-"]').remove();
 
-                // Mesaj elementi oluştur
-                const notification = document.createElement('div');
-                notification.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
-                notification.style.position = 'fixed';
-                notification.style.backgroundColor = '#dc3545';
-                notification.style.color = 'white';
-                notification.style.padding = '10px 15px';
-                notification.style.borderRadius = '8px';
-                notification.style.fontSize = '0.85rem';
-                notification.style.fontWeight = '500';
-                notification.style.boxShadow = '0 4px 12px rgba(220, 53, 69, 0.5)';
-                notification.style.zIndex = '9999';
-                notification.style.maxWidth = '350px';
-                notification.style.textAlign = 'center';
-                notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.3s ease-out';
+                        // Yeni KDV satırlarını ekle
+                        if (response.vat_by_rate) {
+                            let vatHtml = '';
+                            for (let rate in response.vat_by_rate) {
+                                let amount = parseFloat(response.vat_by_rate[rate]);
+                                let formattedAmount = amount.toLocaleString('tr-TR', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                });
+                                vatHtml += '<div class="d-flex justify-content-between mb-2" id="vat-rate-' + rate + '">';
+                                vatHtml += '<span>KDV %' + Math.round(rate) + ':</span>';
+                                vatHtml += '<strong>' + formattedAmount + ' ₺</strong>';
+                                vatHtml += '</div>';
+                            }
+                            // Ara Toplam'dan sonra, hr'den önce ekle
+                            $('#subtotal').parent().after(vatHtml);
+                        }
 
-                document.body.appendChild(notification);
+                        // Genel Toplam
+                        $('#grand-total').text(parseFloat(response.total).toLocaleString('tr-TR', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + ' ₺');
+                    }
+                },
+                error: function () {
+                    // If AJAX fails, reload page as fallback
+                    location.reload();
+                }
+            });
+        }
 
-                // Genişliği aldıktan sonra pozisyonu ayarla (ortalamak için)
-                const notificationWidth = notification.offsetWidth;
-                const notificationHeight = notification.offsetHeight;
-                notification.style.left = (groupRect.left + groupRect.width / 2 - notificationWidth / 2) + 'px';
-                notification.style.top = (groupRect.top - notificationHeight - 10) + 'px'; // Input grubunun 10px üstünde
+        function showCartQuantityWarning(cartId, message) {
+            // Try to find the visible input group (desktop or mobile)
+            let inputGroup = document.getElementById('cart-qty-group-' + cartId);
 
-                // Görünür yap
-                setTimeout(function () {
-                    notification.style.opacity = '1';
-                }, 10);
-
-                // Kaybol
-                setTimeout(function () {
-                    notification.style.opacity = '0';
-                }, 2500); // 2.5 saniye bekle
-
-                // Kaldır
-                setTimeout(function () {
-                    notification.remove();
-                }, 2800); // 0.3s fade out sonrası
+            // If desktop input group is not visible, try mobile
+            if (!inputGroup || window.getComputedStyle(inputGroup).display === 'none') {
+                inputGroup = document.getElementById('cart-qty-group-mobile-' + cartId);
             }
-        </script>
+
+            if (!inputGroup) return;
+
+            const groupRect = inputGroup.getBoundingClientRect();
+
+            // Mesaj elementi oluştur
+            const notification = document.createElement('div');
+            notification.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
+            notification.style.position = 'fixed';
+            notification.style.backgroundColor = '#dc3545';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 15px';
+            notification.style.borderRadius = '8px';
+            notification.style.fontSize = '0.85rem';
+            notification.style.fontWeight = '500';
+            notification.style.boxShadow = '0 4px 12px rgba(220, 53, 69, 0.5)';
+            notification.style.zIndex = '9999';
+            notification.style.maxWidth = '350px';
+            notification.style.textAlign = 'center';
+            notification.style.opacity = '0';
+            notification.style.transition = 'opacity 0.3s ease-out';
+
+            document.body.appendChild(notification);
+
+            // Genişliği aldıktan sonra pozisyonu ayarla (ortalamak için)
+            const notificationWidth = notification.offsetWidth;
+            const notificationHeight = notification.offsetHeight;
+            notification.style.left = (groupRect.left + groupRect.width / 2 - notificationWidth / 2) + 'px';
+            notification.style.top = (groupRect.top - notificationHeight - 10) + 'px'; // Input grubunun 10px üstünde
+
+            // Görünür yap
+            setTimeout(function () {
+                notification.style.opacity = '1';
+            }, 10);
+
+            // Kaybol
+            setTimeout(function () {
+                notification.style.opacity = '0';
+            }, 2500); // 2.5 saniye bekle
+
+            // Kaldır
+            setTimeout(function () {
+                notification.remove();
+            }, 2800); // 0.3s fade out sonrası
+        }
+    </script>
 @endpush
