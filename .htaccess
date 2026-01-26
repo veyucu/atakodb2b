@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
+    # HTTPS Zorunlu Yönlendirme
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
     # Ana dizine erişim varsa index.php'ye yönlendir
     RewriteRule ^$ index.php [L]
     

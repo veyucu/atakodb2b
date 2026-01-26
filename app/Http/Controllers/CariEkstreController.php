@@ -24,8 +24,8 @@ class CariEkstreController extends Controller
      */
     public function index(Request $request)
     {
-        // Tarih aralığı varsayılan olarak son 30 gün
-        $baslangicTarihi = $request->get('baslangic_tarihi', Carbon::now()->subDays(30)->format('Y-m-d'));
+        // Tarih aralığı varsayılan olarak yılın başından bugüne
+        $baslangicTarihi = $request->get('baslangic_tarihi', Carbon::now()->startOfYear()->format('Y-m-d'));
         $bitisTarihi = $request->get('bitis_tarihi', Carbon::now()->format('Y-m-d'));
 
         // Müşteri kodunu al (plasiyer/admin için seçilen müşteri, diğerleri için kendi kodu)

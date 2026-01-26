@@ -386,9 +386,14 @@ class CartController extends Controller
      */
     public function orderSuccess(\App\Models\Order $order)
     {
-        // Ensure the order belongs to the current user (or selected customer for plasiyer)
-        if ($order->user_id !== $this->getCurrentUserId()) {
-            abort(403);
+        $user = Auth::user();
+
+        // Admin ve plasiyer tüm siparişleri görebilir
+        // Normal kullanıcılar sadece kendi siparişlerini görebilir
+        if (!$user->isAdmin() && !$user->isPlasiyer()) {
+            if ($order->user_id !== Auth::id()) {
+                abort(403);
+            }
         }
 
         $order->load(['items.product']);

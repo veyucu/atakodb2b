@@ -195,18 +195,27 @@ class ErpProductController extends Controller
         $extension = $image->getClientOriginalExtension() ?: 'jpg';
 
         // Dosya adını oluştur (stok kodu + timestamp)
-        $fileName = $urunKodu . '_' . time() . '.' . $extension;
+        // Stok kodundaki özel karakterleri temizle
+        $safeUrunKodu = preg_replace('/[^a-zA-Z0-9_-]/', '_', $urunKodu);
+        $fileName = $safeUrunKodu . '_' . time() . '.' . $extension;
+
+        // public/products klasörünü oluştur (yoksa)
+        $uploadPath = public_path('storage/products');
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
 
         // Eski resmi sil (varsa)
         if ($product->urun_resmi) {
-            $oldPath = storage_path('app/public/' . $product->urun_resmi);
+            $oldPath = public_path('storage/' . $product->urun_resmi);
             if (file_exists($oldPath)) {
                 unlink($oldPath);
             }
         }
 
-        // Resmi storage/products klasörüne kaydet
-        $path = $image->storeAs('products', $fileName, 'public');
+        // Resmi public/storage/products klasörüne kaydet
+        $image->move($uploadPath, $fileName);
+        $path = 'products/' . $fileName;
 
         // Ürün kaydını güncelle
         $product->update(['urun_resmi' => $path]);
