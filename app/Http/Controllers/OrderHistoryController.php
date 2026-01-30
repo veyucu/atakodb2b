@@ -19,7 +19,7 @@ class OrderHistoryController extends Controller
         if ((Auth::user()->isPlasiyer() || Auth::user()->isAdmin()) && session()->has('selected_customer_id')) {
             $userId = session('selected_customer_id');
             $customer = User::find($userId);
-            
+
             if (!$customer) {
                 return redirect()->route('home')->with('error', 'Müşteri bulunamadı');
             }
@@ -27,46 +27,45 @@ class OrderHistoryController extends Controller
             $userId = Auth::id();
             $customer = Auth::user();
         }
-        
+
         // Siparişleri getir
         $query = Order::with(['user', 'items.product'])
             ->where('user_id', $userId);
-        
+
         // Durum filtresi
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
-        
+
         // Tarih filtresi
         if ($request->filled('date_from')) {
             $query->whereDate('created_at', '>=', $request->date_from);
         }
-        
+
         if ($request->filled('date_to')) {
             $query->whereDate('created_at', '<=', $request->date_to);
         }
-        
+
         $orders = $query->latest()->paginate(20)->appends($request->except('page'));
-        
+
         return view('orders.history', compact('orders', 'customer'));
     }
-    
+
     /**
      * Display order details
      */
     public function show(Order $order)
     {
-        // Plasiyer/Admin için seçili müşterinin, normal müşteri için kendi siparişini kontrol et
-        if ((Auth::user()->isPlasiyer() || Auth::user()->isAdmin()) && session()->has('selected_customer_id')) {
-            $userId = session('selected_customer_id');
-        } else {
-            $userId = Auth::id();
+        $user = Auth::user();
+
+        // Admin ve Plasiyer tüm siparişleri görebilir
+        // Normal kullanıcılar sadece kendi siparişlerini görebilir
+        if (!$user->isAdmin() && !$user->isPlasiyer()) {
+            if ((int) $order->user_id !== (int) Auth::id()) {
+                abort(403, 'Bu siparişi görme yetkiniz yok.');
+            }
         }
-        
-        if ($order->user_id !== $userId) {
-            abort(403, 'Bu siparişi görme yetkiniz yok.');
-        }
-        
+
         $order->load(['user', 'items.product']);
         return view('orders.show', compact('order'));
     }

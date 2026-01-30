@@ -480,7 +480,7 @@ class CartController extends Controller
         // Admin ve plasiyer tüm siparişleri görebilir
         // Normal kullanıcılar sadece kendi siparişlerini görebilir
         if (!$user->isAdmin() && !$user->isPlasiyer()) {
-            if ($order->user_id !== Auth::id()) {
+            if ((int) $order->user_id !== (int) Auth::id()) {
                 abort(403);
             }
         }

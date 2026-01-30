@@ -108,8 +108,8 @@
                             <tbody>
                                 @foreach($order->items as $item)
                                     <tr>
-                                        <td>{{ $item->product_code }}</td>
-                                        <td>{{ $item->product_name }}</td>
+                                        <td>{{ $item->product->urun_kodu ?? '-' }}</td>
+                                        <td>{{ $item->product->urun_adi ?? '-' }}</td>
                                         <td class="text-center"><strong>{{ $item->quantity }}</strong></td>
                                         <td class="text-end">{{ number_format($item->price, 2, ',', '.') }} ₺</td>
                                         <td class="text-center">{{ number_format($item->vat_rate, 0) }}%</td>

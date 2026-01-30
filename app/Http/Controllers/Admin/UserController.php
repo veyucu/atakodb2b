@@ -26,7 +26,8 @@ class UserController extends Controller
         }
 
         $users = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
-        return view('admin.users.index', compact('users'));
+        $siteSettings = \App\Models\SiteSetting::getSettings();
+        return view('admin.users.index', compact('users', 'siteSettings'));
     }
 
     /**
@@ -34,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $siteSettings = \App\Models\SiteSetting::getSettings();
+        return view('admin.users.create', compact('siteSettings'));
     }
 
     /**
@@ -70,7 +72,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $siteSettings = \App\Models\SiteSetting::getSettings();
+        return view('admin.users.edit', compact('user', 'siteSettings'));
     }
 
     /**
