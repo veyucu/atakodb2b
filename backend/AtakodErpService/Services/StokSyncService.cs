@@ -96,7 +96,10 @@ public class StokSyncService
             NET1 = stok.NET1,
             MF2 = stok.MF2,
             NET2 = stok.NET2,
-            ISLEM = stok.ISLEM
+            ISLEM = stok.ISLEM,
+            SATISA_KAPALI = stok.SATISA_KAPALI,
+            WEB_KAMPANYA = stok.WEB_KAMPANYA,
+            MF2_BOLUNEMEZ = stok.MF2_BOLUNEMEZ
         };
     }
 
@@ -129,7 +132,10 @@ public class StokSyncService
                 NET1,
                 MF2,
                 NET2,
-                ISLEM
+                ISLEM,
+                SATISA_KAPALI,
+                WEB_KAMPANYA,
+                MF2_BOLUNEMEZ
             FROM ATV_B2BSTOK
             WHERE ISLEM IN ('I', 'U')";
 
@@ -243,10 +249,10 @@ public class StokSyncService
         var sql = @"
             INSERT INTO AKTBL_B2BSTOKLOG 
             (STOK_KODU, STOK_ADI, BARKOD, GRUP, MARKA, KDV_ORANI, MUADIL_KODU, ETKEN_MADDE,
-             PSF, ECZ_KARI, KURUM_ISK, TIC_ISK, MF1, NET1, MF2, NET2 )
+             PSF, ECZ_KARI, KURUM_ISK, TIC_ISK, MF1, NET1, MF2, NET2, SATISA_KAPALI, WEB_KAMPANYA, MF2_BOLUNEMEZ)
             VALUES 
             (@STOK_KODU, @STOK_ADI, @BARKOD, @GRUP, @MARKA, @KDV_ORANI, @MUADIL_KODU, @ETKEN_MADDE,
-             @PSF, @ECZ_KARI, @KURUM_ISK, @TIC_ISK, @MF1, @NET1, @MF2, @NET2)";
+             @PSF, @ECZ_KARI, @KURUM_ISK, @TIC_ISK, @MF1, @NET1, @MF2, @NET2, @SATISA_KAPALI, @WEB_KAMPANYA, @MF2_BOLUNEMEZ)";
 
         await _db.ExecuteAsync(sql, new
         {
@@ -265,7 +271,10 @@ public class StokSyncService
             stok.MF1,
             stok.NET1,
             stok.MF2,
-            stok.NET2
+            stok.NET2,
+            stok.SATISA_KAPALI,
+            stok.WEB_KAMPANYA,
+            stok.MF2_BOLUNEMEZ
         });
     }
 
@@ -292,7 +301,13 @@ public class StokSyncService
             Mf1 = stok.MF1,
             NetFiyat1 = stok.NET1,
             Mf2 = stok.MF2,
-            NetFiyat2 = stok.NET2
+            NetFiyat2 = stok.NET2,
+            // SATISA_KAPALI='E' ise aktif değil (false), değilse aktif (true)
+            IsActive = stok.SATISA_KAPALI?.ToUpper() != "E",
+            // WEB_KAMPANYA='E' ise ozel_liste = true
+            OzelListe = stok.WEB_KAMPANYA?.ToUpper() == "E",
+            // MF2_BOLUNEMEZ='E' ise mf2bolunemez = true
+            Mf2Bolunemez = stok.MF2_BOLUNEMEZ?.ToUpper() == "E"
         };
     }
 

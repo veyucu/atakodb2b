@@ -36,6 +36,7 @@ class Product extends Model
         'urun_resmi',
         'is_active',
         'ozel_liste',
+        'mf2bolunemez',
     ];
 
     /**
@@ -55,6 +56,7 @@ class Product extends Model
         'bakiye' => 'decimal:2',
         'is_active' => 'boolean',
         'ozel_liste' => 'boolean',
+        'mf2bolunemez' => 'boolean',
     ];
 
     /**

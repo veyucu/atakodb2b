@@ -94,6 +94,7 @@ Route::middleware(['auth', 'user.type:admin'])->prefix('admin')->name('admin.')-
     // Site Settings
     Route::get('settings', [\App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('settings.index');
     Route::put('settings', [\App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('settings.update');
+    Route::delete('settings/logo', [\App\Http\Controllers\Admin\SiteSettingController::class, 'deleteLogo'])->name('settings.deleteLogo');
 });
 
 // Plasiyer Routes

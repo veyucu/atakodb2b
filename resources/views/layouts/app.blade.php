@@ -150,7 +150,7 @@
             .user-link {
                 max-width: 280px;
             }
-            
+
             .user-link span {
                 max-width: 220px;
             }
@@ -1470,8 +1470,8 @@
                     <img src="{{ $siteSettings->logo_url }}" alt="{{ $siteSettings->site_name }}" class="site-logo">
                 @else
                     <i class="fas fa-store"></i>
+                    <span class="fw-bold">{{ $siteSettings->site_name ?? config('app.name', 'atakodb2b') }}</span>
                 @endif
-                <span class="fw-bold">{{ $siteSettings->site_name ?? config('app.name', 'atakodb2b') }}</span>
             </a>
 
             <!-- Mobil İkonlar (Sadece mobilde görünür) -->
@@ -1904,6 +1904,178 @@
                 icon.classList.add('fa-sun');
             }
         });
+
+        // =============================
+        // MF2 Utils - Ortak Fonksiyonlar
+        // Tüm görünümlerde (katalog, liste, modal, muadil, sepet) kullanılır
+        // =============================
+        const MF2Utils = {
+            /**
+             * Input'tan MF2 bilgilerini okur
+             * @param {HTMLElement} input - Miktar input elementi
+             * @returns {Object} {mf2bolunemez: boolean, step: number}
+             */
+            getInputData: function (input) {
+                return {
+                    mf2bolunemez: input.dataset.mf2bolunemez === '1',
+                    step: parseInt(input.dataset.mf2Step) || 0
+                };
+            },
+
+            /**
+             * Miktarı artır - HER ZAMAN 1 artırır
+             * @param {HTMLElement} input - Miktar input elementi
+             * @returns {number} Yeni miktar
+             */
+            increaseQuantity: function (input) {
+                let currentValue = parseInt(input.value) || 0;
+                const newValue = currentValue + 1;
+                input.value = newValue;
+                return newValue;
+            },
+
+            /**
+             * Miktarı azalt - HER ZAMAN 1 azaltır
+             * @param {HTMLElement} input - Miktar input elementi
+             * @param {number} minValue - Minimum değer (varsayılan: 0)
+             * @returns {number} Yeni miktar
+             */
+            decreaseQuantity: function (input, minValue = 0) {
+                let currentValue = parseInt(input.value) || 0;
+                let newValue = currentValue - 1;
+                if (newValue < minValue) newValue = minValue;
+                input.value = newValue;
+                return newValue;
+            },
+
+            /**
+             * Bonus opsiyonunu miktar'a göre kontrol et ve radio'ları güncelle
+             * Miktar >= minQty ise MF2 seç, değilse MF1 seç
+             * @param {number} currentQty - Mevcut miktar
+             * @param {HTMLElement} option1Radio - MF1 radio butonu (nullable)
+             * @param {HTMLElement} option2Radio - MF2 radio butonu (nullable)
+             * @returns {number} Seçili opsiyon (1 veya 2)
+             */
+            checkBonusOption: function (currentQty, option1Radio, option2Radio) {
+                let selectedOption = 1;
+
+                if (option2Radio) {
+                    const minQty = parseInt(option2Radio.dataset.minQty) || 0;
+
+                    if (currentQty >= minQty && minQty > 0) {
+                        // Miktar minimum miktara eşit veya fazlaysa opsiyon 2'yi seç
+                        if (option2Radio) option2Radio.checked = true;
+                        selectedOption = 2;
+                    } else {
+                        // Miktar minimumun altındaysa opsiyon 1'e geç
+                        if (option1Radio) option1Radio.checked = true;
+                        selectedOption = 1;
+                    }
+                }
+
+                return selectedOption;
+            },
+
+            /**
+             * MF2 seçildiğinde miktarı minimum değere ayarla
+             * @param {HTMLElement} input - Miktar input elementi
+             * @param {number} minQty - MF2 minimum miktarı
+             */
+            setMinQtyForMf2: function (input, minQty) {
+                const currentQty = parseInt(input.value) || 0;
+                if (currentQty < minQty) {
+                    input.value = minQty;
+                }
+            },
+
+            /**
+             * mf2bolunemez ürün için miktar validasyonu
+             * @param {number} quantity - Toplam miktar (sepetteki + eklenecek)
+             * @param {number} step - MF2 step değeri (örn: 20)
+             * @returns {Object} {valid: boolean, message: string, examples: string}
+             */
+            validateMf2Quantity: function (quantity, step) {
+                if (step <= 0) {
+                    return { valid: true, message: '', examples: '' };
+                }
+
+                const isValid = quantity % step === 0;
+                let examples = [];
+                for (let i = 1; i <= 5; i++) {
+                    examples.push(step * i);
+                }
+
+                return {
+                    valid: isValid,
+                    step: step,
+                    examples: examples.join(', '),
+                    message: isValid ? '' : `Miktar ${step} ve katlarında olmalıdır (${examples.join(', ')}...)`
+                };
+            },
+
+            /**
+             * Sepete ekleme öncesi mf2bolunemez kontrolü
+             * @param {number} existingQty - Sepetteki mevcut miktar
+             * @param {number} newQty - Eklenmek istenen miktar
+             * @param {number} step - MF2 step değeri
+             * @param {boolean} mf2bolunemez - Ürün bölünemez mi
+             * @param {number} selectedOption - Seçili bonus opsiyonu (1 veya 2)
+             * @returns {Object} {valid: boolean, message: string}
+             */
+            validateAddToCart: function (existingQty, newQty, step, mf2bolunemez, selectedOption) {
+                // MF2 seçili değilse veya mf2bolunemez değilse kontrol yapma
+                if (selectedOption !== 2 || !mf2bolunemez || step <= 0) {
+                    return { valid: true, message: '' };
+                }
+
+                const totalQty = existingQty + newQty;
+                const validation = this.validateMf2Quantity(totalQty, step);
+
+                if (!validation.valid) {
+                    let message = `Bu ürünün mal fazlası bölünemez!\n\n`;
+                    if (existingQty > 0) {
+                        message += `Sepette: ${existingQty} adet\n`;
+                        message += `Eklemek istediğiniz: ${newQty} adet\n`;
+                        message += `Toplam: ${totalQty} adet\n\n`;
+                    }
+                    message += `Miktar ${step} ve katlarında olmalıdır.\n`;
+                    message += `Örnek: ${validation.examples}`;
+
+                    return { valid: false, message: message, totalQty: totalQty };
+                }
+
+                return { valid: true, message: '' };
+            },
+
+            /**
+             * İlişkili mobil input'u da senkronize et
+             * @param {string} desktopInputId - Desktop input ID
+             * @param {string} mobileInputId - Mobile input ID
+             * @param {number} value - Yeni değer
+             */
+            syncInputs: function (desktopInputId, mobileInputId, value) {
+                const desktopInput = document.getElementById(desktopInputId);
+                const mobileInput = document.getElementById(mobileInputId);
+                if (desktopInput) desktopInput.value = value;
+                if (mobileInput) mobileInput.value = value;
+            },
+
+            /**
+             * MF2 bölünemez uyarı mesajı oluştur
+             * @param {number} step - MF2 step değeri
+             * @returns {string} Uyarı mesajı HTML
+             */
+            getMf2WarningHtml: function (step) {
+                let examples = [];
+                for (let i = 1; i <= 5; i++) {
+                    examples.push(step * i);
+                }
+                return `<small class="text-danger"><i class="fas fa-exclamation-triangle me-1"></i>${step} ve katlarında sipariş verebilirsiniz (${examples.join(', ')}...)</small>`;
+            }
+        };
+
+        // Global erişim için window'a ekle
+        window.MF2Utils = MF2Utils;
 
         function showNotification(message, type) {
             const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';

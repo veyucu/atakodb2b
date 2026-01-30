@@ -71,7 +71,7 @@
                 $mf2MinQtyModal = 0;
                 if ($product->mf2 && str_contains($product->mf2, '+')) {
                     $partsModal = explode('+', $product->mf2);
-                    $mf2MinQtyModal = (int) trim($partsModal[0]);
+                    $mf2MinQtyModal = (int) trim($partsModal[0]) + (int) trim($partsModal[1]);
                 }
             @endphp
             <div class="col-auto modal-product-mf">
@@ -83,10 +83,12 @@
                         <div class="d-flex align-items-center justify-content-between mb-2 px-2 py-1 rounded"
                             style="background: rgba(16, 185, 129, 0.15); gap: 1rem;">
                             <div class="d-flex align-items-center">
-                                <input class="form-check-input me-2" type="radio" name="modal_product_bonus_{{ $product->id }}"
-                                    id="modal_product_bonus_{{ $product->id }}_1" value="1" checked data-min-qty="0"
-                                    onchange="onModalProductBonusOption1Selected({{ $product->id }})"
-                                    style="margin: 0; width: 1.1rem; height: 1.1rem; cursor: pointer;">
+                                @if($product->mf1 && $product->mf2)
+                                    <input class="form-check-input me-2" type="radio" name="modal_product_bonus_{{ $product->id }}"
+                                        id="modal_product_bonus_{{ $product->id }}_1" value="1" checked data-min-qty="0"
+                                        onchange="onModalProductBonusOption1Selected({{ $product->id }})"
+                                        style="margin: 0; width: 1.1rem; height: 1.1rem; cursor: pointer;">
+                                @endif
                                 <label for="modal_product_bonus_{{ $product->id }}_1" style="cursor: pointer;">
                                     <span class="badge bg-success" style="font-size: 0.9rem;">{{ $product->mf1 }}</span>
                                 </label>
@@ -101,10 +103,12 @@
                         <div class="d-flex align-items-center justify-content-between px-2 py-1 rounded"
                             style="background: rgba(59, 130, 246, 0.15); gap: 1rem;">
                             <div class="d-flex align-items-center">
-                                <input class="form-check-input me-2" type="radio" name="modal_product_bonus_{{ $product->id }}"
-                                    id="modal_product_bonus_{{ $product->id }}_2" value="2" data-min-qty="{{ $mf2MinQtyModal }}"
-                                    onchange="onModalProductBonusOption2Selected({{ $product->id }}, {{ $mf2MinQtyModal }})"
-                                    style="margin: 0; width: 1.1rem; height: 1.1rem; cursor: pointer;">
+                                @if($product->mf1 && $product->mf2)
+                                    <input class="form-check-input me-2" type="radio" name="modal_product_bonus_{{ $product->id }}"
+                                        id="modal_product_bonus_{{ $product->id }}_2" value="2" data-min-qty="{{ $mf2MinQtyModal }}"
+                                        onchange="onModalProductBonusOption2Selected({{ $product->id }}, {{ $mf2MinQtyModal }})"
+                                        style="margin: 0; width: 1.1rem; height: 1.1rem; cursor: pointer;">
+                                @endif
                                 <label for="modal_product_bonus_{{ $product->id }}_2" style="cursor: pointer;">
                                     <span class="badge bg-primary" style="font-size: 0.9rem;">{{ $product->mf2 }}</span>
                                 </label>
@@ -130,7 +134,10 @@
                     <input type="number" id="modal-product-qty-{{ $product->id }}"
                         class="form-control text-center fw-bold" value="0" min="0"
                         style="font-size: 1.1rem; padding: 0.4rem;"
+                        data-mf2bolunemez="{{ $product->mf2bolunemez ? '1' : '0' }}"
+                        data-mf2-step="{{ $mf2MinQtyModal }}"
                         oninput="checkModalProductBonusOptionOnQtyChange({{ $product->id }})"
+                        onblur="roundMf2QuantityModal({{ $product->id }})"
                         onkeypress="if(event.key === 'Enter' && this.value > 0) { addModalProductToCart({{ $product->id }}, this); }">
                     <button class="btn btn-outline-secondary" type="button"
                         onclick="increaseModalProductQty({{ $product->id }})" style="padding: 0.4rem 0.7rem;">
@@ -223,20 +230,22 @@
                             </td>
                             <td class="text-center hide-on-mobile">
                                 @if($muadil->mf1 || $muadil->mf2)
+                                    @php
+                                        $mf2MinQtyMuadilModal = 0;
+                                        if ($muadil->mf2 && str_contains($muadil->mf2, '+')) {
+                                            $partsMuadilModal = explode('+', $muadil->mf2);
+                                            $mf2MinQtyMuadilModal = (int) trim($partsMuadilModal[0]) + (int) trim($partsMuadilModal[1]);
+                                        }
+                                    @endphp
                                     <div style="font-size: 0.85rem;">
                                         @if($muadil->mf1)
-                                            @php
-                                                $mf2MinQtyMuadilModal = 0;
-                                                if ($muadil->mf2 && str_contains($muadil->mf2, '+')) {
-                                                    $partsMuadilModal = explode('+', $muadil->mf2);
-                                                    $mf2MinQtyMuadilModal = (int) trim($partsMuadilModal[0]);
-                                                }
-                                            @endphp
                                             <div class="d-flex align-items-center justify-content-center mb-1">
-                                                <input class="form-check-input me-1" type="radio"
-                                                    name="muadil_modal_bonus_{{ $muadil->id }}"
-                                                    id="muadil_modal_bonus_{{ $muadil->id }}_1" value="1" checked data-min-qty="0"
-                                                    onchange="onMuadilModalBonusOption1Selected({{ $muadil->id }})" style="margin: 0;">
+                                                @if($muadil->mf1 && $muadil->mf2)
+                                                    <input class="form-check-input me-1" type="radio"
+                                                        name="muadil_modal_bonus_{{ $muadil->id }}"
+                                                        id="muadil_modal_bonus_{{ $muadil->id }}_1" value="1" checked data-min-qty="0"
+                                                        onchange="onMuadilModalBonusOption1Selected({{ $muadil->id }})" style="margin: 0;">
+                                                @endif
                                                 <label for="muadil_modal_bonus_{{ $muadil->id }}_1" style="cursor: pointer;">
                                                     <span class="badge bg-success" style="font-size: 0.8rem;">{{ $muadil->mf1 }}</span>
                                                 </label>
@@ -244,12 +253,14 @@
                                         @endif
                                         @if($muadil->mf2)
                                             <div class="d-flex align-items-center justify-content-center">
-                                                <input class="form-check-input me-1" type="radio"
-                                                    name="muadil_modal_bonus_{{ $muadil->id }}"
-                                                    id="muadil_modal_bonus_{{ $muadil->id }}_2" value="2"
-                                                    data-min-qty="{{ $mf2MinQtyMuadilModal ?? 0 }}"
-                                                    onchange="onMuadilModalBonusOption2Selected({{ $muadil->id }}, {{ $mf2MinQtyMuadilModal ?? 0 }})"
-                                                    style="margin: 0;">
+                                                @if($muadil->mf1 && $muadil->mf2)
+                                                    <input class="form-check-input me-1" type="radio"
+                                                        name="muadil_modal_bonus_{{ $muadil->id }}"
+                                                        id="muadil_modal_bonus_{{ $muadil->id }}_2" value="2"
+                                                        data-min-qty="{{ $mf2MinQtyMuadilModal }}"
+                                                        onchange="onMuadilModalBonusOption2Selected({{ $muadil->id }}, {{ $mf2MinQtyMuadilModal }})"
+                                                        style="margin: 0;">
+                                                @endif
                                                 <label for="muadil_modal_bonus_{{ $muadil->id }}_2" style="cursor: pointer;">
                                                     <span class="badge bg-primary" style="font-size: 0.8rem;">{{ $muadil->mf2 }}</span>
                                                 </label>

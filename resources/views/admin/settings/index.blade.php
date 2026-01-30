@@ -7,15 +7,7 @@
         <div class="row mb-3">
             <div class="col-12">
                 <h2 class="mb-0">Site Ayarları</h2>
-            </div>
         </div>
-
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
 
         <div class="row">
             <div class="col-md-8">
@@ -44,9 +36,13 @@
                             <div class="mb-3">
                                 <label for="site_logo" class="form-label fw-bold">Site Logosu</label>
                                 @if($settings->logo_url)
-                                    <div class="mb-2">
+                                    <div class="mb-2 d-flex align-items-center gap-3">
                                         <img src="{{ $settings->logo_url }}" alt="Site Logo" class="img-thumbnail"
                                             style="max-height: 100px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="if(confirm('Logoyu silmek istediğinize emin misiniz?')) { document.getElementById('delete-logo-form').submit(); }">
+                                            <i class="fas fa-trash me-1"></i>Logoyu Sil
+                                        </button>
                                     </div>
                                 @endif
                                 <input type="file" class="form-control @error('site_logo') is-invalid @enderror"
@@ -166,6 +162,13 @@
                                 </button>
                             </div>
                         </form>
+
+                        <!-- Logo Silme Formu -->
+                        <form id="delete-logo-form" action="{{ route('admin.settings.deleteLogo') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </div>
                 </div>
             </div>
@@ -198,25 +201,25 @@
             const newRow = document.createElement('div');
             newRow.className = 'row mb-2 gonderim-row';
             newRow.innerHTML = `
-                    <div class="col-5">
-                        <input type="text" 
-                               class="form-control form-control-sm" 
-                               name="gonderim_sekilleri[${gonderimRowIndex}][aciklama]" 
-                               placeholder="Açıklama (Müşteriye gösterilecek)">
-                    </div>
-                    <div class="col-5">
-                        <input type="text" 
-                               class="form-control form-control-sm" 
-                               name="gonderim_sekilleri[${gonderimRowIndex}][erp_aciklama]" 
-                               placeholder="ERP Kodu (max 20 karakter)"
-                               maxlength="20">
-                    </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-sm btn-outline-danger w-100" onclick="removeGonderimRow(this)">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
+                            <div class="col-5">
+                                <input type="text" 
+                                       class="form-control form-control-sm" 
+                                       name="gonderim_sekilleri[${gonderimRowIndex}][aciklama]" 
+                                       placeholder="Açıklama (Müşteriye gösterilecek)">
+                            </div>
+                            <div class="col-5">
+                                <input type="text" 
+                                       class="form-control form-control-sm" 
+                                       name="gonderim_sekilleri[${gonderimRowIndex}][erp_aciklama]" 
+                                       placeholder="ERP Kodu (max 20 karakter)"
+                                       maxlength="20">
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-sm btn-outline-danger w-100" onclick="removeGonderimRow(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
             container.appendChild(newRow);
             gonderimRowIndex++;
         }

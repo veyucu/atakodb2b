@@ -36,14 +36,28 @@ class SiteSettingController extends Controller
 
         $settings = SiteSetting::getSettings();
 
-        // Logo yüklemesi
+        // Logo yüklemesi - direkt public/storage/settings/ klasörüne kaydet (symlink gerekmez)
         if ($request->hasFile('site_logo')) {
             // Eski logoyu sil
             if ($settings->site_logo) {
-                \Storage::disk('public')->delete($settings->site_logo);
+                $oldPath = public_path('storage/' . $settings->site_logo);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
             }
 
-            $data['site_logo'] = $request->file('site_logo')->store('settings', 'public');
+            // Klasör yoksa oluştur
+            $uploadPath = public_path('storage/settings');
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            // Dosyayı yükle
+            $file = $request->file('site_logo');
+            $filename = 'logo_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $filename);
+
+            $data['site_logo'] = 'settings/' . $filename;
         }
 
         // Gönderim şekillerini temizle (boş olanları kaldır)
@@ -58,5 +72,23 @@ class SiteSettingController extends Controller
         return redirect()->route('admin.settings.index')
             ->with('success', 'Site ayarları başarıyla güncellendi.');
     }
-}
 
+    /**
+     * Delete the site logo.
+     */
+    public function deleteLogo()
+    {
+        $settings = SiteSetting::getSettings();
+
+        if ($settings->site_logo) {
+            $logoPath = public_path('storage/' . $settings->site_logo);
+            if (file_exists($logoPath)) {
+                unlink($logoPath);
+            }
+            $settings->update(['site_logo' => null]);
+        }
+
+        return redirect()->route('admin.settings.index')
+            ->with('success', 'Logo başarıyla silindi.');
+    }
+}

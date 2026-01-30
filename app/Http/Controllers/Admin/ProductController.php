@@ -120,11 +120,13 @@ class ProductController extends Controller
             'urun_resmi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'is_active' => 'boolean',
             'ozel_liste' => 'boolean',
+            'mf2bolunemez' => 'boolean',
         ]);
 
         $data = $request->all();
         $data['is_active'] = $request->has('is_active');
         $data['ozel_liste'] = $request->has('ozel_liste');
+        $data['mf2bolunemez'] = $request->has('mf2bolunemez');
 
         if ($request->hasFile('urun_resmi')) {
             $data['urun_resmi'] = $request->file('urun_resmi')->store('products', 'public');
@@ -175,11 +177,13 @@ class ProductController extends Controller
             'urun_resmi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'is_active' => 'boolean',
             'ozel_liste' => 'boolean',
+            'mf2bolunemez' => 'boolean',
         ]);
 
         $data = $request->all();
         $data['is_active'] = $request->has('is_active');
         $data['ozel_liste'] = $request->has('ozel_liste');
+        $data['mf2bolunemez'] = $request->has('mf2bolunemez');
 
         if ($request->hasFile('urun_resmi')) {
             // Delete old image

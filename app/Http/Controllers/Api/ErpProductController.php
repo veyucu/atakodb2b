@@ -48,6 +48,9 @@ class ErpProductController extends Controller
             'NetFiyat1' => 'nullable|numeric',
             'Mf2' => 'nullable|string|max:255',
             'NetFiyat2' => 'nullable|numeric',
+            'IsActive' => 'nullable|boolean',
+            'OzelListe' => 'nullable|boolean',
+            'Mf2Bolunemez' => 'nullable|boolean',
         ]);
 
         // Ürün zaten var mı kontrol et
@@ -57,21 +60,24 @@ class ErpProductController extends Controller
             // Varsa güncelle
             $existingProduct->update([
                 'urun_adi' => $validated['UrunAdi'],
-                'barkod' => $validated['Barkod'] ?? $existingProduct->barkod,
-                'grup' => $validated['Grup'] ?? $existingProduct->grup,
-                'marka' => $validated['Marka'] ?? $existingProduct->marka,
-                'kdv_orani' => $validated['KdvOrani'] ?? $existingProduct->kdv_orani,
-                'muadil_kodu' => $validated['MuadilKodu'] ?? $existingProduct->muadil_kodu,
-                'etken_madde' => $validated['EtkenMadde'] ?? $existingProduct->etken_madde,
-                'satis_fiyati' => $validated['SatisFiyati'] ?? $existingProduct->satis_fiyati,
-                'eczaci_kari' => $validated['EczaciKari'] ?? $existingProduct->eczaci_kari,
-                'kurum_iskonto' => $validated['KurumIskonto'] ?? $existingProduct->kurum_iskonto,
-                'ticari_iskonto' => $validated['TicariIskonto'] ?? $existingProduct->ticari_iskonto,
-                'depocu_fiyati' => $validated['DepocuFiyati'] ?? $existingProduct->depocu_fiyati,
-                'mf1' => $validated['Mf1'] ?? $existingProduct->mf1,
-                'net_fiyat1' => $validated['NetFiyat1'] ?? $existingProduct->net_fiyat1,
-                'mf2' => $validated['Mf2'] ?? $existingProduct->mf2,
-                'net_fiyat2' => $validated['NetFiyat2'] ?? $existingProduct->net_fiyat2,
+                'barkod' => array_key_exists('Barkod', $validated) ? $validated['Barkod'] : $existingProduct->barkod,
+                'grup' => array_key_exists('Grup', $validated) ? $validated['Grup'] : $existingProduct->grup,
+                'marka' => array_key_exists('Marka', $validated) ? $validated['Marka'] : $existingProduct->marka,
+                'kdv_orani' => array_key_exists('KdvOrani', $validated) ? $validated['KdvOrani'] : $existingProduct->kdv_orani,
+                'muadil_kodu' => array_key_exists('MuadilKodu', $validated) ? $validated['MuadilKodu'] : $existingProduct->muadil_kodu,
+                'etken_madde' => array_key_exists('EtkenMadde', $validated) ? $validated['EtkenMadde'] : $existingProduct->etken_madde,
+                'satis_fiyati' => array_key_exists('SatisFiyati', $validated) ? $validated['SatisFiyati'] : $existingProduct->satis_fiyati,
+                'eczaci_kari' => array_key_exists('EczaciKari', $validated) ? $validated['EczaciKari'] : $existingProduct->eczaci_kari,
+                'kurum_iskonto' => array_key_exists('KurumIskonto', $validated) ? $validated['KurumIskonto'] : $existingProduct->kurum_iskonto,
+                'ticari_iskonto' => array_key_exists('TicariIskonto', $validated) ? $validated['TicariIskonto'] : $existingProduct->ticari_iskonto,
+                'depocu_fiyati' => array_key_exists('DepocuFiyati', $validated) ? $validated['DepocuFiyati'] : $existingProduct->depocu_fiyati,
+                'mf1' => array_key_exists('Mf1', $validated) ? $validated['Mf1'] : $existingProduct->mf1,
+                'net_fiyat1' => array_key_exists('NetFiyat1', $validated) ? $validated['NetFiyat1'] : $existingProduct->net_fiyat1,
+                'mf2' => array_key_exists('Mf2', $validated) ? $validated['Mf2'] : $existingProduct->mf2,
+                'net_fiyat2' => array_key_exists('NetFiyat2', $validated) ? $validated['NetFiyat2'] : $existingProduct->net_fiyat2,
+                'is_active' => array_key_exists('IsActive', $validated) ? $validated['IsActive'] : $existingProduct->is_active,
+                'ozel_liste' => array_key_exists('OzelListe', $validated) ? $validated['OzelListe'] : $existingProduct->ozel_liste,
+                'mf2bolunemez' => array_key_exists('Mf2Bolunemez', $validated) ? $validated['Mf2Bolunemez'] : $existingProduct->mf2bolunemez,
             ]);
 
             Log::info('ERP Product Updated (via store)', ['urun_kodu' => $validated['UrunKodu']]);
@@ -97,7 +103,9 @@ class ErpProductController extends Controller
             'net_fiyat1' => $validated['NetFiyat1'] ?? null,
             'mf2' => $validated['Mf2'] ?? null,
             'net_fiyat2' => $validated['NetFiyat2'] ?? null,
-            'is_active' => true,
+            'is_active' => $validated['IsActive'] ?? true,
+            'ozel_liste' => $validated['OzelListe'] ?? false,
+            'mf2bolunemez' => $validated['Mf2Bolunemez'] ?? false,
         ]);
 
         Log::info('ERP Product Created', ['urun_kodu' => $product->urun_kodu]);
@@ -133,6 +141,9 @@ class ErpProductController extends Controller
             'NetFiyat1' => 'nullable|numeric',
             'Mf2' => 'nullable|string|max:255',
             'NetFiyat2' => 'nullable|numeric',
+            'IsActive' => 'nullable|boolean',
+            'OzelListe' => 'nullable|boolean',
+            'Mf2Bolunemez' => 'nullable|boolean',
         ]);
 
         $product = Product::where('urun_kodu', $urunKodu)->first();
@@ -144,21 +155,24 @@ class ErpProductController extends Controller
 
         $product->update([
             'urun_adi' => $validated['UrunAdi'],
-            'barkod' => $validated['Barkod'] ?? $product->barkod,
-            'grup' => $validated['Grup'] ?? $product->grup,
-            'marka' => $validated['Marka'] ?? $product->marka,
-            'kdv_orani' => $validated['KdvOrani'] ?? $product->kdv_orani,
-            'muadil_kodu' => $validated['MuadilKodu'] ?? $product->muadil_kodu,
-            'etken_madde' => $validated['EtkenMadde'] ?? $product->etken_madde,
-            'satis_fiyati' => $validated['SatisFiyati'] ?? $product->satis_fiyati,
-            'eczaci_kari' => $validated['EczaciKari'] ?? $product->eczaci_kari,
-            'kurum_iskonto' => $validated['KurumIskonto'] ?? $product->kurum_iskonto,
-            'ticari_iskonto' => $validated['TicariIskonto'] ?? $product->ticari_iskonto,
-            'depocu_fiyati' => $validated['DepocuFiyati'] ?? $product->depocu_fiyati,
-            'mf1' => $validated['Mf1'] ?? $product->mf1,
-            'net_fiyat1' => $validated['NetFiyat1'] ?? $product->net_fiyat1,
-            'mf2' => $validated['Mf2'] ?? $product->mf2,
-            'net_fiyat2' => $validated['NetFiyat2'] ?? $product->net_fiyat2,
+            'barkod' => array_key_exists('Barkod', $validated) ? $validated['Barkod'] : $product->barkod,
+            'grup' => array_key_exists('Grup', $validated) ? $validated['Grup'] : $product->grup,
+            'marka' => array_key_exists('Marka', $validated) ? $validated['Marka'] : $product->marka,
+            'kdv_orani' => array_key_exists('KdvOrani', $validated) ? $validated['KdvOrani'] : $product->kdv_orani,
+            'muadil_kodu' => array_key_exists('MuadilKodu', $validated) ? $validated['MuadilKodu'] : $product->muadil_kodu,
+            'etken_madde' => array_key_exists('EtkenMadde', $validated) ? $validated['EtkenMadde'] : $product->etken_madde,
+            'satis_fiyati' => array_key_exists('SatisFiyati', $validated) ? $validated['SatisFiyati'] : $product->satis_fiyati,
+            'eczaci_kari' => array_key_exists('EczaciKari', $validated) ? $validated['EczaciKari'] : $product->eczaci_kari,
+            'kurum_iskonto' => array_key_exists('KurumIskonto', $validated) ? $validated['KurumIskonto'] : $product->kurum_iskonto,
+            'ticari_iskonto' => array_key_exists('TicariIskonto', $validated) ? $validated['TicariIskonto'] : $product->ticari_iskonto,
+            'depocu_fiyati' => array_key_exists('DepocuFiyati', $validated) ? $validated['DepocuFiyati'] : $product->depocu_fiyati,
+            'mf1' => array_key_exists('Mf1', $validated) ? $validated['Mf1'] : $product->mf1,
+            'net_fiyat1' => array_key_exists('NetFiyat1', $validated) ? $validated['NetFiyat1'] : $product->net_fiyat1,
+            'mf2' => array_key_exists('Mf2', $validated) ? $validated['Mf2'] : $product->mf2,
+            'net_fiyat2' => array_key_exists('NetFiyat2', $validated) ? $validated['NetFiyat2'] : $product->net_fiyat2,
+            'is_active' => array_key_exists('IsActive', $validated) ? $validated['IsActive'] : $product->is_active,
+            'ozel_liste' => array_key_exists('OzelListe', $validated) ? $validated['OzelListe'] : $product->ozel_liste,
+            'mf2bolunemez' => array_key_exists('Mf2Bolunemez', $validated) ? $validated['Mf2Bolunemez'] : $product->mf2bolunemez,
         ]);
 
         Log::info('ERP Product Updated', ['urun_kodu' => $urunKodu]);

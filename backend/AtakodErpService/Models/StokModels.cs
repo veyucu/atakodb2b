@@ -23,6 +23,9 @@ public class StokDto
     public string? MF2 { get; set; }
     public decimal? NET2 { get; set; }
     public string? ISLEM { get; set; }
+    public string? SATISA_KAPALI { get; set; }
+    public string? WEB_KAMPANYA { get; set; }
+    public string? MF2_BOLUNEMEZ { get; set; }
 }
 
 /// <summary>
@@ -47,6 +50,9 @@ public class WebProductDto
     public decimal? NetFiyat1 { get; set; }
     public string? Mf2 { get; set; }
     public decimal? NetFiyat2 { get; set; }
+    public bool IsActive { get; set; } = true;
+    public bool OzelListe { get; set; }
+    public bool Mf2Bolunemez { get; set; }
 }
 
 /// <summary>

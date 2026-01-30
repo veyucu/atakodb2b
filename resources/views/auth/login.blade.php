@@ -122,11 +122,12 @@
         }
 
         .logo {
-            width: 70px;
-            height: 70px;
+            width: 240px;
+            height: 90px;
+            padding: 10px 15px;
             margin: 0 auto 15px;
             background: white;
-            border-radius: 18px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,12 +136,13 @@
         }
 
         .logo:hover {
-            transform: scale(1.05) rotate(5deg);
+            transform: scale(1.05);
         }
 
         .logo img { 
-            max-width: 50px; 
-            max-height: 50px;
+            max-width: 100%; 
+            max-height: 100%;
+            object-fit: contain;
         }
         
         .logo i {
@@ -167,7 +169,7 @@
         }
 
         .login-body { 
-            padding: 28px; 
+            padding: 20px 28px 28px; 
             background: white; 
         }
 
@@ -195,6 +197,8 @@
             color: #94a3b8;
             font-size: 1rem;
             transition: color 0.3s;
+            z-index: 10;
+            pointer-events: none;
         }
 
         .form-control {
@@ -205,6 +209,7 @@
             font-size: 15px;
             background: #f8fafc;
             transition: all 0.3s;
+            position: relative;
         }
 
         .form-control:focus {
@@ -214,7 +219,7 @@
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
 
-        .form-control:focus + .input-icon {
+        .input-group:focus-within .input-icon {
             color: #667eea;
         }
 
@@ -349,6 +354,7 @@
         .contact-row {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -379,15 +385,16 @@
 
         @media (max-width: 576px) {
             body {
-                padding: 8px;
+                padding: 30px 8px 8px;
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
+                padding-bottom: 80px;
             }
 
             .login-container { 
-                max-width: 100%;
-                width: 100%;
+                max-width: 90%;
+                width: 90%;
                 padding: 0;
             }
             
@@ -401,15 +408,17 @@
             }
 
             .logo {
-                width: 55px;
-                height: 55px;
+                width: 200px;
+                height: 70px;
+                padding: 8px 12px;
+                margin-top: 10px;
                 margin-bottom: 10px;
-                border-radius: 14px;
+                border-radius: 12px;
             }
 
             .logo img {
-                max-width: 40px;
-                max-height: 40px;
+                max-width: 100%;
+                max-height: 100%;
             }
 
             .logo i {
@@ -507,9 +516,9 @@
             }
 
             .contact-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 7px;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
             }
 
             .floating-shape {
@@ -543,8 +552,9 @@
             }
 
             .logo {
-                width: 50px;
-                height: 50px;
+                width: 180px;
+                height: 60px;
+                padding: 6px 10px;
                 margin-bottom: 8px;
             }
 
@@ -589,7 +599,9 @@
                         <i class="fas fa-store"></i>
                     @endif
                 </div>
-                <h1 class="site-name">{{ $siteSettings->site_name ?? 'atakodb2b' }}</h1>
+                @if(!$siteSettings->logo_url)
+                    <h1 class="site-name">{{ $siteSettings->site_name ?? 'atakodb2b' }}</h1>
+                @endif
                 <p class="subtitle">Hesabınıza Giriş Yapın</p>
             </div>
 
@@ -607,17 +619,17 @@
                     <div class="form-group">
                         <label class="form-label">Kullanıcı Adı</label>
                         <div class="input-group">
+                            <i class="fas fa-user input-icon"></i>
                             <input type="text" class="form-control" name="username" 
                                    value="{{ old('username') }}" required autofocus>
-                            <i class="fas fa-user input-icon"></i>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Şifre</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="password" required>
                             <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                     </div>
 

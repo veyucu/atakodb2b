@@ -706,90 +706,164 @@
             }
 
             .home-list-view-table th {
-                padding: 0.6rem 0.3rem !important;
-                font-size: 0.75rem !important;
+                padding: 0.5rem 0.2rem !important;
+                font-size: 0.7rem !important;
                 white-space: nowrap;
                 vertical-align: middle !important;
             }
 
             .home-list-view-table td {
-                padding: 0.6rem 0.3rem !important;
-                font-size: 0.8rem !important;
+                padding: 0.5rem 0.2rem !important;
+                font-size: 0.75rem !important;
                 vertical-align: middle !important;
             }
 
             /* Ana sayfa - Ürün adı sütunu - 2. sütun */
             .home-list-view-table thead th:nth-child(2) {
-                width: 56% !important;
+                width: 48% !important;
                 text-align: left !important;
             }
 
             .home-list-view-table tbody td:nth-child(2) {
-                width: 56% !important;
+                width: 48% !important;
                 word-wrap: break-word;
                 white-space: normal;
-                line-height: 1.4;
-                padding: 0.6rem 0.4rem !important;
+                line-height: 1.3;
+                padding: 0.4rem 0.3rem !important;
                 text-align: left !important;
             }
 
             .home-list-view-table tbody td:nth-child(2) a {
-                font-size: 0.85rem;
-                display: inline;
+                font-size: 0.75rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
                 line-height: 1.3;
             }
 
             .home-list-view-table .badge.me-1 {
                 margin-right: 0.05rem !important;
+                font-size: 0.5rem !important;
+                padding: 0.1rem 0.15rem !important;
             }
 
             /* Ana sayfa - MF ve Fiyat birleşik - 6. sütun */
             .home-list-view-table thead th:nth-child(6) {
-                width: 16% !important;
-                text-align: center !important;
+                width: 22% !important;
+                text-align: right !important;
+                padding-right: 0.3rem !important;
             }
 
             .home-list-view-table tbody td:nth-child(6) {
-                width: 16% !important;
-                text-align: center !important;
-                padding: 0.5rem 0.2rem !important;
+                width: 22% !important;
+                text-align: right !important;
+                padding: 0.3rem 0.2rem 0.3rem 0 !important;
             }
 
             .home-list-view-table tbody td:nth-child(6) .mobile-price-mf {
-                line-height: 1.2;
+                line-height: 1.3;
+                text-align: right !important;
             }
 
-            .home-list-view-table tbody td:nth-child(6) .mobile-price-mf strong {
+            .home-list-view-table .mobile-mf-row {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 3px;
+                margin-bottom: 2px;
+            }
+
+            .home-list-view-table .mobile-mf-row:last-child {
+                margin-bottom: 0;
+            }
+
+            .home-list-view-table .mobile-mf-radio {
+                width: 11px !important;
+                height: 11px !important;
+                min-width: 11px !important;
+                margin: 0 !important;
+                flex-shrink: 0;
+            }
+
+            .home-list-view-table .mobile-mf-label {
+                display: flex;
+                align-items: center;
+                gap: 3px;
+                cursor: pointer;
+                white-space: nowrap;
+                margin: 0;
+            }
+
+            .home-list-view-table .mobile-mf-label .badge {
+                font-size: 0.55rem !important;
+                padding: 0.1rem 0.2rem !important;
+            }
+
+            .home-list-view-table .mobile-mf-label strong {
+                font-size: 0.7rem !important;
+                white-space: nowrap;
+            }
+
+            .home-list-view-table .mobile-single-price {
+                text-align: right;
+            }
+
+            .home-list-view-table .mobile-single-price strong {
+                color: #198754;
                 font-size: 0.75rem !important;
-                display: block;
+                white-space: nowrap;
             }
 
             /* Ana sayfa - Miktar ve Sepet birleşik - 7. sütun */
             .home-list-view-table thead th:nth-child(7) {
-                width: 28% !important;
-                text-align: center !important;
+                width: 30% !important;
+                text-align: right !important;
+                padding-right: 0.3rem !important;
             }
 
             .home-list-view-table tbody td:nth-child(7) {
-                width: 28% !important;
-                padding: 0.5rem 0.2rem !important;
-                text-align: center !important;
+                width: 30% !important;
+                padding: 0.3rem 0.15rem 0.3rem 0 !important;
+                text-align: right !important;
+            }
+
+            .home-list-view-table .qty-cart-container {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+                gap: 4px !important;
             }
 
             .home-list-view-table .input-group {
                 display: flex !important;
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
+                width: auto !important;
+                flex: 0 0 auto !important;
             }
 
             .home-list-view-table .input-group input {
-                max-width: 32px !important;
-                min-width: 32px !important;
-                flex: 0 0 32px !important;
+                max-width: 26px !important;
+                min-width: 26px !important;
+                flex: 0 0 26px !important;
+                font-size: 0.7rem !important;
+                padding: 0.15rem 0.05rem !important;
             }
 
             .home-list-view-table .input-group button {
                 flex: 0 0 auto !important;
+                padding: 0.15rem 0.25rem !important;
+                font-size: 0.55rem !important;
+            }
+
+            .home-list-view-table .mobile-cart-btn {
+                flex: 0 0 auto !important;
+            }
+
+            .home-list-view-table .mobile-cart-btn .btn {
+                padding: 0.2rem 0.35rem !important;
+                font-size: 0.65rem !important;
             }
         }
 
@@ -1134,493 +1208,526 @@
                                                             class="price-badge price-2">{{ number_format($topProduct->net_fiyat2, 2, ',', '.') }}
                                                             ₺</span>
                                                     @elseif(!$topProduct->net_fiyat1 && $topProduct->net_price)
-                                                                    <span
-                                                                        class="price-badge price-1">{{ number_format($topProduct->net_price, 2, ',', '.') }}
-                                                                        ₺</span>
-                                                                @endif
-                                                            </div>
-                                                            @if($topProduct->mf1)
-                                                                <div class="product-mf">
-                                                                    <span class="badge bg-success"
-                                                                        style="font-size: 0.65rem;">{{ $topProduct->mf1 }}</span>
-                                                                    @if($topProduct->mf2)
-                                                                        <span class="badge bg-primary"
-                                                                            style="font-size: 0.65rem;">{{ $topProduct->mf2 }}</span>
-                                                                    @endif
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                    @endforeach
-                                        </div>
-                                    </div>
-                        @else
-                                <div class="text-center text-muted py-4">
-                                    <i class="fas fa-chart-line fa-2x mb-2"></i>
-                                    <p class="mb-0">Henüz satış verisi yok</p>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Search and View Toggle -->
-            <div class="row mb-2">
-                <div class="col-md-7">
-                    <form action="{{ route('search') }}" method="GET" class="d-flex search-form-wrapper" id="searchForm"
-                        onsubmit="clearSearchAfterSubmit()">
-                        <div class="search-input-group">
-                            <input type="text" name="q" id="search-input" class="form-control form-control-sm me-2"
-                                style="padding: 0.375rem 0.75rem;" placeholder="Ürün ara..." value="{{ request('q') }}">
-                            <input type="hidden" name="view" value="{{ $viewType }}">
-                            <input type="hidden" name="stokta_olanlar" id="stokta_olanlar_hidden"
-                                value="{{ request('stokta_olanlar') ? '1' : '0' }}">
-                            <input type="hidden" name="kampanyali" id="kampanyali_hidden"
-                                value="{{ request('kampanyali') ? '1' : '0' }}">
-                            <button type="submit" class="btn btn-primary btn-sm search-button">
-                                <i class="fas fa-search"></i> Ara
-                            </button>
-                        </div>
-                        <div class="filter-checkboxes">
-                            <div class="form-check d-flex align-items-center filter-item">
-                                <input class="form-check-input" type="checkbox" id="stokta_olanlar_check" {{ request('stokta_olanlar') ? 'checked' : '' }} onchange="toggleStoktaOlanlar()">
-                                <label class="form-check-label ms-1 text-nowrap" for="stokta_olanlar_check"
-                                    style="font-size: 0.85rem;">
-                                    Stokta Olanlar
-                                </label>
-                            </div>
-                            <div class="form-check d-flex align-items-center filter-item">
-                                <input class="form-check-input" type="checkbox" id="kampanyali_check" {{ request('kampanyali') ? 'checked' : '' }} onchange="toggleKampanyali()" style="border-color: #f59e0b;">
-                                <label class="form-check-label ms-1 text-nowrap" for="kampanyali_check"
-                                    style="font-size: 0.85rem; color: #d97706; font-weight: 500;">
-                                    <i class="fas fa-tag me-1"></i>Kampanyalı
-                                </label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-5 text-end">
-                    <!-- Görünüm Seçimi -->
-                    <div class="btn-group" role="group">
-                        <a href="{{ request()->fullUrlWithQuery(['view' => 'catalog']) }}"
-                            class="btn btn-outline-primary btn-sm {{ $viewType === 'catalog' ? 'active' : '' }}"
-                            onclick="saveViewPreference('catalog')">
-                            <i class="fas fa-th"></i> Katalog
-                        </a>
-                        <a href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}"
-                            class="btn btn-outline-primary btn-sm {{ $viewType === 'list' ? 'active' : '' }}"
-                            onclick="saveViewPreference('list')">
-                            <i class="fas fa-bars"></i> Liste
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Products Section -->
-            @if($viewType === 'catalog')
-                <!-- Catalog View -->
-                <div class="row">
-                    @forelse($products as $product)
-                        <div class="col-lg-3 col-md-4 col-6 mb-3">
-                            <div class="card product-card h-100 {{ $product->ozel_liste ? 'campaign-product-card' : '' }}">
-                                <div class="position-relative">
-                                    <!-- Kampanyalı Ürün Rozeti -->
-                                    @if($product->ozel_liste)
-                                        <span class="badge position-absolute m-2"
-                                            style="z-index: 11; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 20px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);">
-                                            <i class="fas fa-tag me-1"></i>KAMPANYA
-                                        </span>
-                                    @endif
-
-                                    <!-- Ürün Kodu Sol Üst -->
-                                    <span class="badge position-absolute top-0 start-0 m-2"
-                                        style="z-index: 10; background: rgba(255,255,255,0.95); color: #495057; font-size: 0.75rem; padding: 0.3rem 0.5rem; border: 1px solid rgba(0,0,0,0.1); font-weight: 600;">
-                                        {{ $product->urun_kodu }}
-                                    </span>
-
-                                    <!-- Stok Göstergesi Sağ Üst -->
-                                    @if($product->bakiye > 0)
-                                        <span class="position-absolute top-0 end-0 m-2 badge" title="Stokta Var"
-                                            style="z-index: 10; background: #10b981; font-size: 0.65rem; padding: 0.25rem 0.4rem;">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                    @else
-                                        <span class="position-absolute top-0 end-0 m-2 badge" title="Stokta Yok"
-                                            style="z-index: 10; background: #ef4444; font-size: 0.65rem; padding: 0.25rem 0.4rem;">
-                                            <i class="fas fa-times"></i>
-                                        </span>
-                                    @endif
-
-                                    <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})">
-                                        @if($product->image_url)
-                                            <img src="{{ $product->image_url }}" class="card-img-top product-image"
-                                                alt="{{ $product->urun_adi }}" style="height: 200px; object-fit: cover; cursor: pointer;">
-                                        @else
-                                            <div class="d-flex align-items-center justify-content-center"
-                                                style="height: 200px; cursor: pointer; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border: 2px dashed #cbd5e0;">
-                                                <div class="text-center p-3">
-                                                    <i class="fas fa-camera text-secondary mb-2" style="font-size: 3rem; opacity: 0.5;"></i>
-                                                    <p class="text-secondary mb-0 fw-bold" style="font-size: 0.85rem;">Resim Hazırlanıyor
-                                                    </p>
+                                                        <span
+                                                            class="price-badge price-1">{{ number_format($topProduct->net_price, 2, ',', '.') }}
+                                                            ₺</span>
+                                                    @endif
                                                 </div>
+                                                @if($topProduct->mf1)
+                                                    <div class="product-mf">
+                                                        <span class="badge bg-success"
+                                                            style="font-size: 0.65rem;">{{ $topProduct->mf1 }}</span>
+                                                        @if($topProduct->mf2)
+                                                            <span class="badge bg-primary"
+                                                                style="font-size: 0.65rem;">{{ $topProduct->mf2 }}</span>
+                                                        @endif
+                                                    </div>
+                                                @endif
                                             </div>
-                                        @endif
-                                    </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <div class="text-center text-muted py-4">
+                                <i class="fas fa-chart-line fa-2x mb-2"></i>
+                                <p class="mb-0">Henüz satış verisi yok</p>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and View Toggle -->
+        <div class="row mb-2">
+            <div class="col-md-7">
+                <form action="{{ route('search') }}" method="GET" class="d-flex search-form-wrapper" id="searchForm"
+                    onsubmit="clearSearchAfterSubmit()">
+                    <div class="search-input-group">
+                        <div class="input-group" style="flex: 1;">
+                            <span class="input-group-text"
+                                style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); border: 2px solid #0d6efd; color: white;">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" name="q" id="search-input" class="form-control"
+                                style="border: 2px solid #0d6efd; border-left: none; font-size: 1rem; padding: 0.5rem 1rem; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.15);"
+                                placeholder="🔍 Ürün adı veya barkod ile ara..." value="{{ request('q') }}">
+                        </div>
+                        <input type="hidden" name="view" value="{{ $viewType }}">
+                        <input type="hidden" name="stokta_olanlar" id="stokta_olanlar_hidden"
+                            value="{{ request('stokta_olanlar') ? '1' : '0' }}">
+                        <input type="hidden" name="kampanyali" id="kampanyali_hidden"
+                            value="{{ request('kampanyali') ? '1' : '0' }}">
+                        <button type="submit" class="btn btn-primary search-button"
+                            style="font-size: 1rem; padding: 0.5rem 1.25rem; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);">
+                            <i class="fas fa-search me-1"></i> Ara
+                        </button>
+                    </div>
+                    <div class="filter-checkboxes">
+                        <div class="form-check d-flex align-items-center filter-item">
+                            <input class="form-check-input" type="checkbox" id="stokta_olanlar_check" {{ request('stokta_olanlar') ? 'checked' : '' }} onchange="toggleStoktaOlanlar()">
+                            <label class="form-check-label ms-1 text-nowrap" for="stokta_olanlar_check"
+                                style="font-size: 0.85rem;">
+                                Stokta Olanlar
+                            </label>
+                        </div>
+                        <div class="form-check d-flex align-items-center filter-item">
+                            <input class="form-check-input" type="checkbox" id="kampanyali_check" {{ request('kampanyali') ? 'checked' : '' }} onchange="toggleKampanyali()" style="border-color: #f59e0b;">
+                            <label class="form-check-label ms-1 text-nowrap" for="kampanyali_check"
+                                style="font-size: 0.85rem; color: #d97706; font-weight: 500;">
+                                <i class="fas fa-tag me-1"></i>Kampanyalı
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5 text-end">
+                <!-- Görünüm Seçimi -->
+                <div class="btn-group" role="group">
+                    <a href="{{ request()->fullUrlWithQuery(['view' => 'catalog']) }}"
+                        class="btn btn-outline-primary btn-sm {{ $viewType === 'catalog' ? 'active' : '' }}"
+                        onclick="saveViewPreference('catalog')">
+                        <i class="fas fa-th"></i> Katalog
+                    </a>
+                    <a href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}"
+                        class="btn btn-outline-primary btn-sm {{ $viewType === 'list' ? 'active' : '' }}"
+                        onclick="saveViewPreference('list')">
+                        <i class="fas fa-bars"></i> Liste
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        @if($viewType === 'catalog')
+            <!-- Catalog View -->
+            <div class="row">
+                @forelse($products as $product)
+                    <div class="col-lg-3 col-md-4 col-6 mb-3">
+                        <div class="card product-card h-100 {{ $product->ozel_liste ? 'campaign-product-card' : '' }}">
+                            <div class="position-relative">
+                                <!-- Kampanyalı Ürün Rozeti -->
+                                @if($product->ozel_liste)
+                                    <span class="badge position-absolute m-2"
+                                        style="z-index: 11; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 20px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);">
+                                        <i class="fas fa-tag me-1"></i>KAMPANYA
+                                    </span>
+                                @endif
+
+                                <!-- Ürün Kodu Sol Üst -->
+                                <span class="badge position-absolute top-0 start-0 m-2"
+                                    style="z-index: 10; background: rgba(255,255,255,0.95); color: #495057; font-size: 0.75rem; padding: 0.3rem 0.5rem; border: 1px solid rgba(0,0,0,0.1); font-weight: 600;">
+                                    {{ $product->urun_kodu }}
+                                </span>
+
+                                <!-- Stok Göstergesi Sağ Üst -->
+                                @if($product->bakiye > 0)
+                                    <span class="position-absolute top-0 end-0 m-2 badge" title="Stokta Var"
+                                        style="z-index: 10; background: #10b981; font-size: 0.65rem; padding: 0.25rem 0.4rem;">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                @else
+                                    <span class="position-absolute top-0 end-0 m-2 badge" title="Stokta Yok"
+                                        style="z-index: 10; background: #ef4444; font-size: 0.65rem; padding: 0.25rem 0.4rem;">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                @endif
+
+                                <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})">
+                                    @if($product->image_url)
+                                        <img src="{{ $product->image_url }}" class="card-img-top product-image"
+                                            alt="{{ $product->urun_adi }}" style="height: 200px; object-fit: cover; cursor: pointer;">
+                                    @else
+                                        <div class="d-flex align-items-center justify-content-center"
+                                            style="height: 200px; cursor: pointer; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border: 2px dashed #cbd5e0;">
+                                            <div class="text-center p-3">
+                                                <i class="fas fa-camera text-secondary mb-2" style="font-size: 3rem; opacity: 0.5;"></i>
+                                                <p class="text-secondary mb-0 fw-bold" style="font-size: 0.85rem;">Resim Hazırlanıyor
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </a>
+                            </div>
+
+                            <div class="card-body d-flex flex-column" style="padding: 0.75rem 0.875rem 0.875rem;">
+                                <div class="mb-auto">
+                                    <h6 class="mb-2"
+                                        style="font-size: 0.9rem; font-weight: 600; line-height: 1.3; min-height: 38px; color: #212529;">
+                                        <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})"
+                                            class="text-decoration-none text-dark">
+                                            {{ $product->urun_adi }}
+                                        </a>
+                                    </h6>
                                 </div>
 
-                                <div class="card-body d-flex flex-column" style="padding: 0.75rem 0.875rem 0.875rem;">
-                                    <div class="mb-auto">
-                                        <h6 class="mb-2"
-                                            style="font-size: 0.9rem; font-weight: 600; line-height: 1.3; min-height: 38px; color: #212529;">
-                                            <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})"
-                                                class="text-decoration-none text-dark">
-                                                {{ $product->urun_adi }}
-                                            </a>
-                                        </h6>
-                                    </div>
-
-                                    <div class="mb-1 p-2" style="background: #f8f9fa; border-radius: 6px;">
-                                        @if($product->mf1 || $product->mf2)
-                                            <!-- Header Row -->
-                                            <div class="d-flex mb-1" style="padding-left: 1.8rem;">
-                                                <small class="text-muted fw-bold flex-grow-1" style="font-size: 0.6rem;">MAL FAZLASI</small>
-                                                <small class="text-muted fw-bold" style="font-size: 0.6rem;">NET FİYAT</small>
-                                            </div>
-                                            @php
-                                                // mf2'den minimum miktarı parse et (örn: "20+10" -> 20)
-                                                $mf2MinQty = 0;
-                                                if ($product->mf2 && str_contains($product->mf2, '+')) {
-                                                    $parts = explode('+', $product->mf2);
-                                                    $mf2MinQty = (int) trim($parts[0]);
-                                                }
-                                            @endphp
-                                            <!-- Opsiyon 1 -->
-                                            @if($product->mf1)
-                                                <div class="mb-1 py-1 px-2 rounded d-flex align-items-center" style="background: white;">
+                                <div class="mb-1 p-2" style="background: #f8f9fa; border-radius: 6px;">
+                                    @if($product->mf1 || $product->mf2)
+                                        <!-- Header Row -->
+                                        <div class="d-flex mb-1" style="padding-left: 1.8rem;">
+                                            <small class="text-muted fw-bold flex-grow-1" style="font-size: 0.6rem;">MAL FAZLASI</small>
+                                            <small class="text-muted fw-bold" style="font-size: 0.6rem;">NET FİYAT</small>
+                                        </div>
+                                        @php
+                                            // mf2'den minimum miktarı parse et (örn: "20+10" -> 20+10=30)
+                                            $mf2MinQty = 0;
+                                            if ($product->mf2 && str_contains($product->mf2, '+')) {
+                                                $parts = explode('+', $product->mf2);
+                                                $mf2MinQty = (int) trim($parts[0]) + (int) trim($parts[1]);
+                                            }
+                                        @endphp
+                                        <!-- Opsiyon 1 -->
+                                        @if($product->mf1)
+                                            <div class="mb-1 py-1 px-2 rounded d-flex align-items-center" style="background: white;">
+                                                @if($product->mf1 && $product->mf2)
                                                     <input class="form-check-input bonus-radio" type="radio"
                                                         name="bonus_option_{{ $product->id }}" id="bonus_{{ $product->id }}_1" value="1" checked
                                                         data-product-id="{{ $product->id }}" data-min-qty="0"
                                                         onchange="onBonusOption1Selected({{ $product->id }})"
                                                         style="margin: 0 0.4rem 0 0; flex-shrink: 0;">
-                                                    <label class="d-flex justify-content-between align-items-center flex-grow-1"
-                                                        for="bonus_{{ $product->id }}_1" style="font-size: 0.75rem; cursor: pointer;">
-                                                        <span class="badge bg-success">{{ $product->mf1 }}</span>
-                                                        <strong
-                                                            class="text-success">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : '-' }}</strong>
-                                                    </label>
-                                                </div>
-                                            @endif
-                                            <!-- Opsiyon 2 -->
-                                            @if($product->mf2)
-                                                <div class="py-1 px-2 rounded d-flex align-items-center" style="background: white;">
-                                                    <input class="form-check-input bonus-radio" type="radio"
-                                                        name="bonus_option_{{ $product->id }}" id="bonus_{{ $product->id }}_2" value="2" {{ !$product->mf1 ? 'checked' : '' }} data-product-id="{{ $product->id }}"
-                                                        data-min-qty="{{ $mf2MinQty }}"
-                                                        onchange="onBonusOption2Selected({{ $product->id }}, {{ $mf2MinQty }})"
-                                                        style="margin: 0 0.4rem 0 0; flex-shrink: 0;">
-                                                    <label class="d-flex justify-content-between align-items-center flex-grow-1"
-                                                        for="bonus_{{ $product->id }}_2" style="font-size: 0.75rem; cursor: pointer;">
-                                                        <span class="badge bg-info">{{ $product->mf2 }}</span>
-                                                        <strong
-                                                            class="text-info">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : '-' }}</strong>
-                                                    </label>
-                                                </div>
-                                            @endif
-                                        @else
-                                            <div class="row g-0 text-center">
-                                                <div class="col-6">
-                                                    <small class="d-block text-muted mb-1" style="font-size: 0.65rem; font-weight: 600;">MAL
-                                                        FAZLASI</small>
-                                                    <strong class="d-block" style="font-size: 1.1rem; color: #9ca3af;">-</strong>
-                                                </div>
-                                                <div class="col-6">
-                                                    <small class="d-block text-success fw-bold mb-1" style="font-size: 0.65rem;">NET
-                                                        FİYAT</small>
-                                                    <strong class="d-block text-success"
-                                                        style="font-size: 1.2rem;">{{ number_format($product->net_price, 2, ',', '.') }}
-                                                        ₺</strong>
-                                                </div>
+                                                @endif
+                                                <label class="d-flex justify-content-between align-items-center flex-grow-1"
+                                                    for="bonus_{{ $product->id }}_1" style="font-size: 0.75rem; cursor: pointer;">
+                                                    <span class="badge bg-success">{{ $product->mf1 }}</span>
+                                                    <strong
+                                                        class="text-success">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : '-' }}</strong>
+                                                </label>
                                             </div>
                                         @endif
-                                    </div>
-
-                                    <div class="d-flex gap-1">
-                                        <div class="input-group input-group-sm flex-grow-1">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="decreaseQuantity({{ $product->id }})">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <input type="number" id="qty-{{ $product->id }}"
-                                                class="form-control text-center fw-bold qty-input" value="0" min="0"
-                                                style="font-size: 0.9rem;" data-product-id="{{ $product->id }}"
-                                                oninput="checkBonusOptionOnQtyChange({{ $product->id }})">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="increaseQuantity({{ $product->id }})">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
+                                        <!-- Opsiyon 2 -->
+                                        @if($product->mf2)
+                                            <div class="py-1 px-2 rounded d-flex align-items-center" style="background: white;">
+                                                @if($product->mf1 && $product->mf2)
+                                                    <input class="form-check-input bonus-radio" type="radio"
+                                                        name="bonus_option_{{ $product->id }}" id="bonus_{{ $product->id }}_2" value="2"
+                                                        data-product-id="{{ $product->id }}" data-min-qty="{{ $mf2MinQty }}"
+                                                        onchange="onBonusOption2Selected({{ $product->id }}, {{ $mf2MinQty }})"
+                                                        style="margin: 0 0.4rem 0 0; flex-shrink: 0;">
+                                                @endif
+                                                <label class="d-flex justify-content-between align-items-center flex-grow-1"
+                                                    for="bonus_{{ $product->id }}_2" style="font-size: 0.75rem; cursor: pointer;">
+                                                    <span class="badge bg-info">{{ $product->mf2 }}</span>
+                                                    <strong
+                                                        class="text-info">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : '-' }}</strong>
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @else
+                                        <div class="row g-0 text-center">
+                                            <div class="col-6">
+                                                <small class="d-block text-muted mb-1" style="font-size: 0.65rem; font-weight: 600;">MAL
+                                                    FAZLASI</small>
+                                                <strong class="d-block" style="font-size: 1.1rem; color: #9ca3af;">-</strong>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="d-block text-success fw-bold mb-1" style="font-size: 0.65rem;">NET
+                                                    FİYAT</small>
+                                                <strong class="d-block text-success"
+                                                    style="font-size: 1.2rem;">{{ number_format($product->net_price, 2, ',', '.') }}
+                                                    ₺</strong>
+                                            </div>
                                         </div>
-                                        <button type="button" class="btn btn-success btn-sm" id="add-btn-{{ $product->id }}"
-                                            onclick="addProductToCart({{ $product->id }})" title="Sepete Ekle" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" style="padding: 0.25rem 0.6rem;">
-                                            <i class="fas fa-cart-plus"></i>
+                                    @endif
+                                </div>
+
+                                <div class="d-flex gap-1">
+                                    <div class="input-group input-group-sm flex-grow-1">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="decreaseQuantity({{ $product->id }})">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" id="qty-{{ $product->id }}"
+                                            class="form-control text-center fw-bold qty-input" value="0" min="0"
+                                            style="font-size: 0.9rem;" data-product-id="{{ $product->id }}"
+                                            data-mf2bolunemez="{{ $product->mf2bolunemez ? '1' : '0' }}"
+                                            data-mf2-step="{{ $mf2MinQty }}"
+                                            oninput="checkBonusOptionOnQtyChange({{ $product->id }})"
+                                            onblur="roundMf2Quantity({{ $product->id }})">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="increaseQuantity({{ $product->id }})">
+                                            <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
+                                    <button type="button" class="btn btn-success btn-sm" id="add-btn-{{ $product->id }}"
+                                        onclick="addProductToCart({{ $product->id }})" title="Sepete Ekle" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" style="padding: 0.25rem 0.6rem;">
+                                        <i class="fas fa-cart-plus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    @empty
-                        <div class="col-12">
-                            <div class="alert alert-info text-center">
-                                <i class="fas fa-info-circle"></i> Ürün bulunamadı.
-                            </div>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <i class="fas fa-info-circle"></i> Ürün bulunamadı.
                         </div>
-                    @endforelse
-                </div>
-            @else
-                <!-- List View -->
-                <div class="table-responsive" style="border-radius: 8px; overflow: hidden;">
-                    <table class="table table-hover list-view-table home-list-view-table mb-0">
-                        <thead>
-                            <tr>
-                                <th class="hide-on-mobile text-center" style="width: 100px;">Ürün Kodu</th>
-                                <th>Ürün Adı</th>
-                                <th class="text-center hide-on-mobile" style="width: 90px;">Perakende Fiyatı</th>
-                                <th class="text-center hide-on-mobile" style="width: 90px;">Depocu Fiyatı</th>
-                                <th class="text-center hide-on-mobile" style="width: 80px;">Mal Fazlası</th>
-                                <th class="text-center mobile-combined-cell" style="width: 100px;"><span class="hide-on-mobile">KDV
-                                        Dahil Net Fiyat</span><span class="show-on-mobile">Fiyat</span></th>
-                                <th class="text-center mobile-qty-cart" style="width: 150px;"><span
-                                        class="hide-on-mobile">Miktar</span><span class="show-on-mobile">Miktar / Sepet</span></th>
-                                <th class="hide-on-mobile" style="width: 60px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($products as $product)
-                                <tr id="product-row-{{ $product->id }}"
-                                    class="{{ $product->ozel_liste ? 'campaign-product-row' : '' }}">
-                                    <td class="text-center hide-on-mobile">
-                                        @if($product->ozel_liste)
-                                            <span class="badge"
-                                                style="background: linear-gradient(135deg, #f59e0b, #d97706); font-size: 0.85rem; font-weight: 500;">
-                                                {{ $product->urun_kodu }}
+                    </div>
+                @endforelse
+            </div>
+        @else
+            <!-- List View -->
+            <div class="table-responsive" style="border-radius: 8px; overflow: hidden;">
+                <table class="table table-hover list-view-table home-list-view-table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="hide-on-mobile text-center" style="width: 100px;">Ürün Kodu</th>
+                            <th>Ürün Adı</th>
+                            <th class="text-center hide-on-mobile" style="width: 90px;">Perakende Fiyatı</th>
+                            <th class="text-center hide-on-mobile" style="width: 90px;">Depocu Fiyatı</th>
+                            <th class="text-center hide-on-mobile" style="width: 80px;">Mal Fazlası</th>
+                            <th class="text-center mobile-combined-cell" style="width: 100px;"><span class="hide-on-mobile">KDV
+                                    Dahil Net Fiyat</span><span class="show-on-mobile">Fiyat</span></th>
+                            <th class="text-center mobile-qty-cart" style="width: 150px;"><span
+                                    class="hide-on-mobile">Miktar</span><span class="show-on-mobile">Miktar / Sepet</span></th>
+                            <th class="hide-on-mobile" style="width: 60px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($products as $product)
+                            <tr id="product-row-{{ $product->id }}"
+                                class="{{ $product->ozel_liste ? 'campaign-product-row' : '' }}">
+                                <td class="text-center hide-on-mobile">
+                                    @if($product->ozel_liste)
+                                        <span class="badge"
+                                            style="background: linear-gradient(135deg, #f59e0b, #d97706); font-size: 0.85rem; font-weight: 500;">
+                                            {{ $product->urun_kodu }}
+                                        </span>
+                                    @else
+                                        <span class="badge bg-light text-dark border" style="font-size: 0.85rem; font-weight: 500;">
+                                            {{ $product->urun_kodu }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})"
+                                        class="text-decoration-none">
+                                        @if($product->bakiye > 0)
+                                            <span class="badge me-1" title="Stokta Var"
+                                                style="background: #10b981; font-size: 0.6rem; padding: 0.2rem 0.35rem;">
+                                                <i class="fas fa-check"></i>
                                             </span>
                                         @else
-                                            <span class="badge bg-light text-dark border" style="font-size: 0.85rem; font-weight: 500;">
-                                                {{ $product->urun_kodu }}
+                                            <span class="badge me-1" title="Stokta Yok"
+                                                style="background: #ef4444; font-size: 0.6rem; padding: 0.2rem 0.35rem;">
+                                                <i class="fas fa-times"></i>
                                             </span>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="showProductModal({{ $product->id }})"
-                                            class="text-decoration-none">
-                                            @if($product->bakiye > 0)
-                                                <span class="badge me-1" title="Stokta Var"
-                                                    style="background: #10b981; font-size: 0.6rem; padding: 0.2rem 0.35rem;">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
-                                            @else
-                                                <span class="badge me-1" title="Stokta Yok"
-                                                    style="background: #ef4444; font-size: 0.6rem; padding: 0.2rem 0.35rem;">
-                                                    <i class="fas fa-times"></i>
-                                                </span>
-                                            @endif
-                                            @if($product->hasImage())
-                                                <span class="product-name-with-image desktop-only-hover"
-                                                    onmouseenter="showImagePreview(event, '{{ $product->image_url }}')"
-                                                    onmouseleave="hideImagePreview()" style="cursor: pointer;">
-                                                    {{ $product->urun_adi }}
-                                                </span>
-                                            @else
+                                        @if($product->hasImage())
+                                            <span class="product-name-with-image desktop-only-hover"
+                                                onmouseenter="showImagePreview(event, '{{ $product->image_url }}')"
+                                                onmouseleave="hideImagePreview()" style="cursor: pointer;">
                                                 {{ $product->urun_adi }}
-                                            @endif
-                                        </a>
-                                        @if($product->muadil_kodu)
-                                            @php
-                                                $muadilCount = \App\Models\Product::where('muadil_kodu', $product->muadil_kodu)
-                                                    ->where('is_active', true)
-                                                    ->where('id', '!=', $product->id)
-                                                    ->count();
-                                            @endphp
-                                            @if($muadilCount > 0)
-                                                <i class="fas fa-sitemap muadil-icon hide-on-mobile"
-                                                    onclick="toggleMuadilProducts({{ $product->id }}, '{{ $product->muadil_kodu }}')"
-                                                    title="Muadil Ürünler ({{ $muadilCount }})"
-                                                    style="cursor: pointer; color: #0d6efd; margin-left: 8px;">
-                                                </i>
-                                            @endif
-                                        @endif
-                                    </td>
-                                    <td class="text-end hide-on-mobile">
-                                        <span class="text-muted">{{ number_format($product->satis_fiyati, 2, ',', '.') }} ₺</span>
-                                    </td>
-                                    <td class="text-end hide-on-mobile">
-                                        @if($product->depocu_fiyati)
-                                            <span class="text-muted">{{ number_format($product->depocu_fiyati, 2, ',', '.') }} ₺</span>
+                                            </span>
                                         @else
-                                            <span class="text-muted">-</span>
+                                            {{ $product->urun_adi }}
                                         @endif
-                                    </td>
-                                    <td class="text-center hide-on-mobile">
+                                    </a>
+                                    @if($product->muadil_kodu)
                                         @php
-                                            // mf2'den minimum miktarı parse et (örn: "20+10" -> 20)
-                                            $mf2MinQtyList = 0;
-                                            if ($product->mf2 && str_contains($product->mf2, '+')) {
-                                                $partsL = explode('+', $product->mf2);
-                                                $mf2MinQtyList = (int) trim($partsL[0]);
-                                            }
+                                            $muadilCount = \App\Models\Product::where('muadil_kodu', $product->muadil_kodu)
+                                                ->where('is_active', true)
+                                                ->where('id', '!=', $product->id)
+                                                ->count();
                                         @endphp
-                                        @if($product->mf1 || $product->mf2)
-                                            <div style="font-size: 0.8rem;">
-                                                @if($product->mf1)
-                                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                        @if($muadilCount > 0)
+                                            <i class="fas fa-sitemap muadil-icon hide-on-mobile"
+                                                onclick="toggleMuadilProducts({{ $product->id }}, '{{ $product->muadil_kodu }}')"
+                                                title="Muadil Ürünler ({{ $muadilCount }})"
+                                                style="cursor: pointer; color: #0d6efd; margin-left: 8px;">
+                                            </i>
+                                        @endif
+                                    @endif
+                                </td>
+                                <td class="text-end hide-on-mobile">
+                                    <span class="text-muted">{{ number_format($product->satis_fiyati, 2, ',', '.') }} ₺</span>
+                                </td>
+                                <td class="text-end hide-on-mobile">
+                                    @if($product->depocu_fiyati)
+                                        <span class="text-muted">{{ number_format($product->depocu_fiyati, 2, ',', '.') }} ₺</span>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
+                                <td class="text-center hide-on-mobile">
+                                    @php
+                                        // mf2'den minimum miktarı parse et (örn: "20+10" -> 20+10=30)
+                                        $mf2MinQtyList = 0;
+                                        if ($product->mf2 && str_contains($product->mf2, '+')) {
+                                            $partsL = explode('+', $product->mf2);
+                                            $mf2MinQtyList = (int) trim($partsL[0]) + (int) trim($partsL[1]);
+                                        }
+                                    @endphp
+                                    @if($product->mf1 || $product->mf2)
+                                        <div style="font-size: 0.8rem;">
+                                            @if($product->mf1)
+                                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                                    @if($product->mf1 && $product->mf2)
                                                         <input class="form-check-input me-1" type="radio"
                                                             name="bonus_option_list_{{ $product->id }}" id="bonus_list_{{ $product->id }}_1"
                                                             value="1" checked data-product-id="{{ $product->id }}" data-min-qty="0"
                                                             onchange="onBonusOption1SelectedList({{ $product->id }})" style="margin: 0;">
-                                                        <label for="bonus_list_{{ $product->id }}_1" style="cursor: pointer;">
-                                                            <span class="badge bg-success"
-                                                                style="font-size: 0.75rem;">{{ $product->mf1 }}</span>
-                                                        </label>
-                                                    </div>
-                                                @endif
-                                                @if($product->mf2)
-                                                    <div class="d-flex align-items-center justify-content-center">
-                                                        <input class="form-check-input me-1" type="radio"
-                                                            name="bonus_option_list_{{ $product->id }}" id="bonus_list_{{ $product->id }}_2"
-                                                            value="2" {{ !$product->mf1 ? 'checked' : '' }} data-product-id="{{ $product->id }}"
-                                                            data-min-qty="{{ $mf2MinQtyList }}"
-                                                            onchange="onBonusOption2SelectedList({{ $product->id }}, {{ $mf2MinQtyList }})"
-                                                            style="margin: 0;">
-                                                        <label for="bonus_list_{{ $product->id }}_2" style="cursor: pointer;">
-                                                            <span class="badge bg-primary"
-                                                                style="font-size: 0.75rem;">{{ $product->mf2 }}</span>
-                                                        </label>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @else
-                                            <span class="text-muted">-</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-end mobile-combined-cell">
-                                        @if($product->mf1 || $product->mf2)
-                                            <div class="desktop-price" style="font-size: 0.85rem;">
-                                                @if($product->mf1)
-                                                    <div class="mb-1">
-                                                        <strong
-                                                            class="text-success">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : '-' }}</strong>
-                                                    </div>
-                                                @endif
-                                                @if($product->mf2)
-                                                    <div>
-                                                        <strong
-                                                            class="text-primary">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : '-' }}</strong>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div class="desktop-price">
-                                                <strong
-                                                    style="color: #198754; font-size: 1rem;">{{ number_format($product->net_price, 2, ',', '.') }}
-                                                    ₺</strong>
-                                            </div>
-                                        @endif
-                                        <div class="mobile-price-mf">
-                                            @if($product->mf1)
-                                                <div style="font-size: 0.75rem; color: #666; margin-bottom: 2px;">
-                                                    <span class="badge bg-success"
-                                                        style="font-size: 0.7rem; padding: 0.2rem 0.35rem;">{{ $product->mf1 }}</span>
-                                                    <strong
-                                                        class="text-success ms-1">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : '-' }}</strong>
+                                                    @endif
+                                                    <label for="bonus_list_{{ $product->id }}_1" style="cursor: pointer;">
+                                                        <span class="badge bg-success"
+                                                            style="font-size: 0.75rem;">{{ $product->mf1 }}</span>
+                                                    </label>
                                                 </div>
                                             @endif
                                             @if($product->mf2)
-                                                <div style="font-size: 0.75rem; color: #666;">
-                                                    <span class="badge bg-primary"
-                                                        style="font-size: 0.7rem; padding: 0.2rem 0.35rem;">{{ $product->mf2 }}</span>
-                                                    <strong
-                                                        class="text-primary ms-1">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : '-' }}</strong>
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    @if($product->mf1 && $product->mf2)
+                                                        <input class="form-check-input me-1" type="radio"
+                                                            name="bonus_option_list_{{ $product->id }}" id="bonus_list_{{ $product->id }}_2"
+                                                            value="2" data-product-id="{{ $product->id }}" data-min-qty="{{ $mf2MinQtyList }}"
+                                                            onchange="onBonusOption2SelectedList({{ $product->id }}, {{ $mf2MinQtyList }})"
+                                                            style="margin: 0;">
+                                                    @endif
+                                                    <label for="bonus_list_{{ $product->id }}_2" style="cursor: pointer;">
+                                                        <span class="badge bg-primary"
+                                                            style="font-size: 0.75rem;">{{ $product->mf2 }}</span>
+                                                    </label>
                                                 </div>
                                             @endif
-                                            @if(!$product->mf1 && !$product->mf2)
+                                        </div>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
+                                <td class="text-end mobile-combined-cell">
+                                    @if($product->mf1 || $product->mf2)
+                                        <div class="desktop-price" style="font-size: 0.85rem;">
+                                            @if($product->mf1)
+                                                <div class="mb-1">
+                                                    <strong
+                                                        class="text-success">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . ' ₺' : '-' }}</strong>
+                                                </div>
+                                            @endif
+                                            @if($product->mf2)
                                                 <div>
                                                     <strong
-                                                        style="color: #198754; font-size: 0.85rem;">{{ number_format($product->net_price, 2, ',', '.') }}
-                                                        ₺</strong>
+                                                        class="text-primary">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . ' ₺' : '-' }}</strong>
                                                 </div>
                                             @endif
                                         </div>
-                                    </td>
-                                    <td class="mobile-qty-cart-cell">
-                                        <div class="qty-cart-container">
-                                            <div class="input-group input-group-sm">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    onclick="decreaseQuantityList({{ $product->id }})">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
-                                                <input type="number" id="qty-list-{{ $product->id }}" class="form-control text-center"
-                                                    value="0" min="0" placeholder="Adet"
-                                                    oninput="checkBonusOptionOnQtyChangeList({{ $product->id }})"
-                                                    onkeypress="if(event.key === 'Enter' && this.value > 0) { addProductToCartList({{ $product->id }}); }">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    onclick="increaseQuantityList({{ $product->id }})">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                            </div>
-                                            <div class="mobile-cart-btn">
-                                                <button type="button" class="btn btn-success btn-sm"
-                                                    onclick="addProductToCartList({{ $product->id }})" title="Sepete Ekle"
-                                                    style="padding: 0.28rem 0.38rem; font-size: 0.75rem;">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
+                                    @else
+                                        <div class="desktop-price">
+                                            <strong
+                                                style="color: #198754; font-size: 1rem;">{{ number_format($product->net_price, 2, ',', '.') }}
+                                                ₺</strong>
                                         </div>
-                                    </td>
-                                    <td class="mobile-qty-cart-cell">
-                                        <div class="desktop-cart">
-                                            <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"
-                                                id="add-btn-list-{{ $product->id }}" onclick="addProductToCartList({{ $product->id }})"
-                                                title="Sepete Ekle" data-bs-toggle="tooltip" data-bs-placement="top">
+                                    @endif
+                                    <div class="mobile-price-mf">
+                                        @if($product->mf1)
+                                            <div class="mobile-mf-row">
+                                                @if($product->mf1 && $product->mf2)
+                                                    <input class="form-check-input mobile-mf-radio" type="radio"
+                                                        name="bonus_option_mobile_{{ $product->id }}" id="bonus_mobile_{{ $product->id }}_1"
+                                                        value="1" checked data-product-id="{{ $product->id }}" data-min-qty="0"
+                                                        onchange="onBonusOption1SelectedList({{ $product->id }})">
+                                                @endif
+                                                <label for="bonus_mobile_{{ $product->id }}_1" class="mobile-mf-label">
+                                                    <span class="badge bg-success">{{ $product->mf1 }}</span>
+                                                    <strong
+                                                        class="text-success">{{ $product->net_fiyat1 ? number_format($product->net_fiyat1, 2, ',', '.') . '₺' : '-' }}</strong>
+                                                </label>
+                                            </div>
+                                        @endif
+                                        @if($product->mf2)
+                                            <div class="mobile-mf-row">
+                                                @if($product->mf1 && $product->mf2)
+                                                    <input class="form-check-input mobile-mf-radio" type="radio"
+                                                        name="bonus_option_mobile_{{ $product->id }}" id="bonus_mobile_{{ $product->id }}_2"
+                                                        value="2" data-product-id="{{ $product->id }}" data-min-qty="{{ $mf2MinQtyList }}"
+                                                        onchange="onBonusOption2SelectedList({{ $product->id }}, {{ $mf2MinQtyList }})">
+                                                @endif
+                                                <label for="bonus_mobile_{{ $product->id }}_2" class="mobile-mf-label">
+                                                    <span class="badge bg-primary">{{ $product->mf2 }}</span>
+                                                    <strong
+                                                        class="text-primary">{{ $product->net_fiyat2 ? number_format($product->net_fiyat2, 2, ',', '.') . '₺' : '-' }}</strong>
+                                                </label>
+                                            </div>
+                                        @endif
+                                        @if(!$product->mf1 && !$product->mf2)
+                                            <div class="mobile-single-price">
+                                                <strong>{{ number_format($product->net_price, 2, ',', '.') }}₺</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="mobile-qty-cart-cell">
+                                    <div class="qty-cart-container">
+                                        <div class="input-group input-group-sm">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="decreaseQuantityList({{ $product->id }})">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="number" id="qty-list-{{ $product->id }}" class="form-control text-center"
+                                                value="0" min="0" placeholder="Adet"
+                                                data-mf2bolunemez="{{ $product->mf2bolunemez ? '1' : '0' }}"
+                                                data-mf2-step="{{ $mf2MinQtyList }}"
+                                                oninput="checkBonusOptionOnQtyChangeList({{ $product->id }})"
+                                                onblur="roundMf2QuantityList({{ $product->id }})"
+                                                onkeypress="if(event.key === 'Enter' && this.value > 0) { addProductToCartList({{ $product->id }}); }">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="increaseQuantityList({{ $product->id }})">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="mobile-cart-btn">
+                                            <button type="button" class="btn btn-success btn-sm"
+                                                onclick="addProductToCartList({{ $product->id }})" title="Sepete Ekle"
+                                                style="padding: 0.28rem 0.38rem; font-size: 0.75rem;">
                                                 <i class="fas fa-cart-plus"></i>
                                             </button>
                                         </div>
-                                    </td>
-                                </tr>
-                                <!-- Muadil ürünler için placeholder satır -->
-                                <tr id="muadil-row-{{ $product->id }}" class="muadil-products-row" style="display: none;">
-                                    <td colspan="8" class="p-0">
-                                        <div id="muadil-content-{{ $product->id }}">
-                                            <div class="text-center py-2">
-                                                <div class="spinner-border spinner-border-sm" role="status">
-                                                    <span class="visually-hidden">Yükleniyor...</span>
-                                                </div>
+                                    </div>
+                                </td>
+                                <td class="mobile-qty-cart-cell">
+                                    <div class="desktop-cart">
+                                        <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"
+                                            id="add-btn-list-{{ $product->id }}" onclick="addProductToCartList({{ $product->id }})"
+                                            title="Sepete Ekle" data-bs-toggle="tooltip" data-bs-placement="top">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Muadil ürünler için placeholder satır -->
+                            <tr id="muadil-row-{{ $product->id }}" class="muadil-products-row" style="display: none;">
+                                <td colspan="8" class="p-0">
+                                    <div id="muadil-content-{{ $product->id }}">
+                                        <div class="text-center py-2">
+                                            <div class="spinner-border spinner-border-sm" role="status">
+                                                <span class="visually-hidden">Yükleniyor...</span>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8" class="text-center">
-                                        <div class="alert alert-info mb-0">
-                                            <i class="fas fa-info-circle"></i> Ürün bulunamadı.
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            @endif
-
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-4">
-                {{ $products->appends(['view' => $viewType, 'q' => request('q')])->links() }}
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <div class="alert alert-info mb-0">
+                                        <i class="fas fa-info-circle"></i> Ürün bulunamadı.
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
-        </div>
+        @endif
 
-        <!-- Image Preview Tooltip -->
-        <img id="imagePreview" class="image-preview" src="" alt="Preview">
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $products->appends(['view' => $viewType, 'q' => request('q')])->links() }}
+        </div>
+    </div>
+
+    <!-- Image Preview Tooltip -->
+    <img id="imagePreview" class="image-preview" src="" alt="Preview">
 @endsection
 
 @push('scripts')
@@ -1719,40 +1826,36 @@
             initTooltips();
         });
 
-        // Katalog görünümü - Miktar artırma/azaltma
+        // Katalog görünümü - Miktar artırma/azaltma (MF2Utils kullanır)
         function increaseQuantity(productId) {
             const input = document.getElementById('qty-' + productId);
-            input.value = parseInt(input.value || 0) + 1;
-            // Bonus opsiyonunu kontrol et
+            MF2Utils.increaseQuantity(input);
             checkBonusOptionOnQtyChange(productId);
         }
 
         function decreaseQuantity(productId) {
             const input = document.getElementById('qty-' + productId);
-            const currentValue = parseInt(input.value || 0);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-                // Bonus opsiyonunu kontrol et
-                checkBonusOptionOnQtyChange(productId);
-            }
+            MF2Utils.decreaseQuantity(input, 0);
+            checkBonusOptionOnQtyChange(productId);
         }
 
-        // Liste görünümü - Miktar artırma/azaltma
+        // Katalog görünümü - Blur'da bonus opsiyonu kontrol et (yuvarlama yapılmıyor)
+        function roundMf2Quantity(productId) {
+            // Yuvarlama yapılmıyor, sadece radio kontrolü
+            checkBonusOptionOnQtyChange(productId);
+        }
+
+        // Liste görünümü - Miktar artırma/azaltma (MF2Utils kullanır)
         function increaseQuantityList(productId) {
             const input = document.getElementById('qty-list-' + productId);
-            input.value = parseInt(input.value || 0) + 1;
-            // Bonus opsiyonunu kontrol et
+            MF2Utils.increaseQuantity(input);
             checkBonusOptionOnQtyChangeList(productId);
         }
 
         function decreaseQuantityList(productId) {
             const input = document.getElementById('qty-list-' + productId);
-            const currentValue = parseInt(input.value || 0);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-                // Bonus opsiyonunu kontrol et
-                checkBonusOptionOnQtyChangeList(productId);
-            }
+            MF2Utils.decreaseQuantity(input, 0);
+            checkBonusOptionOnQtyChangeList(productId);
         }
 
         // Liste görünümü - Bonus opsiyon 1 seçildiğinde miktarı 1 yap
@@ -1773,22 +1876,23 @@
             const qtyInput = document.getElementById('qty-list-' + productId);
             const currentQty = parseInt(qtyInput.value) || 0;
 
-            // Opsiyon radio butonlarını bul
+            // Desktop liste görünümü radio butonları
             const option2Radio = document.getElementById('bonus_list_' + productId + '_2');
             const option1Radio = document.getElementById('bonus_list_' + productId + '_1');
 
-            // Eğer opsiyon 2 varsa
-            if (option2Radio) {
-                const minQty = parseInt(option2Radio.dataset.minQty) || 0;
+            // Mobil radio butonları
+            const mobileOption2Radio = document.getElementById('bonus_mobile_' + productId + '_2');
+            const mobileOption1Radio = document.getElementById('bonus_mobile_' + productId + '_1');
 
-                if (currentQty >= minQty && minQty > 0) {
-                    // Miktar minimum miktara eşit veya fazlaysa opsiyon 2'yi seç
-                    option2Radio.checked = true;
-                } else if (option1Radio) {
-                    // Miktar minimumun altındaysa opsiyon 1'e geç
-                    option1Radio.checked = true;
-                }
-            }
+            // MF2Utils ile bonus opsiyonu kontrol et (desktop + mobil)
+            MF2Utils.checkBonusOption(currentQty, option1Radio, option2Radio);
+            MF2Utils.checkBonusOption(currentQty, mobileOption1Radio, mobileOption2Radio);
+        }
+
+        // Liste görünümü - Blur'da bonus opsiyonu kontrol et (yuvarlama yapılmıyor)
+        function roundMf2QuantityList(productId) {
+            // Yuvarlama yapılmıyor, sadece radio kontrolü
+            checkBonusOptionOnQtyChangeList(productId);
         }
 
         // Bonus opsiyon 1 seçildiğinde miktarı 1 yap
@@ -1952,20 +2056,27 @@
                                 html += '<td class="text-center" style="width: 80px;">';
                                 if (product.mf1 || product.mf2) {
                                     html += '<div style="font-size: 0.85rem;">';
+                                    // Parse mf2 min qty - artık toplam (10+5=15)
+                                    var mf2MinQtyMuadil = 0;
+                                    if (product.mf2 && product.mf2.includes('+')) {
+                                        var parts = product.mf2.split('+');
+                                        mf2MinQtyMuadil = (parseInt(parts[0].trim()) || 0) + (parseInt(parts[1].trim()) || 0);
+                                    }
                                     if (product.mf1) {
-                                        // Parse mf2 min qty
-                                        var mf2MinQtyList = 0;
-                                        if (product.mf2 && product.mf2.includes('+')) {
-                                            mf2MinQtyList = parseInt(product.mf2.split('+')[0].trim()) || 0;
-                                        }
                                         html += '<div class="d-flex align-items-center justify-content-center mb-1">';
-                                        html += '<input class="form-check-input me-1" type="radio" name="muadil_list_bonus_' + product.id + '" id="muadil_list_bonus_' + product.id + '_1" value="1" checked data-min-qty="0" onchange="onMuadilListBonusOption1Selected(' + product.id + ')" style="margin: 0;">';
+                                        // Radio sadece ikisi de varsa göster
+                                        if (product.mf1 && product.mf2) {
+                                            html += '<input class="form-check-input me-1" type="radio" name="muadil_list_bonus_' + product.id + '" id="muadil_list_bonus_' + product.id + '_1" value="1" checked data-min-qty="0" onchange="onMuadilListBonusOption1Selected(' + product.id + ')" style="margin: 0;">';
+                                        }
                                         html += '<label for="muadil_list_bonus_' + product.id + '_1" style="cursor: pointer;"><span class="badge bg-success" style="font-size: 0.8rem;">' + product.mf1 + '</span></label>';
                                         html += '</div>';
                                     }
                                     if (product.mf2) {
                                         html += '<div class="d-flex align-items-center justify-content-center">';
-                                        html += '<input class="form-check-input me-1" type="radio" name="muadil_list_bonus_' + product.id + '" id="muadil_list_bonus_' + product.id + '_2" value="2" data-min-qty="' + mf2MinQtyList + '" onchange="onMuadilListBonusOption2Selected(' + product.id + ', ' + mf2MinQtyList + ')" style="margin: 0;">';
+                                        // Radio sadece ikisi de varsa göster
+                                        if (product.mf1 && product.mf2) {
+                                            html += '<input class="form-check-input me-1" type="radio" name="muadil_list_bonus_' + product.id + '" id="muadil_list_bonus_' + product.id + '_2" value="2" data-min-qty="' + mf2MinQtyMuadil + '" onchange="onMuadilListBonusOption2Selected(' + product.id + ', ' + mf2MinQtyMuadil + ')" style="margin: 0;">';
+                                        }
                                         html += '<label for="muadil_list_bonus_' + product.id + '_2" style="cursor: pointer;"><span class="badge bg-primary" style="font-size: 0.8rem;">' + product.mf2 + '</span></label>';
                                         html += '</div>';
                                     }
@@ -2235,13 +2346,13 @@
 
             // Loading göster
             $('#modalContent').html(`
-                                                                                                                                                    <div class="text-center py-5">
-                                                                                                                                                        <div class="spinner-border text-primary" role="status">
-                                                                                                                                                            <span class="visually-hidden">Yükleniyor...</span>
-                                                                                                                                                        </div>
-                                                                                                                                                        <p class="mt-3">Ürün detayları yükleniyor...</p>
-                                                                                                                                                    </div>
-                                                                                                                                                `);
+                                                                                                                                                                                                                                                                <div class="text-center py-5">
+                                                                                                                                                                                                                                                                    <div class="spinner-border text-primary" role="status">
+                                                                                                                                                                                                                                                                        <span class="visually-hidden">Yükleniyor...</span>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                    <p class="mt-3">Ürün detayları yükleniyor...</p>
+                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                            `);
 
             // Modal'ı en üste çıkar (diğer modalların üzerinde)
             $('#productModal').css('z-index', '1070');
@@ -2264,11 +2375,11 @@
                 },
                 error: function (xhr) {
                     $('#modalContent').html(`
-                                                                                                                                                            <div class="alert alert-danger">
-                                                                                                                                                                <i class="fas fa-exclamation-triangle"></i>
-                                                                                                                                                                Ürün detayları yüklenirken hata oluştu!
-                                                                                                                                                            </div>
-                                                                                                                                                        `);
+                                                                                                                                                                                                                                                                        <div class="alert alert-danger">
+                                                                                                                                                                                                                                                                            <i class="fas fa-exclamation-triangle"></i>
+                                                                                                                                                                                                                                                                            Ürün detayları yüklenirken hata oluştu!
+                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                    `);
                 }
             });
         }
@@ -2357,18 +2468,20 @@
             });
         }
 
-        // Muadil ürünler için miktar kontrolü
+        // Muadil ürünler için miktar kontrolü (MF2Utils kullanır)
         function increaseMuadilQty(productId) {
             const input = document.getElementById('muadil-qty-' + productId);
-            input.value = parseInt(input.value || 0) + 1;
+            MF2Utils.increaseQuantity(input);
         }
 
         function decreaseMuadilQty(productId) {
             const input = document.getElementById('muadil-qty-' + productId);
-            const currentValue = parseInt(input.value || 0);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-            }
+            MF2Utils.decreaseQuantity(input, 0);
+        }
+
+        function roundMf2QuantityMuadil(productId) {
+            const input = document.getElementById('muadil-qty-' + productId);
+            MF2Utils.roundQuantity(input);
         }
 
         function addMuadilToCart(productId, buttonElement) {
@@ -2716,22 +2829,24 @@
             }
         }
 
-        // Modal Product - Miktar artır
+        // Modal Product - Miktar artır (MF2Utils kullanır)
         function increaseModalProductQty(productId) {
             const input = document.getElementById('modal-product-qty-' + productId);
-            const newValue = parseInt(input.value || 0) + 1;
-            input.value = newValue;
+            MF2Utils.increaseQuantity(input);
             checkModalProductBonusOptionOnQtyChange(productId);
         }
 
-        // Modal Product - Miktar azalt
+        // Modal Product - Miktar azalt (MF2Utils kullanır)
         function decreaseModalProductQty(productId) {
             const input = document.getElementById('modal-product-qty-' + productId);
-            const currentValue = parseInt(input.value || 0);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-                checkModalProductBonusOptionOnQtyChange(productId);
-            }
+            MF2Utils.decreaseQuantity(input, 0);
+            checkModalProductBonusOptionOnQtyChange(productId);
+        }
+
+        // Modal Product - Blur'da bonus opsiyonu kontrol et (yuvarlama yapılmıyor)
+        function roundMf2QuantityModal(productId) {
+            // Yuvarlama yapılmıyor, sadece radio kontrolü
+            checkModalProductBonusOptionOnQtyChange(productId);
         }
 
         // Modal Product - Seçili bonus opsiyonunu al
@@ -2911,22 +3026,24 @@
                                         </td>
                                         <td class="text-center hide-on-mobile">
                                             @if($product->mf1 || $product->mf2)
+                                                @php
+                                                    $mf2MinQtyCamp = 0;
+                                                    if ($product->mf2 && str_contains($product->mf2, '+')) {
+                                                        $partsCamp = explode('+', $product->mf2);
+                                                        $mf2MinQtyCamp = (int) trim($partsCamp[0]) + (int) trim($partsCamp[1]);
+                                                    }
+                                                @endphp
                                                 <div style="font-size: 0.85rem;">
                                                     @if($product->mf1)
-                                                        @php
-                                                            $mf2MinQtyCamp = 0;
-                                                            if ($product->mf2 && str_contains($product->mf2, '+')) {
-                                                                $partsCamp = explode('+', $product->mf2);
-                                                                $mf2MinQtyCamp = (int) trim($partsCamp[0]);
-                                                            }
-                                                        @endphp
                                                         <div class="d-flex align-items-center justify-content-center mb-1">
-                                                            <input class="form-check-input me-1" type="radio"
-                                                                name="campaign_bonus_option_{{ $product->id }}"
-                                                                id="campaign_bonus_{{ $product->id }}_1" value="1" checked
-                                                                data-product-id="{{ $product->id }}" data-min-qty="0"
-                                                                onchange="onCampaignBonusOption1Selected({{ $product->id }})"
-                                                                style="margin: 0;">
+                                                            @if($product->mf1 && $product->mf2)
+                                                                <input class="form-check-input me-1" type="radio"
+                                                                    name="campaign_bonus_option_{{ $product->id }}"
+                                                                    id="campaign_bonus_{{ $product->id }}_1" value="1" checked
+                                                                    data-product-id="{{ $product->id }}" data-min-qty="0"
+                                                                    onchange="onCampaignBonusOption1Selected({{ $product->id }})"
+                                                                    style="margin: 0;">
+                                                            @endif
                                                             <label for="campaign_bonus_{{ $product->id }}_1" style="cursor: pointer;">
                                                                 <span class="badge bg-success"
                                                                     style="font-size: 0.8rem;">{{ $product->mf1 }}</span>
@@ -2935,13 +3052,14 @@
                                                     @endif
                                                     @if($product->mf2)
                                                         <div class="d-flex align-items-center justify-content-center">
-                                                            <input class="form-check-input me-1" type="radio"
-                                                                name="campaign_bonus_option_{{ $product->id }}"
-                                                                id="campaign_bonus_{{ $product->id }}_2" value="2"
-                                                                data-product-id="{{ $product->id }}"
-                                                                data-min-qty="{{ $mf2MinQtyCamp ?? 0 }}"
-                                                                onchange="onCampaignBonusOption2Selected({{ $product->id }}, {{ $mf2MinQtyCamp ?? 0 }})"
-                                                                style="margin: 0;">
+                                                            @if($product->mf1 && $product->mf2)
+                                                                <input class="form-check-input me-1" type="radio"
+                                                                    name="campaign_bonus_option_{{ $product->id }}"
+                                                                    id="campaign_bonus_{{ $product->id }}_2" value="2"
+                                                                    data-product-id="{{ $product->id }}" data-min-qty="{{ $mf2MinQtyCamp }}"
+                                                                    onchange="onCampaignBonusOption2Selected({{ $product->id }}, {{ $mf2MinQtyCamp }})"
+                                                                    style="margin: 0;">
+                                                            @endif
                                                             <label for="campaign_bonus_{{ $product->id }}_2" style="cursor: pointer;">
                                                                 <span class="badge bg-primary"
                                                                     style="font-size: 0.8rem;">{{ $product->mf2 }}</span>
@@ -3082,7 +3200,7 @@
                     }
                 }
             @endif
-                                                                                                                                            });
+                                                                                                                                                                                                                                                    });
 
         // Kampanya ürünleri için miktar artır/azalt
         function increaseCampaignQty(productId) {
@@ -3318,20 +3436,27 @@
                                 html += '<td class="text-center hide-on-mobile" style="width: 80px;">';
                                 if (product.mf1 || product.mf2) {
                                     html += '<div style="font-size: 0.85rem;">';
+                                    // Parse mf2 min qty - artık toplam (10+5=15)
+                                    var mf2MinQtyMuadilCamp = 0;
+                                    if (product.mf2 && product.mf2.includes('+')) {
+                                        var parts = product.mf2.split('+');
+                                        mf2MinQtyMuadilCamp = (parseInt(parts[0].trim()) || 0) + (parseInt(parts[1].trim()) || 0);
+                                    }
                                     if (product.mf1) {
-                                        // Parse mf2 min qty
-                                        var mf2MinQtyMuadil = 0;
-                                        if (product.mf2 && product.mf2.includes('+')) {
-                                            mf2MinQtyMuadil = parseInt(product.mf2.split('+')[0].trim()) || 0;
-                                        }
                                         html += '<div class="d-flex align-items-center justify-content-center mb-1">';
-                                        html += '<input class="form-check-input me-1" type="radio" name="muadil_campaign_bonus_' + product.id + '" id="muadil_campaign_bonus_' + product.id + '_1" value="1" checked data-min-qty="0" onchange="onMuadilCampaignBonusOption1Selected(' + product.id + ')" style="margin: 0;">';
+                                        // Radio sadece ikisi de varsa göster
+                                        if (product.mf1 && product.mf2) {
+                                            html += '<input class="form-check-input me-1" type="radio" name="muadil_campaign_bonus_' + product.id + '" id="muadil_campaign_bonus_' + product.id + '_1" value="1" checked data-min-qty="0" onchange="onMuadilCampaignBonusOption1Selected(' + product.id + ')" style="margin: 0;">';
+                                        }
                                         html += '<label for="muadil_campaign_bonus_' + product.id + '_1" style="cursor: pointer;"><span class="badge bg-success" style="font-size: 0.8rem;">' + product.mf1 + '</span></label>';
                                         html += '</div>';
                                     }
                                     if (product.mf2) {
                                         html += '<div class="d-flex align-items-center justify-content-center">';
-                                        html += '<input class="form-check-input me-1" type="radio" name="muadil_campaign_bonus_' + product.id + '" id="muadil_campaign_bonus_' + product.id + '_2" value="2" data-min-qty="' + mf2MinQtyMuadil + '" onchange="onMuadilCampaignBonusOption2Selected(' + product.id + ', ' + mf2MinQtyMuadil + ')" style="margin: 0;">';
+                                        // Radio sadece ikisi de varsa göster
+                                        if (product.mf1 && product.mf2) {
+                                            html += '<input class="form-check-input me-1" type="radio" name="muadil_campaign_bonus_' + product.id + '" id="muadil_campaign_bonus_' + product.id + '_2" value="2" data-min-qty="' + mf2MinQtyMuadilCamp + '" onchange="onMuadilCampaignBonusOption2Selected(' + product.id + ', ' + mf2MinQtyMuadilCamp + ')" style="margin: 0;">';
+                                        }
                                         html += '<label for="muadil_campaign_bonus_' + product.id + '_2" style="cursor: pointer;"><span class="badge bg-primary" style="font-size: 0.8rem;">' + product.mf2 + '</span></label>';
                                         html += '</div>';
                                     }
@@ -3534,6 +3659,6 @@
                     }
                 });
             @endauth
-                                                                                                                                            }
+                                                                                                                                                                                                                                                    }
     </script>
 @endif

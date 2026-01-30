@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtakodErpService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a4fb686c1ec816371f9c1e10a2dd8df549f72c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7247154c2524dd5cd39c2be25382a30142a6388")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtakodErpService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtakodErpService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

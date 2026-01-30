@@ -92,6 +92,51 @@ class CartController extends Controller
                 ], 400);
             }
 
+            // MF2 Bölünemez - Sadece MF2 seçiliyse ve mf2bolunemez işaretliyse kontrol yap
+            // mf_satis = 2 ise MF2 seçilmiş demektir
+            $mfSatis = $request->input('mf_satis', 0);
+
+            if ($mfSatis == 2 && $product->mf2bolunemez && $product->mf2) {
+                // mf2'den step hesapla (örn: "15+5" -> 20)
+                $mf2Step = 0;
+                if (str_contains($product->mf2, '+')) {
+                    $parts = explode('+', $product->mf2);
+                    $mf2Step = (int) trim($parts[0]) + (int) trim($parts[1]);
+                }
+
+                if ($mf2Step > 0) {
+                    // Sepetteki mevcut miktarı al
+                    $cartItem = Cart::where('user_id', $this->getCurrentUserId())
+                        ->where('product_id', $product->id)
+                        ->first();
+                    $mevcutSepetMiktari = $cartItem ? $cartItem->quantity : 0;
+                    $toplamMiktar = $mevcutSepetMiktari + $request->quantity;
+
+                    // Toplam miktarın step'in katı olup olmadığını kontrol et
+                    if ($toplamMiktar % $mf2Step !== 0) {
+                        // Örnek miktarlar oluştur
+                        $ornekler = [];
+                        for ($i = 1; $i <= 5; $i++) {
+                            $ornekler[] = $mf2Step * $i;
+                        }
+
+                        $mesaj = "Bu ürünün mal fazlası bölünemez!\n\n";
+                        if ($mevcutSepetMiktari > 0) {
+                            $mesaj .= "Sepette: {$mevcutSepetMiktari} adet\n";
+                            $mesaj .= "Eklemek istediğiniz: {$request->quantity} adet\n";
+                            $mesaj .= "Toplam: {$toplamMiktar} adet\n\n";
+                        }
+                        $mesaj .= "Miktar {$mf2Step} ve katlarında olmalıdır.\n";
+                        $mesaj .= "Örnek: " . implode(', ', $ornekler) . "...";
+
+                        return response()->json([
+                            'success' => false,
+                            'message' => $mesaj
+                        ], 400);
+                    }
+                }
+            }
+
             // Sepetteki mevcut miktarı kontrol et
             $cartItem = Cart::where('user_id', $this->getCurrentUserId())
                 ->where('product_id', $product->id)
@@ -170,17 +215,21 @@ class CartController extends Controller
                 'quantity.max' => 'Miktar en fazla 999.999 olabilir',
             ]);
 
-            // Stok kontrolü
             $product = $cart->product;
 
-            if ($request->quantity > $product->bakiye) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Stok miktarı yetersiz! Stokta ' . number_format($product->bakiye, 0, ',', '.') . ' adet var.',
-                ], 400);
+            // Miktar validasyonu - Artık yuvarlama yapmıyoruz, kullanıcı istediği miktarı girebilir
+            // MF2 bölünemez kontrolü sipariş verilirken yapılacak
+            $quantity = $request->quantity;
+
+            // Stok kontrolü
+            if ($quantity > $product->bakiye) {
+                // Stok yetmiyorsa maksimum stok miktarına indir
+                $quantity = (int) $product->bakiye;
+                if ($quantity < 1)
+                    $quantity = 1;
             }
 
-            $cart->quantity = $request->quantity;
+            $cart->quantity = $quantity;
             $cart->save();
 
             // Refresh to get updated calculated values
@@ -191,6 +240,7 @@ class CartController extends Controller
                 'success' => true,
                 'message' => 'Sepet güncellendi',
                 'total' => $cart->total, // KDV Dahil
+                'quantity' => $quantity, // Frontend'e yuvarlanmış miktarı da gönder
             ]);
         } catch (\Exception $e) {
             \Log::error('Cart update error: ' . $e->getMessage());
@@ -311,6 +361,45 @@ class CartController extends Controller
         if ($cartItems->count() == 0) {
             return redirect()->route('cart.index')
                 ->with('error', 'Sepetiniz boş!');
+        }
+
+        // MF2 Bölünemez ürünler için validasyon
+        $hataliUrunler = [];
+        foreach ($cartItems as $cartItem) {
+            $product = $cartItem->product;
+            $bonusOption = $cartItem->bonus_option;
+
+            // Sadece MF2 seçiliyse ve mf2bolunemez işaretliyse kontrol yap
+            if ($bonusOption == 2 && $product->mf2bolunemez && $product->mf2) {
+                // mf2'den step hesapla (örn: "15+5" -> 20)
+                $mf2Step = 0;
+                if (str_contains($product->mf2, '+')) {
+                    $parts = explode('+', $product->mf2);
+                    $mf2Step = (int) trim($parts[0]) + (int) trim($parts[1]);
+                }
+
+                if ($mf2Step > 0 && $cartItem->quantity % $mf2Step !== 0) {
+                    $ornekler = [];
+                    for ($i = 1; $i <= 5; $i++) {
+                        $ornekler[] = $mf2Step * $i;
+                    }
+                    $hataliUrunler[] = [
+                        'urun' => $product->urun_adi,
+                        'miktar' => $cartItem->quantity,
+                        'step' => $mf2Step,
+                        'ornekler' => implode(', ', $ornekler)
+                    ];
+                }
+            }
+        }
+
+        if (!empty($hataliUrunler)) {
+            $mesaj = "Aşağıdaki ürünlerin miktarları düzeltilmeden sipariş verilemez:\n\n";
+            foreach ($hataliUrunler as $hata) {
+                $mesaj .= "• {$hata['urun']}: {$hata['miktar']} adet (Gerekli: {$hata['step']} ve katları, örn: {$hata['ornekler']}...)\n";
+            }
+            return redirect()->route('cart.index')
+                ->with('error', $mesaj);
         }
 
         try {

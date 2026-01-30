@@ -35,12 +35,10 @@ class HomeController extends Controller
             $query->where('ozel_liste', true);
         }
 
-        // Filtre yoksa: önce resimli ürünleri, sonra resimsizleri getir
-        if (!$stokta_olanlar && !$kampanyali && !$request->has('q')) {
-            $query->orderByRaw('CASE WHEN urun_resmi IS NOT NULL AND urun_resmi != \'\' THEN 0 ELSE 1 END');
-        }
+        // Her zaman isme göre sırala
+        $query->orderBy('urun_adi');
 
-        $products = $query->paginate(100);
+        $products = $query->paginate(100)->withQueryString();
 
         // Özel Kampanya ürünlerini çek (popup için)
         $specialCampaignProducts = Product::where('is_active', true)
@@ -107,8 +105,10 @@ class HomeController extends Controller
         if ($kampanyali) {
             $productsQuery->where('ozel_liste', true);
         }
+        // Her zaman isme göre sırala
+        $productsQuery->orderBy('urun_adi');
 
-        $products = $productsQuery->paginate(100);
+        $products = $productsQuery->paginate(100)->withQueryString();
 
         // Arama aktivitesini kaydet
         if (Auth::check() && !empty($query)) {
@@ -189,8 +189,10 @@ class HomeController extends Controller
         if ($kampanyali) {
             $query->where('ozel_liste', true);
         }
+        // Her zaman isme göre sırala
+        $query->orderBy('urun_adi');
 
-        $products = $query->paginate(100);
+        $products = $query->paginate(100)->withQueryString();
 
         // Özel Kampanya ürünlerini çek (popup için)
         $specialCampaignProducts = Product::where('is_active', true)

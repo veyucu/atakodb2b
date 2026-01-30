@@ -56,11 +56,11 @@
                                                 }
                                                 $toplam = $netFiyat * $item->quantity;
 
-                                                // mf2'den minimum miktarı parse et
-                                                $mf2MinQtyCart = 0;
+                                                // mf2'den step hesapla (base + bonus toplamı)
+                                                $mf2Step = 0;
                                                 if ($item->product->mf2 && str_contains($item->product->mf2, '+')) {
                                                     $partsCart = explode('+', $item->product->mf2);
-                                                    $mf2MinQtyCart = (int) trim($partsCart[0]);
+                                                    $mf2Step = (int) trim($partsCart[0]) + (int) trim($partsCart[1]);
                                                 }
                                             @endphp
                                             <tr id="cart-row-{{ $item->id }}">
@@ -97,36 +97,41 @@
 
                                                 <!-- Mal Fazlası - Desktop Only -->
                                                 <td class="text-center hide-on-mobile desktop-only-cell">
-                                                    @if($item->product->mf1 || $item->product->mf2)
+                                                    @if($item->product->mf1 && $item->product->mf2)
+                                                        {{-- Hem MF1 hem MF2 var - Radio butonları göster --}}
                                                         <div style="font-size: 0.85rem;">
-                                                            @if($item->product->mf1)
-                                                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                                                    <input class="form-check-input me-1" type="radio"
-                                                                        name="cart_bonus_option_{{ $item->id }}"
-                                                                        id="cart_bonus_{{ $item->id }}_1" value="1" {{ $selectedOption == 1 ? 'checked' : '' }} data-cart-id="{{ $item->id }}" data-min-qty="0"
-                                                                        onchange="onCartBonusOption1Selected({{ $item->id }})"
-                                                                        style="margin: 0;">
-                                                                    <label for="cart_bonus_{{ $item->id }}_1" style="cursor: pointer;">
-                                                                        <span class="badge bg-success"
-                                                                            style="font-size: 0.8rem;">{{ $item->product->mf1 }}</span>
-                                                                    </label>
-                                                                </div>
-                                                            @endif
-                                                            @if($item->product->mf2)
-                                                                <div class="d-flex align-items-center justify-content-center">
-                                                                    <input class="form-check-input me-1" type="radio"
-                                                                        name="cart_bonus_option_{{ $item->id }}"
-                                                                        id="cart_bonus_{{ $item->id }}_2" value="2" {{ $selectedOption == 2 ? 'checked' : '' }} data-cart-id="{{ $item->id }}"
-                                                                        data-min-qty="{{ $mf2MinQtyCart }}"
-                                                                        onchange="onCartBonusOption2Selected({{ $item->id }}, {{ $mf2MinQtyCart }})"
-                                                                        style="margin: 0;">
-                                                                    <label for="cart_bonus_{{ $item->id }}_2" style="cursor: pointer;">
-                                                                        <span class="badge bg-primary"
-                                                                            style="font-size: 0.8rem;">{{ $item->product->mf2 }}</span>
-                                                                    </label>
-                                                                </div>
-                                                            @endif
+                                                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                                                <input class="form-check-input me-1" type="radio"
+                                                                    name="cart_bonus_option_{{ $item->id }}"
+                                                                    id="cart_bonus_{{ $item->id }}_1" value="1" {{ $selectedOption == 1 ? 'checked' : '' }} data-cart-id="{{ $item->id }}" data-min-qty="0"
+                                                                    onchange="onCartBonusOption1Selected({{ $item->id }})"
+                                                                    style="margin: 0;">
+                                                                <label for="cart_bonus_{{ $item->id }}_1" style="cursor: pointer;">
+                                                                    <span class="badge bg-success"
+                                                                        style="font-size: 0.8rem;">{{ $item->product->mf1 }}</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="d-flex align-items-center justify-content-center">
+                                                                <input class="form-check-input me-1" type="radio"
+                                                                    name="cart_bonus_option_{{ $item->id }}"
+                                                                    id="cart_bonus_{{ $item->id }}_2" value="2" {{ $selectedOption == 2 ? 'checked' : '' }} data-cart-id="{{ $item->id }}"
+                                                                    data-min-qty="{{ $mf2Step }}"
+                                                                    onchange="onCartBonusOption2Selected({{ $item->id }}, {{ $mf2Step }})"
+                                                                    style="margin: 0;">
+                                                                <label for="cart_bonus_{{ $item->id }}_2" style="cursor: pointer;">
+                                                                    <span class="badge bg-primary"
+                                                                        style="font-size: 0.8rem;">{{ $item->product->mf2 }}</span>
+                                                                </label>
+                                                            </div>
                                                         </div>
+                                                    @elseif($item->product->mf1)
+                                                        {{-- Sadece MF1 var - Badge göster --}}
+                                                        <span class="badge bg-success"
+                                                            style="font-size: 0.8rem;">{{ $item->product->mf1 }}</span>
+                                                    @elseif($item->product->mf2)
+                                                        {{-- Sadece MF2 var - Badge göster --}}
+                                                        <span class="badge bg-primary"
+                                                            style="font-size: 0.8rem;">{{ $item->product->mf2 }}</span>
                                                     @elseif($item->mal_fazlasi > 0)
                                                         <span class="badge bg-success" style="font-size: 0.9rem;">
                                                             {{ $item->quantity }}+{{ $item->mal_fazlasi }}
@@ -189,23 +194,46 @@
 
                                                 <!-- Miktar - Desktop Only -->
                                                 <td class="hide-on-mobile desktop-only-cell">
+                                                    @php
+                                                        // Başlangıçta hatalı miktar kontrolü
+                                                        $isMf2Error = false;
+                                                        $tooltipText = '';
+                                                        if ($item->product->mf2bolunemez && $mf2Step > 0 && $selectedOption == 2) {
+                                                            if ($item->quantity % $mf2Step !== 0) {
+                                                                $isMf2Error = true;
+                                                            }
+                                                            $ornekler = [];
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                $ornekler[] = $mf2Step * $i;
+                                                            }
+                                                            $tooltipText = $mf2Step . ' ve katlarında sipariş verebilirsiniz. Örnek: ' . implode(', ', $ornekler) . '...';
+                                                        }
+                                                    @endphp
                                                     <div class="input-group input-group-sm" id="cart-qty-group-{{ $item->id }}">
                                                         <button class="btn btn-outline-secondary" type="button"
                                                             onclick="decreaseCartQuantity({{ $item->id }})"
                                                             style="min-width: 32px;">
                                                             <i class="fas fa-minus"></i>
                                                         </button>
-                                                        <input type="number" class="form-control text-center"
+                                                        <input type="number"
+                                                            class="form-control text-center {{ $isMf2Error ? 'mf2-error' : '' }}"
                                                             id="cart-qty-{{ $item->id }}" value="{{ $item->quantity }}"
                                                             data-old-value="{{ $item->quantity }}" min="1"
+                                                            data-mf2bolunemez="{{ $item->product->mf2bolunemez ? '1' : '0' }}"
+                                                            data-mf2-step="{{ $mf2Step }}" data-tooltip="{{ $tooltipText }}"
                                                             style="min-width: 70px; flex: 1;"
-                                                            onchange="updateCartQuantity({{ $item->id }}, this.value)">
+                                                            onchange="updateCartQuantity({{ $item->id }}, this.value)"
+                                                            onblur="roundMf2QuantityCart({{ $item->id }})"
+                                                            onfocus="showMf2Tooltip({{ $item->id }})"
+                                                            onmouseout="hideMf2Tooltip({{ $item->id }})">
                                                         <button class="btn btn-outline-secondary" type="button"
                                                             onclick="increaseCartQuantity({{ $item->id }})"
                                                             style="min-width: 32px;">
                                                             <i class="fas fa-plus"></i>
                                                         </button>
                                                     </div>
+                                                    <div id="mf2-tooltip-{{ $item->id }}" class="mf2-tooltip"
+                                                        style="display: none;"></div>
                                                 </td>
 
                                                 <!-- Toplam - Desktop Only -->
@@ -231,17 +259,25 @@
                                                             style="min-width: 28px;">
                                                             <i class="fas fa-minus"></i>
                                                         </button>
-                                                        <input type="number" class="form-control text-center"
+                                                        <input type="number"
+                                                            class="form-control text-center {{ $isMf2Error ? 'mf2-error' : '' }}"
                                                             id="cart-qty-mobile-{{ $item->id }}" value="{{ $item->quantity }}"
                                                             data-old-value="{{ $item->quantity }}" min="1"
+                                                            data-mf2bolunemez="{{ $item->product->mf2bolunemez ? '1' : '0' }}"
+                                                            data-mf2-step="{{ $mf2Step }}" data-tooltip="{{ $tooltipText }}"
                                                             style="min-width: 45px; flex: 1;"
-                                                            onchange="updateCartQuantity({{ $item->id }}, this.value)">
+                                                            onchange="updateCartQuantity({{ $item->id }}, this.value)"
+                                                            onblur="roundMf2QuantityCart({{ $item->id }})"
+                                                            onfocus="showMf2Tooltip({{ $item->id }}, true)"
+                                                            onmouseout="hideMf2Tooltip({{ $item->id }}, true)">
                                                         <button class="btn btn-outline-secondary" type="button"
                                                             onclick="increaseCartQuantity({{ $item->id }})"
                                                             style="min-width: 28px;">
                                                             <i class="fas fa-plus"></i>
                                                         </button>
                                                     </div>
+                                                    <div id="mf2-tooltip-mobile-{{ $item->id }}" class="mf2-tooltip"
+                                                        style="display: none;"></div>
                                                     <button class="btn btn-danger btn-sm" onclick="removeFromCart({{ $item->id }})"
                                                         style="margin-top: 0.2rem;">
                                                         <i class="fas fa-trash"></i>
@@ -280,7 +316,8 @@
                                 <strong class="h5 text-primary" id="grand-total">{{ number_format($totalWithVat, 2, ',', '.') }}
                                     ₺</strong>
                             </div>
-                            <form action="{{ route('cart.checkout') }}" method="POST">
+                            <form id="checkoutForm" action="{{ route('cart.checkout') }}" method="POST"
+                                onsubmit="return validateCheckout()">
                                 @csrf
                                 @php
                                     $gonderimSekilleri = $siteSettings->gonderim_sekilleri ?? [];
@@ -359,6 +396,39 @@
 
 @push('styles')
     <style>
+        /* MF2 Hata Stilleri */
+        .mf2-error {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+            background-color: #fff5f5 !important;
+        }
+
+        .mf2-tooltip {
+            position: absolute;
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1000;
+            max-width: 280px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+            pointer-events: none;
+        }
+
+        .mf2-tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: #dc3545 transparent transparent;
+        }
+
         #productModal .modal-content {
             border-radius: 15px;
             border: none;
@@ -570,13 +640,13 @@
 
             // Loading göster
             $('#modalContent').html(`
-                                            <div class="text-center py-5">
-                                                <div class="spinner-border text-primary" role="status">
-                                                    <span class="visually-hidden">Yükleniyor...</span>
-                                                </div>
-                                                <p class="mt-3">Ürün detayları yükleniyor...</p>
-                                            </div>
-                                    `);
+                                                                                                <div class="text-center py-5">
+                                                                                                    <div class="spinner-border text-primary" role="status">
+                                                                                                        <span class="visually-hidden">Yükleniyor...</span>
+                                                                                                    </div>
+                                                                                                    <p class="mt-3">Ürün detayları yükleniyor...</p>
+                                                                                                </div>
+                                                                                        `);
 
             // Modal'ı en üste çıkar         (diğer modalların üzerinde)
             $('#productModal').css('z-index', '1070');
@@ -600,11 +670,11 @@
                 },
                 error: function (xhr) {
                     $('#modalContent').html(`
-                                                    <div class="alert alert-danger">
-                                                        <i class="fas fa-exclamation-triangle"></i>
-                                                        Ürün detayları yüklenirken hata oluştu!
-                                                    </div>
-                                                `);
+                                                                                                        <div class="alert alert-danger">
+                                                                                                            <i class="fas fa-exclamation-triangle"></i>
+                                                                                                            Ürün detayları yüklenirken hata oluştu!
+                                                                                                        </div>
+                                                                                                    `);
                 }
             });
         }
@@ -695,18 +765,20 @@
             });
         }
 
-        // Muadil ürün miktar kontrolü
+        // Muadil ürün miktar kontrolü (MF2Utils kullanır)
         function increaseMuadilQty(productId) {
             const input = document.getElementById('muadil-qty-' + productId);
-            input.value = parseInt(input.value || 0) + 1;
+            MF2Utils.increaseQuantity(input);
         }
 
         function decreaseMuadilQty(productId) {
             const input = document.getElementById('muadil-qty-' + productId);
-            const currentValue = parseInt(input.value || 0);
-            if (currentValue > 0) {
-                input.value = currentValue - 1;
-            }
+            MF2Utils.decreaseQuantity(input, 0);
+        }
+
+        function roundMf2QuantityMuadil(productId) {
+            const input = document.getElementById('muadil-qty-' + productId);
+            MF2Utils.roundQuantity(input);
         }
 
         // Muadil ürünü sepete ekle
@@ -847,12 +919,12 @@
             }, 2000);
         }
 
+        // Sepet - Miktar artırma/azaltma - HER ZAMAN 1'er artır/azalt
         function increaseCartQuantity(cartId) {
-            const input = $('#cart-qty-' + cartId);
-            const currentQty = parseInt(input.val()) || 1;
-            const newQty = currentQty + 1;
-            // Önce miktarı input'a yaz
-            input.val(newQty);
+            const input = document.getElementById('cart-qty-' + cartId);
+            const newQty = MF2Utils.increaseQuantity(input);
+
+            // Mobil input'u da senkronize et
             $('#cart-qty-mobile-' + cartId).val(newQty);
             // Bonus opsiyonunu kontrol et ve güncelle
             const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
@@ -861,18 +933,26 @@
         }
 
         function decreaseCartQuantity(cartId) {
-            const input = $('#cart-qty-' + cartId);
-            const currentQty = parseInt(input.val()) || 1;
-            if (currentQty > 1) {
-                const newQty = currentQty - 1;
-                // Önce miktarı input'a yaz
-                input.val(newQty);
+            const input = document.getElementById('cart-qty-' + cartId);
+            const currentQty = parseInt(input.value) || 1;
+            // Sepette minimum değer her zaman 1
+            const minValue = 1;
+
+            if (currentQty > minValue) {
+                const newQty = MF2Utils.decreaseQuantity(input, minValue);
+                // Mobil input'u da senkronize et
                 $('#cart-qty-mobile-' + cartId).val(newQty);
                 // Bonus opsiyonunu kontrol et ve güncelle
                 const bonusOption = checkCartBonusOptionOnQtyChange(cartId);
                 // Backend'e gönder
                 updateCartQuantityWithBonus(cartId, newQty, bonusOption);
             }
+        }
+
+        // Sepet - Blur'da bonus opsiyonu kontrol et (yuvarlama yapılmıyor)
+        function roundMf2QuantityCart(cartId) {
+            // Yuvarlama yapılmıyor, sadece radio kontrolü
+            checkCartBonusOptionOnQtyChange(cartId);
         }
 
         function updateCartQuantity(cartId, quantity) {
@@ -895,6 +975,8 @@
             qtyInput.val(1);
             // Mobile input'u da güncelle
             $('#cart-qty-mobile-' + cartId).val(1);
+            // MF2 hata durumunu güncelle (opsiyon 1 seçili olduğundan hata olmaz)
+            updateMf2ErrorState(cartId, 1);
             // Miktarı backend'e gönder ve bonus opsiyonunu da güncelle
             updateCartQuantityWithBonus(cartId, 1, 1);
         }
@@ -906,6 +988,8 @@
             qtyInput.val(minQty);
             // Mobile input'u da güncelle
             $('#cart-qty-mobile-' + cartId).val(minQty);
+            // MF2 hata durumunu güncelle
+            updateMf2ErrorState(cartId, 2);
             // Miktarı ve bonus opsiyonunu backend'e gönder
             updateCartQuantityWithBonus(cartId, minQty, 2);
         }
@@ -935,6 +1019,9 @@
                     bonusOption = 1;
                 }
             }
+
+            // MF2 hata kontrolü yap
+            updateMf2ErrorState(cartId, bonusOption);
 
             return bonusOption;
         }
@@ -1195,6 +1282,121 @@
             setTimeout(function () {
                 notification.remove();
             }, 2800); // 0.3s fade out sonrası
+        }
+
+        // Sipariş öncesi MF2 bölünemez validasyonu
+        function validateCheckout() {
+            const errors = [];
+
+            // Tüm cart satırlarını kontrol et
+            document.querySelectorAll('[id^="cart-row-"]').forEach(row => {
+                const cartId = row.id.replace('cart-row-', '');
+                const qtyInput = document.getElementById('cart-qty-' + cartId);
+                if (!qtyInput) return;
+
+                const mf2bolunemez = qtyInput.dataset.mf2bolunemez === '1';
+                const mf2Step = parseInt(qtyInput.dataset.mf2Step) || 0;
+                const quantity = parseInt(qtyInput.value) || 0;
+
+                // MF2 radyo seçili mi kontrol et
+                const option2Radio = document.getElementById('cart_bonus_' + cartId + '_2');
+                const isMf2Selected = option2Radio && option2Radio.checked;
+
+                if (mf2bolunemez && mf2Step > 0 && isMf2Selected) {
+                    if (quantity % mf2Step !== 0) {
+                        // Ürün adını bul
+                        const productNameCell = row.querySelector('.product-name-cell strong');
+                        const productName = productNameCell ? productNameCell.textContent : 'Ürün';
+
+                        // Örnek miktarlar
+                        const examples = [];
+                        for (let i = 1; i <= 5; i++) {
+                            examples.push(mf2Step * i);
+                        }
+
+                        errors.push(`• ${productName}: ${quantity} adet (Gerekli: ${mf2Step} ve katları, örn: ${examples.join(', ')}...)`);
+                    }
+                }
+            });
+
+            if (errors.length > 0) {
+                alert('Aşağıdaki ürünlerin miktarları düzeltilmeden sipariş verilemez:\n\n' + errors.join('\n'));
+                return false;
+            }
+
+            return true;
+        }
+
+        // MF2 hata durumunu güncelle
+        function updateMf2ErrorState(cartId, bonusOption) {
+            const desktopInput = document.getElementById('cart-qty-' + cartId);
+            const mobileInput = document.getElementById('cart-qty-mobile-' + cartId);
+
+            if (!desktopInput) return;
+
+            const mf2bolunemez = desktopInput.dataset.mf2bolunemez === '1';
+            const mf2Step = parseInt(desktopInput.dataset.mf2Step) || 0;
+            const quantity = parseInt(desktopInput.value) || 0;
+            const isMf2Selected = bonusOption === 2;
+
+            let hasError = false;
+            if (mf2bolunemez && mf2Step > 0 && isMf2Selected) {
+                hasError = quantity % mf2Step !== 0;
+            }
+
+            // Desktop input
+            if (hasError) {
+                desktopInput.classList.add('mf2-error');
+            } else {
+                desktopInput.classList.remove('mf2-error');
+            }
+
+            // Mobile input
+            if (mobileInput) {
+                if (hasError) {
+                    mobileInput.classList.add('mf2-error');
+                } else {
+                    mobileInput.classList.remove('mf2-error');
+                }
+            }
+        }
+
+        // MF2 tooltip göster
+        function showMf2Tooltip(cartId, isMobile = false) {
+            const inputId = isMobile ? 'cart-qty-mobile-' + cartId : 'cart-qty-' + cartId;
+            const tooltipId = isMobile ? 'mf2-tooltip-mobile-' + cartId : 'mf2-tooltip-' + cartId;
+            const input = document.getElementById(inputId);
+            const tooltip = document.getElementById(tooltipId);
+
+            if (!input || !tooltip) return;
+
+            const tooltipText = input.dataset.tooltip;
+            if (!tooltipText) return;
+
+            // MF2 seçili mi kontrol et
+            const option2Radio = document.getElementById('cart_bonus_' + cartId + '_2');
+            const isMf2Selected = option2Radio && option2Radio.checked;
+            if (!isMf2Selected) return;
+
+            tooltip.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>' + tooltipText;
+            tooltip.style.display = 'block';
+
+            // Pozisyonu hesapla
+            const inputRect = input.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+
+            tooltip.style.position = 'fixed';
+            tooltip.style.left = (inputRect.left + inputRect.width / 2 - tooltipRect.width / 2) + 'px';
+            tooltip.style.top = (inputRect.top - tooltipRect.height - 10) + 'px';
+        }
+
+        // MF2 tooltip gizle
+        function hideMf2Tooltip(cartId, isMobile = false) {
+            const tooltipId = isMobile ? 'mf2-tooltip-mobile-' + cartId : 'mf2-tooltip-' + cartId;
+            const tooltip = document.getElementById(tooltipId);
+            if (tooltip) {
+                tooltip.style.display = 'none';
+            }
         }
     </script>
 @endpush

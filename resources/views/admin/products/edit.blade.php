@@ -217,6 +217,17 @@
                                                     <span class="suffix">₺</span>
                                                 </div>
                                             </div>
+                                            <!-- MF2 Bölünemez Checkbox -->
+                                            <div class="col-12 mt-1">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="mf2bolunemez"
+                                                        name="mf2bolunemez" value="1" {{ old('mf2bolunemez', $product->mf2bolunemez) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="mf2bolunemez"
+                                                        style="font-size: 0.75rem;">
+                                                        <i class="fas fa-lock text-danger"></i> MF2 Bölünemez
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
