@@ -45,8 +45,22 @@
                                     <tbody>
                                         @foreach($cartItems as $item)
                                             @php
+                                                // mf2'den step hesapla (base + bonus toplamı)
+                                                $mf2Step = 0;
+                                                if ($item->product->mf2 && str_contains($item->product->mf2, '+')) {
+                                                    $partsCart = explode('+', $item->product->mf2);
+                                                    $mf2Step = (int) trim($partsCart[0]) + (int) trim($partsCart[1]);
+                                                }
+
+                                                // Miktara göre otomatik MF seçimi:
+                                                // Eğer hem mf1 hem mf2 varsa ve miktar >= mf2Step ise MF2 seç, değilse MF1
+                                                if ($item->product->mf1 && $item->product->mf2 && $mf2Step > 0) {
+                                                    $selectedOption = ($item->quantity >= $mf2Step) ? 2 : 1;
+                                                } else {
+                                                    $selectedOption = $item->bonus_option ?? 1;
+                                                }
+
                                                 // Seçili bonus opsiyonuna göre net fiyatı belirle
-                                                $selectedOption = $item->bonus_option ?? 1;
                                                 if ($selectedOption == 2 && $item->product->net_fiyat2) {
                                                     $netFiyat = $item->product->net_fiyat2;
                                                 } elseif ($item->product->net_fiyat1) {
@@ -55,13 +69,6 @@
                                                     $netFiyat = $item->product->net_price ?? $item->price;
                                                 }
                                                 $toplam = $netFiyat * $item->quantity;
-
-                                                // mf2'den step hesapla (base + bonus toplamı)
-                                                $mf2Step = 0;
-                                                if ($item->product->mf2 && str_contains($item->product->mf2, '+')) {
-                                                    $partsCart = explode('+', $item->product->mf2);
-                                                    $mf2Step = (int) trim($partsCart[0]) + (int) trim($partsCart[1]);
-                                                }
                                             @endphp
                                             <tr id="cart-row-{{ $item->id }}">
                                                 <!-- Image - Hidden on mobile -->
@@ -640,13 +647,13 @@
 
             // Loading göster
             $('#modalContent').html(`
-                                                                                                <div class="text-center py-5">
-                                                                                                    <div class="spinner-border text-primary" role="status">
-                                                                                                        <span class="visually-hidden">Yükleniyor...</span>
+                                                                                                    <div class="text-center py-5">
+                                                                                                        <div class="spinner-border text-primary" role="status">
+                                                                                                            <span class="visually-hidden">Yükleniyor...</span>
+                                                                                                        </div>
+                                                                                                        <p class="mt-3">Ürün detayları yükleniyor...</p>
                                                                                                     </div>
-                                                                                                    <p class="mt-3">Ürün detayları yükleniyor...</p>
-                                                                                                </div>
-                                                                                        `);
+                                                                                            `);
 
             // Modal'ı en üste çıkar         (diğer modalların üzerinde)
             $('#productModal').css('z-index', '1070');
@@ -670,11 +677,11 @@
                 },
                 error: function (xhr) {
                     $('#modalContent').html(`
-                                                                                                        <div class="alert alert-danger">
-                                                                                                            <i class="fas fa-exclamation-triangle"></i>
-                                                                                                            Ürün detayları yüklenirken hata oluştu!
-                                                                                                        </div>
-                                                                                                    `);
+                                                                                                            <div class="alert alert-danger">
+                                                                                                                <i class="fas fa-exclamation-triangle"></i>
+                                                                                                                Ürün detayları yüklenirken hata oluştu!
+                                                                                                            </div>
+                                                                                                        `);
                 }
             });
         }

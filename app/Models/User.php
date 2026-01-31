@@ -22,22 +22,9 @@ class User extends Authenticatable
         'password',
         'user_type',
         'username',
-        'musteri_kodu',
-        'musteri_adi',
         'adres',
         'ilce',
         'il',
-        'gln_numarasi',
-        'telefon',
-        'mail_adresi',
-        'vergi_dairesi',
-        'vergi_kimlik_numarasi',
-        'grup_kodu',
-        'kod1',
-        'kod2',
-        'kod3',
-        'kod4',
-        'kod5',
         'plasiyer_kodu',
         'is_active',
         'last_login_at',
@@ -97,7 +84,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
-    
+
     /**
      * Get customers assigned to this plasiyer.
      * Plasiyer'in plasiyer_kodu'su, müşterilerin plasiyer_kodu field'i ile eşleşir
@@ -108,7 +95,7 @@ class User extends Authenticatable
             ->where('user_type', 'musteri')
             ->where('is_active', true);
     }
-    
+
     /**
      * Get the plasiyer for this customer.
      */

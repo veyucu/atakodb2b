@@ -3,247 +3,142 @@
 @section('title', 'Yeni Kullanıcı Ekle - ' . (optional($siteSettings)->site_name ?? config('app.name', 'atakodb2b')))
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">
-                        <i class="fas fa-plus"></i> Yeni Kullanıcı Ekle
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.users.store') }}" method="POST">
-                        @csrf
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-plus"></i> Yeni Kullanıcı Ekle
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('admin.users.store') }}" method="POST">
+                            @csrf
 
-                        <h6 class="text-primary mb-3"><i class="fas fa-user"></i> Kullanıcı Bilgileri</h6>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="username" class="form-label">Kullanıcı Kodu <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                       class="form-control @error('username') is-invalid @enderror" 
-                                       id="username" 
-                                       name="username" 
-                                       value="{{ old('username') }}"
-                                       required>
-                                @error('username')
+                            <h6 class="text-primary mb-3"><i class="fas fa-user"></i> Kullanıcı Bilgileri</h6>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username" class="form-label">Kullanıcı Kodu <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        id="username" name="username" value="{{ old('username') }}" required>
+                                    @error('username')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Ad Soyad <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                        name="name" value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">E-posta <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                        name="email" value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Şifre <span
+                                            class="text-danger">*</span></label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" required>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="user_type" class="form-label">Kullanıcı Tipi <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control @error('user_type') is-invalid @enderror" id="user_type"
+                                    name="user_type" required>
+                                    <option value="">Seçiniz...</option>
+                                    <option value="admin" {{ old('user_type') === 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="plasiyer" {{ old('user_type') === 'plasiyer' ? 'selected' : '' }}>Plasiyer
+                                    </option>
+                                    <option value="musteri" {{ old('user_type') === 'musteri' ? 'selected' : '' }}>Müşteri
+                                    </option>
+                                </select>
+                                @error('user_type')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label for="name" class="form-label">Ad Soyad <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                       class="form-control @error('name') is-invalid @enderror" 
-                                       id="name" 
-                                       name="name" 
-                                       value="{{ old('name') }}"
-                                       required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                            <hr class="my-4">
+                            <h6 class="text-primary mb-3"><i class="fas fa-building"></i> Ek Bilgiler (Opsiyonel)</h6>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">E-posta <span class="text-danger">*</span></label>
-                                <input type="email" 
-                                       class="form-control @error('email') is-invalid @enderror" 
-                                       id="email" 
-                                       name="email" 
-                                       value="{{ old('email') }}"
-                                       required>
-                                @error('email')
+                            <div class="mb-3">
+                                <label for="adres" class="form-label">Adres</label>
+                                <textarea class="form-control @error('adres') is-invalid @enderror" id="adres" name="adres"
+                                    rows="2">{{ old('adres') }}</textarea>
+                                @error('adres')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label for="password" class="form-label">Şifre <span class="text-danger">*</span></label>
-                                <input type="password" 
-                                       class="form-control @error('password') is-invalid @enderror" 
-                                       id="password" 
-                                       name="password" 
-                                       required>
-                                @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="il" class="form-label">İl</label>
+                                    <input type="text" class="form-control @error('il') is-invalid @enderror" id="il"
+                                        name="il" value="{{ old('il') }}">
+                                    @error('il')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                        <div class="mb-3">
-                            <label for="user_type" class="form-label">Kullanıcı Tipi <span class="text-danger">*</span></label>
-                            <select class="form-control @error('user_type') is-invalid @enderror" 
-                                    id="user_type" 
-                                    name="user_type" 
-                                    required>
-                                <option value="">Seçiniz...</option>
-                                <option value="admin" {{ old('user_type') === 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="plasiyer" {{ old('user_type') === 'plasiyer' ? 'selected' : '' }}>Plasiyer</option>
-                                <option value="musteri" {{ old('user_type') === 'musteri' ? 'selected' : '' }}>Müşteri</option>
-                            </select>
-                            @error('user_type')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <hr class="my-4">
-                        <h6 class="text-primary mb-3"><i class="fas fa-building"></i> Ek Bilgiler (Opsiyonel)</h6>
-
-                        <div class="mb-3">
-                            <label for="adres" class="form-label">Adres</label>
-                            <textarea class="form-control @error('adres') is-invalid @enderror" 
-                                      id="adres" 
-                                      name="adres" 
-                                      rows="2">{{ old('adres') }}</textarea>
-                            @error('adres')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="il" class="form-label">İl</label>
-                                <input type="text" 
-                                       class="form-control @error('il') is-invalid @enderror" 
-                                       id="il" 
-                                       name="il" 
-                                       value="{{ old('il') }}">
-                                @error('il')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="col-md-6 mb-3">
+                                    <label for="ilce" class="form-label">İlçe</label>
+                                    <input type="text" class="form-control @error('ilce') is-invalid @enderror" id="ilce"
+                                        name="ilce" value="{{ old('ilce') }}">
+                                    @error('ilce')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label for="ilce" class="form-label">İlçe</label>
-                                <input type="text" 
-                                       class="form-control @error('ilce') is-invalid @enderror" 
-                                       id="ilce" 
-                                       name="ilce" 
-                                       value="{{ old('ilce') }}">
-                                @error('ilce')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="telefon" class="form-label">Telefon</label>
-                                <input type="text" 
-                                       class="form-control @error('telefon') is-invalid @enderror" 
-                                       id="telefon" 
-                                       name="telefon" 
-                                       value="{{ old('telefon') }}">
-                                @error('telefon')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="plasiyer_kodu" class="form-label">Plasiyer Kodu</label>
+                                    <input type="text" class="form-control" id="plasiyer_kodu" name="plasiyer_kodu"
+                                        value="{{ old('plasiyer_kodu') }}">
+                                </div>
                             </div>
 
-                            <div class="col-md-4 mb-3">
-                                <label for="mail_adresi" class="form-label">E-posta</label>
-                                <input type="email" 
-                                       class="form-control @error('mail_adresi') is-invalid @enderror" 
-                                       id="mail_adresi" 
-                                       name="mail_adresi" 
-                                       value="{{ old('mail_adresi') }}">
-                                @error('mail_adresi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
+                                        value="1" {{ old('is_active', true) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="is_active">
+                                        Aktif
+                                    </label>
+                                </div>
                             </div>
 
-                            <div class="col-md-4 mb-3">
-                                <label for="gln_numarasi" class="form-label">GLN Numarası</label>
-                                <input type="text" 
-                                       class="form-control @error('gln_numarasi') is-invalid @enderror" 
-                                       id="gln_numarasi" 
-                                       name="gln_numarasi" 
-                                       value="{{ old('gln_numarasi') }}">
-                                @error('gln_numarasi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+                                    <i class="fas fa-times"></i> İptal
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Kaydet
+                                </button>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="vergi_dairesi" class="form-label">Vergi Dairesi</label>
-                                <input type="text" 
-                                       class="form-control @error('vergi_dairesi') is-invalid @enderror" 
-                                       id="vergi_dairesi" 
-                                       name="vergi_dairesi" 
-                                       value="{{ old('vergi_dairesi') }}">
-                                @error('vergi_dairesi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="vergi_kimlik_numarasi" class="form-label">VKN</label>
-                                <input type="text" 
-                                       class="form-control @error('vergi_kimlik_numarasi') is-invalid @enderror" 
-                                       id="vergi_kimlik_numarasi" 
-                                       name="vergi_kimlik_numarasi" 
-                                       value="{{ old('vergi_kimlik_numarasi') }}">
-                                @error('vergi_kimlik_numarasi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="grup_kodu" class="form-label">Grup Kodu</label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="grup_kodu" 
-                                       name="grup_kodu" 
-                                       value="{{ old('grup_kodu') }}">
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="plasiyer_kodu" class="form-label">Plasiyer Kodu</label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="plasiyer_kodu" 
-                                       name="plasiyer_kodu" 
-                                       value="{{ old('plasiyer_kodu') }}">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" 
-                                       type="checkbox" 
-                                       id="is_active" 
-                                       name="is_active" 
-                                       value="1"
-                                       {{ old('is_active', true) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="is_active">
-                                    Aktif
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-times"></i> İptal
-                            </a>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Kaydet
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
-
-
-
-
-
