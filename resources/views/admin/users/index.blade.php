@@ -23,18 +23,28 @@
                 <!-- Arama Formu -->
                 <div class="card-header bg-light">
                     <form action="{{ route('admin.users.index') }}" method="GET" class="row g-2 align-items-center">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                                 <input type="text" name="search" class="form-control"
                                     placeholder="Kullanıcı kodu veya ad soyad ile ara..." value="{{ request('search') }}">
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <select name="user_type" class="form-select">
+                                <option value="">Tüm Kullanıcı Tipleri</option>
+                                <option value="admin" {{ request('user_type') === 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="plasiyer" {{ request('user_type') === 'plasiyer' ? 'selected' : '' }}>Plasiyer
+                                </option>
+                                <option value="musteri" {{ request('user_type') === 'musteri' ? 'selected' : '' }}>Müşteri
+                                </option>
+                            </select>
+                        </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-search"></i> Ara
                             </button>
-                            @if(request('search'))
+                            @if(request('search') || request('user_type'))
                                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
                                     <i class="fas fa-times"></i> Temizle
                                 </a>

@@ -25,6 +25,11 @@ class UserController extends Controller
             });
         }
 
+        // Kullanıcı tipi filtresi
+        if ($request->filled('user_type')) {
+            $query->where('user_type', $request->user_type);
+        }
+
         $users = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         $siteSettings = \App\Models\SiteSetting::getSettings();
         return view('admin.users.index', compact('users', 'siteSettings'));
