@@ -4,27 +4,417 @@
 
 @push('styles')
     <style>
-        /* Arama Formu Genel Stil */
-        .search-form-wrapper {
-            align-items: flex-start;
-            gap: 0.5rem;
+        /* ============================================
+                                                                                   UNIFIED SEARCH & FILTER PANEL - MODERN DESIGN
+                                                                                   ============================================ */
+        .search-filter-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 10px 18px;
+            box-shadow:
+                0 4px 24px rgba(0, 0, 0, 0.08),
+                0 1px 2px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            position: relative;
+            overflow: hidden;
         }
 
-        .search-input-group {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-
-        .filter-checkboxes {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .filter-checkboxes .filter-item {
+        .search-filter-panel form {
             margin: 0;
+            padding: 0;
         }
+
+        .search-filter-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+        }
+
+        [data-theme="dark"] .search-filter-panel {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border-color: rgba(71, 85, 105, 0.4);
+            box-shadow:
+                0 4px 24px rgba(0, 0, 0, 0.4),
+                0 1px 2px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="dark"] .search-filter-panel::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .panel-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+        }
+
+        /* ===== SEARCH BOX - PROMINENT DESIGN ===== */
+        .search-box-wrapper {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-input-container {
+            display: flex;
+            align-items: center;
+            height: 46px;
+            background: #ffffff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 0 8px 0 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+            box-shadow:
+                0 4px 12px rgba(59, 130, 246, 0.15),
+                0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="dark"] .search-input-container {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-color: #60a5fa;
+            box-shadow:
+                0 4px 12px rgba(96, 165, 250, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input-container:hover {
+            border-color: #2563eb;
+            box-shadow:
+                0 6px 16px rgba(59, 130, 246, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.04);
+            transform: translateY(-1px);
+        }
+
+        [data-theme="dark"] .search-input-container:hover {
+            border-color: #93c5fd;
+        }
+
+        .search-input-container:focus-within {
+            border-color: #3b82f6;
+            box-shadow:
+                0 0 0 4px rgba(59, 130, 246, 0.15),
+                0 4px 16px rgba(59, 130, 246, 0.2);
+            transform: translateY(-1px);
+        }
+
+        [data-theme="dark"] .search-input-container:focus-within {
+            border-color: #60a5fa;
+            box-shadow:
+                0 0 0 4px rgba(96, 165, 250, 0.2),
+                0 4px 16px rgba(96, 165, 250, 0.15);
+        }
+
+        .search-icon {
+            color: #3b82f6;
+            font-size: 1.15rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .search-input-container:focus-within .search-icon {
+            color: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        [data-theme="dark"] .search-input-container:focus-within .search-icon {
+            color: #60a5fa;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            height: 100%;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #1e293b;
+            outline: none;
+            min-width: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        [data-theme="dark"] .search-input {
+            color: #f1f5f9;
+        }
+
+        [data-theme="dark"] .search-input::placeholder {
+            color: #64748b;
+        }
+
+        .search-submit-btn {
+            height: 38px;
+            width: 38px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .search-submit-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+        }
+
+        .search-submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ===== DIVIDER - SUBTLE GRADIENT ===== */
+        .panel-divider {
+            width: 2px;
+            height: 32px;
+            background: linear-gradient(180deg, transparent, #e2e8f0, transparent);
+            flex-shrink: 0;
+            border-radius: 1px;
+        }
+
+        [data-theme="dark"] .panel-divider {
+            background: linear-gradient(180deg, transparent, #475569, transparent);
+        }
+
+        /* ===== FILTER OPTIONS ===== */
+        .filter-options {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .filter-chip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            padding: 0 14px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1.5px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 6px;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] .filter-chip {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-color: #334155;
+            color: #94a3b8;
+        }
+
+        .filter-chip:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] .filter-chip:hover {
+            border-color: #475569;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-chip.active {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-color: #3b82f6;
+            color: #2563eb;
+            box-shadow:
+                0 0 0 3px rgba(59, 130, 246, 0.1),
+                0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        [data-theme="dark"] .filter-chip.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        .filter-chip.campaign-chip.active {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-color: #f59e0b;
+            color: #d97706;
+            box-shadow:
+                0 0 0 3px rgba(245, 158, 11, 0.1),
+                0 4px 12px rgba(245, 158, 11, 0.15);
+        }
+
+        [data-theme="dark"] .filter-chip.campaign-chip.active {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-color: #f59e0b;
+            color: #fbbf24;
+        }
+
+        .filter-chip input[type="checkbox"] {
+            display: none;
+        }
+
+        .filter-chip i {
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-chip:hover i {
+            transform: scale(1.1);
+        }
+
+        /* ===== VIEW TOGGLE - COMPACT PILL DESIGN ===== */
+        .view-toggle {
+            display: flex;
+            align-items: center;
+            height: 42px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: 1.5px solid #e2e8f0;
+            padding: 4px;
+            border-radius: 10px;
+            gap: 2px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            margin: 0;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="dark"] .view-toggle {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-color: #334155;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .view-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+            padding: 0 12px;
+            border-radius: 8px;
+            color: #64748b;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 6px;
+            box-sizing: border-box;
+        }
+
+        [data-theme="dark"] .view-btn {
+            color: #94a3b8;
+        }
+
+        .view-btn:hover {
+            color: #334155;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        [data-theme="dark"] .view-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .view-btn.active {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #3b82f6;
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="dark"] .view-btn.active {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            color: #60a5fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .view-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .view-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+
+            .filter-chip span,
+            .view-btn .view-label {
+                display: none;
+            }
+
+            .filter-chip,
+            .view-btn {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-filter-panel {
+                padding: 10px 12px;
+                border-radius: 14px;
+            }
+
+            .panel-content {
+                gap: 8px;
+            }
+
+            .search-input-container,
+            .filter-chip,
+            .view-toggle {
+                height: 40px;
+            }
+
+            .view-btn {
+                height: 32px;
+            }
+
+            .search-submit-btn {
+                height: 32px;
+                width: 32px;
+            }
+
+            .filter-chip,
+            .view-btn {
+                padding: 0 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .panel-divider {
+                display: none;
+            }
+
+            .search-icon {
+                display: none;
+            }
+
+            .search-input-container {
+                padding-left: 12px;
+            }
+        }
+
 
         /* Modal Animasyonu */
         .modal.fade .modal-dialog {
@@ -250,59 +640,6 @@
 
         /* Mobil için katalog görünümü optimizasyonu */
         @media (max-width: 768px) {
-
-            /* Arama formu mobil düzenlemesi */
-            .search-form-wrapper {
-                flex-direction: row !important;
-                align-items: center !important;
-                gap: 0.5rem;
-            }
-
-            .search-input-group {
-                display: flex;
-                flex: 1;
-                gap: 0.25rem;
-                min-width: 0;
-            }
-
-            .search-input-group input[type="text"] {
-                flex: 1;
-                min-width: 0;
-                margin-right: 0 !important;
-                font-size: 0.875rem;
-            }
-
-            .search-input-group .search-button {
-                flex-shrink: 0;
-                padding: 0.375rem 0.75rem !important;
-                white-space: nowrap;
-            }
-
-            .filter-checkboxes {
-                display: flex;
-                flex-direction: column;
-                gap: 0.15rem;
-                flex-shrink: 0;
-                align-items: flex-start;
-                justify-content: center;
-            }
-
-            .filter-checkboxes .filter-item {
-                margin: 0 !important;
-                font-size: 0.8rem;
-                white-space: nowrap;
-                line-height: 1;
-            }
-
-            .filter-checkboxes .filter-item .form-check-input {
-                margin-top: 0;
-            }
-
-            .filter-checkboxes .filter-item .form-check-label {
-                font-size: 0.8rem !important;
-                line-height: 1.2;
-                margin-bottom: 0;
-            }
 
             /* Katalog kartları için mobil düzenlemeler */
             .product-card {
@@ -1239,64 +1576,61 @@
             </div>
         </div>
 
-        <!-- Search and View Toggle -->
-        <div class="row mb-2">
-            <div class="col-md-7">
-                <form action="{{ route('search') }}" method="GET" class="d-flex search-form-wrapper" id="searchForm"
-                    onsubmit="clearSearchAfterSubmit()">
-                    <div class="search-input-group">
-                        <div class="input-group" style="flex: 1;">
-                            <span class="input-group-text"
-                                style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); border: 2px solid #0d6efd; color: white;">
-                                <i class="fas fa-search"></i>
-                            </span>
-                            <input type="text" name="q" id="search-input" class="form-control"
-                                style="border: 2px solid #0d6efd; border-left: none; font-size: 1rem; padding: 0.5rem 1rem; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.15);"
-                                placeholder="🔍 Ürün adı veya barkod ile ara..." value="{{ request('q') }}">
-                        </div>
-                        <input type="hidden" name="view" value="{{ $viewType }}">
-                        <input type="hidden" name="stokta_olanlar" id="stokta_olanlar_hidden"
-                            value="{{ request('stokta_olanlar') ? '1' : '0' }}">
-                        <input type="hidden" name="kampanyali" id="kampanyali_hidden"
-                            value="{{ request('kampanyali') ? '1' : '0' }}">
-                        <button type="submit" class="btn btn-primary search-button"
-                            style="font-size: 1rem; padding: 0.5rem 1.25rem; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);">
-                            <i class="fas fa-search me-1"></i> Ara
-                        </button>
-                    </div>
-                    <div class="filter-checkboxes">
-                        <div class="form-check d-flex align-items-center filter-item">
-                            <input class="form-check-input" type="checkbox" id="stokta_olanlar_check" {{ request('stokta_olanlar') ? 'checked' : '' }} onchange="toggleStoktaOlanlar()">
-                            <label class="form-check-label ms-1 text-nowrap" for="stokta_olanlar_check"
-                                style="font-size: 0.85rem;">
-                                Stokta Olanlar
-                            </label>
-                        </div>
-                        <div class="form-check d-flex align-items-center filter-item">
-                            <input class="form-check-input" type="checkbox" id="kampanyali_check" {{ request('kampanyali') ? 'checked' : '' }} onchange="toggleKampanyali()" style="border-color: #f59e0b;">
-                            <label class="form-check-label ms-1 text-nowrap" for="kampanyali_check"
-                                style="font-size: 0.85rem; color: #d97706; font-weight: 500;">
-                                <i class="fas fa-tag me-1"></i>Kampanyalı
-                            </label>
+        <!-- Search and Filter Panel -->
+        <div class="search-filter-panel mb-3">
+            <form action="{{ route('search') }}" method="GET" id="searchForm" onsubmit="clearSearchAfterSubmit()">
+                <div class="panel-content">
+                    <!-- Search Box -->
+                    <div class="search-box-wrapper">
+                        <div class="search-input-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" name="q" id="search-input" class="search-input"
+                                placeholder="Ürün adı, barkod veya kod ile ara..." value="{{ request('q') }}">
+                            <button type="submit" class="search-submit-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-md-5 text-end">
-                <!-- Görünüm Seçimi -->
-                <div class="btn-group" role="group">
-                    <a href="{{ request()->fullUrlWithQuery(['view' => 'catalog']) }}"
-                        class="btn btn-outline-primary btn-sm {{ $viewType === 'catalog' ? 'active' : '' }}"
-                        onclick="saveViewPreference('catalog')">
-                        <i class="fas fa-th"></i> Katalog
-                    </a>
-                    <a href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}"
-                        class="btn btn-outline-primary btn-sm {{ $viewType === 'list' ? 'active' : '' }}"
-                        onclick="saveViewPreference('list')">
-                        <i class="fas fa-bars"></i> Liste
-                    </a>
+
+                    <!-- Filter Options -->
+                    <div class="filter-options">
+                        <label class="filter-chip {{ request('stokta_olanlar') ? 'active' : '' }}">
+                            <input type="checkbox" id="stokta_olanlar_check" {{ request('stokta_olanlar') ? 'checked' : '' }} onchange="toggleStoktaOlanlar()">
+                            <i class="fas fa-box-open"></i>
+                            <span>Stokta Olanlar</span>
+                        </label>
+                        <label class="filter-chip campaign-chip {{ request('kampanyali') ? 'active' : '' }}">
+                            <input type="checkbox" id="kampanyali_check" {{ request('kampanyali') ? 'checked' : '' }}
+                                onchange="toggleKampanyali()">
+                            <i class="fas fa-tag"></i>
+                            <span>Kampanyalı</span>
+                        </label>
+                    </div>
+
+                    <!-- View Toggle -->
+                    <div class="view-toggle">
+                        <a href="{{ request()->fullUrlWithQuery(['view' => 'catalog']) }}"
+                            class="view-btn {{ $viewType === 'catalog' ? 'active' : '' }}"
+                            onclick="saveViewPreference('catalog')" title="Katalog Görünümü">
+                            <i class="fas fa-th-large"></i>
+                            <span class="view-label">Katalog</span>
+                        </a>
+                        <a href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}"
+                            class="view-btn {{ $viewType === 'list' ? 'active' : '' }}" onclick="saveViewPreference('list')"
+                            title="Liste Görünümü">
+                            <i class="fas fa-list"></i>
+                            <span class="view-label">Liste</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+
+                <!-- Hidden fields -->
+                <input type="hidden" name="view" value="{{ $viewType }}">
+                <input type="hidden" name="stokta_olanlar" id="stokta_olanlar_hidden"
+                    value="{{ request('stokta_olanlar') ? '1' : '0' }}">
+                <input type="hidden" name="kampanyali" id="kampanyali_hidden"
+                    value="{{ request('kampanyali') ? '1' : '0' }}">
+            </form>
         </div>
 
         <!-- Products Section -->
@@ -2346,13 +2680,13 @@
 
             // Loading göster
             $('#modalContent').html(`
-                                                                                                                                                                                                                                                                <div class="text-center py-5">
-                                                                                                                                                                                                                                                                    <div class="spinner-border text-primary" role="status">
-                                                                                                                                                                                                                                                                        <span class="visually-hidden">Yükleniyor...</span>
-                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                    <p class="mt-3">Ürün detayları yükleniyor...</p>
-                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                            `);
+                                                                                                                                                                                                                                                                                                                                                        <div class="text-center py-5">
+                                                                                                                                                                                                                                                                                                                                                            <div class="spinner-border text-primary" role="status">
+                                                                                                                                                                                                                                                                                                                                                                <span class="visually-hidden">Yükleniyor...</span>
+                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                            <p class="mt-3">Ürün detayları yükleniyor...</p>
+                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                    `);
 
             // Modal'ı en üste çıkar (diğer modalların üzerinde)
             $('#productModal').css('z-index', '1070');
@@ -2375,11 +2709,11 @@
                 },
                 error: function (xhr) {
                     $('#modalContent').html(`
-                                                                                                                                                                                                                                                                        <div class="alert alert-danger">
-                                                                                                                                                                                                                                                                            <i class="fas fa-exclamation-triangle"></i>
-                                                                                                                                                                                                                                                                            Ürün detayları yüklenirken hata oluştu!
-                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                    `);
+                                                                                                                                                                                                                                                                                                                                                                <div class="alert alert-danger">
+                                                                                                                                                                                                                                                                                                                                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                                                                                                                                                                                                                                                                                                                                    Ürün detayları yüklenirken hata oluştu!
+                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                            `);
                 }
             });
         }
@@ -3200,7 +3534,7 @@
                     }
                 }
             @endif
-                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                            });
 
         // Kampanya ürünleri için miktar artır/azalt
         function increaseCampaignQty(productId) {
@@ -3659,6 +3993,6 @@
                     }
                 });
             @endauth
-                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                            }
     </script>
 @endif
